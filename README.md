@@ -81,9 +81,7 @@
 
 **Equation**
 
-$$
-p_\theta(x_{1:T}) = \prod_{t=1}^{T} p_\theta(x_t \mid x_{1:t-1})
-$$
+$$p_\theta(x_{1:T}) = \prod_{t=1}^{T} p_\theta(x_t \mid x_{1:t-1})$$
 
 **Plain-English explanation.** A language model assigns probability to a full sequence by multiplying conditional next-token probabilities.
 
@@ -97,9 +95,7 @@ $$
 
 **Equation**
 
-$$
-p_\theta(y_{1:T}\mid x)=\prod_{t=1}^{T}p_\theta(y_t\mid x,y_{1:t-1})
-$$
+$$p_\theta(y_{1:T}\mid x)=\prod_{t=1}^{T}p_\theta(y_t\mid x,y_{1:t-1})$$
 
 **Plain-English explanation.** The model generates an output sequence conditioned on an input prompt or source sequence.
 
@@ -113,9 +109,7 @@ $$
 
 **Equation**
 
-$$
-p_i = \mathrm{softmax}(z)_i = \frac{e^{z_i}}{\sum_{j=1}^{V}e^{z_j}}
-$$
+$$p_i = \mathrm{softmax}(z)_i = \frac{e^{z_i}}{\sum_{j=1}^{V}e^{z_j}}$$
 
 **Plain-English explanation.** Converts raw logits into a probability distribution over vocabulary tokens.
 
@@ -129,9 +123,7 @@ $$
 
 **Equation**
 
-$$
-\log p_i = z_i - \log\sum_{j=1}^{V} e^{z_j}
-$$
+$$\log p_i = z_i - \log\sum_{j=1}^{V} e^{z_j}$$
 
 **Plain-English explanation.** Computes log-probabilities in a numerically stable way.
 
@@ -145,9 +137,7 @@ $$
 
 **Equation**
 
-$$
-\log\sum_i e^{z_i}=m+\log\sum_i e^{z_i-m},\quad m=\max_i z_i
-$$
+$$\log\sum_i e^{z_i}=m+\log\sum_i e^{z_i-m},\quad m=\max_i z_i$$
 
 **Plain-English explanation.** Prevents overflow when exponentiating large logits.
 
@@ -161,9 +151,7 @@ $$
 
 **Equation**
 
-$$
-\mathcal{L}_{\mathrm{NLL}}(\theta)=-\sum_{t=1}^{T}\log p_\theta(x_t\mid x_{1:t-1})
-$$
+$$\mathcal{L}_{\mathrm{NLL}}(\theta)=-\sum_{t=1}^{T}\log p_\theta(x_t\mid x_{1:t-1})$$
 
 **Plain-English explanation.** Penalizes the model when it assigns low probability to the correct next token.
 
@@ -177,9 +165,7 @@ $$
 
 **Equation**
 
-$$
-H(y,p)=-\sum_{i=1}^{V} y_i\log p_i
-$$
+$$H(y,p)=-\sum_{i=1}^{V} y_i\log p_i$$
 
 **Plain-English explanation.** Measures mismatch between the target distribution and predicted distribution.
 
@@ -193,9 +179,7 @@ $$
 
 **Equation**
 
-$$
-H(P,Q)=H(P)+D_{\mathrm{KL}}(P\Vert Q)
-$$
+$$H(P,Q)=H(P)+D_{\mathrm{KL}}(P\Vert Q)$$
 
 **Plain-English explanation.** Cross-entropy equals irreducible target entropy plus KL divergence from target to model.
 
@@ -209,9 +193,7 @@ $$
 
 **Equation**
 
-$$
-D_{\mathrm{KL}}(P\Vert Q)=\sum_x P(x)\log\frac{P(x)}{Q(x)}
-$$
+$$D_{\mathrm{KL}}(P\Vert Q)=\sum_x P(x)\log\frac{P(x)}{Q(x)}$$
 
 **Plain-English explanation.** Measures how much one probability distribution differs from another.
 
@@ -225,9 +207,7 @@ $$
 
 **Equation**
 
-$$
-D_{\mathrm{KL}}(Q\Vert P)=\sum_x Q(x)\log\frac{Q(x)}{P(x)}
-$$
+$$D_{\mathrm{KL}}(Q\Vert P)=\sum_x Q(x)\log\frac{Q(x)}{P(x)}$$
 
 **Plain-English explanation.** A mode-seeking divergence often behaving differently from forward KL.
 
@@ -241,9 +221,7 @@ $$
 
 **Equation**
 
-$$
-H(P)=-\sum_x P(x)\log P(x)
-$$
+$$H(P)=-\sum_x P(x)\log P(x)$$
 
 **Plain-English explanation.** Measures uncertainty or randomness in a distribution.
 
@@ -257,9 +235,7 @@ $$
 
 **Equation**
 
-$$
-\log p_\theta(x_{1:T})=\sum_{t=1}^{T}\log p_\theta(x_t\mid x_{1:t-1})
-$$
+$$\log p_\theta(x_{1:T})=\sum_{t=1}^{T}\log p_\theta(x_t\mid x_{1:t-1})$$
 
 **Plain-English explanation.** Turns a product of probabilities into a sum of token log-probabilities.
 
@@ -273,9 +249,7 @@ $$
 
 **Equation**
 
-$$
-S(x_{1:T})=\frac{1}{T^\alpha}\sum_{t=1}^{T}\log p_\theta(x_t\mid x_{1:t-1})
-$$
+$$S(x_{1:T})=\frac{1}{T^\alpha}\sum_{t=1}^{T}\log p_\theta(x_t\mid x_{1:t-1})$$
 
 **Plain-English explanation.** Normalizes sequence likelihood to reduce short-sequence bias.
 
@@ -289,9 +263,7 @@ $$
 
 **Equation**
 
-$$
-\mathcal{L}_{\mathrm{TF}}=-\sum_t \log p_\theta(y_t\mid y_{1:t-1}^{\star},x)
-$$
+$$\mathcal{L}_{\mathrm{TF}}=-\sum_t \log p_\theta(y_t\mid y_{1:t-1}^{\star},x)$$
 
 **Plain-English explanation.** The model predicts each next target token using gold previous tokens during training.
 
@@ -305,9 +277,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{PPL}=\exp\left(-\frac{1}{T}\sum_{t=1}^{T}\log p_\theta(x_t\mid x_{1:t-1})\right)
-$$
+$$\mathrm{PPL}=\exp\left(-\frac{1}{T}\sum_{t=1}^{T}\log p_\theta(x_t\mid x_{1:t-1})\right)$$
 
 **Plain-English explanation.** Exponentiated average negative log-likelihood; lower is better.
 
@@ -321,9 +291,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{BPB}= -\frac{1}{B\log 2}\sum_{t=1}^{T}\log p_\theta(x_t\mid x_{1:t-1})
-$$
+$$\mathrm{BPB}= -\frac{1}{B\log 2}\sum_{t=1}^{T}\log p_\theta(x_t\mid x_{1:t-1})$$
 
 **Plain-English explanation.** Measures compression quality normalized by byte count.
 
@@ -339,9 +307,7 @@ $$
 
 **Equation**
 
-$$
-X = E[\mathrm{ids}],\quad E\in\mathbb{R}^{V\times d}
-$$
+$$X = E[\mathrm{ids}],\quad E\in\mathbb{R}^{V\times d}$$
 
 **Plain-English explanation.** Maps token IDs to dense vectors.
 
@@ -355,9 +321,7 @@ $$
 
 **Equation**
 
-$$
-h_i^{(0)} = E_{x_i} + P_i
-$$
+$$h_i^{(0)} = E_{x_i} + P_i$$
 
 **Plain-English explanation.** Combines token identity with position information.
 
@@ -371,9 +335,7 @@ $$
 
 **Equation**
 
-$$
-z_t = h_t W_U + b_U
-$$
+$$z_t = h_t W_U + b_U$$
 
 **Plain-English explanation.** Projects hidden state to vocabulary logits.
 
@@ -387,9 +349,7 @@ $$
 
 **Equation**
 
-$$
-W_U = E^\top
-$$
+$$W_U = E^\top$$
 
 **Plain-English explanation.** Reuses the token embedding matrix as the output projection.
 
@@ -403,9 +363,7 @@ $$
 
 **Equation**
 
-$$
-\tilde{h}^{(\ell)}=h^{(\ell)}+\mathrm{Attn}(\mathrm{LN}(h^{(\ell)})),\quad h^{(\ell+1)}=\tilde{h}^{(\ell)}+\mathrm{MLP}(\mathrm{LN}(\tilde{h}^{(\ell)}))
-$$
+$$\tilde{h}^{(\ell)}=h^{(\ell)}+\mathrm{Attn}(\mathrm{LN}(h^{(\ell)})),\quad h^{(\ell+1)}=\tilde{h}^{(\ell)}+\mathrm{MLP}(\mathrm{LN}(\tilde{h}^{(\ell)}))$$
 
 **Plain-English explanation.** Applies normalization before each sublayer and adds residual connections.
 
@@ -419,9 +377,7 @@ $$
 
 **Equation**
 
-$$
-\tilde{h}^{(\ell)}=\mathrm{LN}(h^{(\ell)}+\mathrm{Attn}(h^{(\ell)})),\quad h^{(\ell+1)}=\mathrm{LN}(\tilde{h}^{(\ell)}+\mathrm{MLP}(\tilde{h}^{(\ell)}))
-$$
+$$\tilde{h}^{(\ell)}=\mathrm{LN}(h^{(\ell)}+\mathrm{Attn}(h^{(\ell)})),\quad h^{(\ell+1)}=\mathrm{LN}(\tilde{h}^{(\ell)}+\mathrm{MLP}(\tilde{h}^{(\ell)}))$$
 
 **Plain-English explanation.** Applies normalization after the residual addition.
 
@@ -435,9 +391,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{FFN}(x)=\phi(xW_1+b_1)W_2+b_2
-$$
+$$\mathrm{FFN}(x)=\phi(xW_1+b_1)W_2+b_2$$
 
 **Plain-English explanation.** Applies a position-wise nonlinear transformation after attention.
 
@@ -451,9 +405,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{Dropout}(x)=\frac{m\odot x}{1-p},\quad m_i\sim\mathrm{Bernoulli}(1-p)
-$$
+$$\mathrm{Dropout}(x)=\frac{m\odot x}{1-p},\quad m_i\sim\mathrm{Bernoulli}(1-p)$$
 
 **Plain-English explanation.** Randomly zeroes activations during training and rescales survivors.
 
@@ -467,9 +419,7 @@ $$
 
 **Equation**
 
-$$
-h^{(\ell+1)}=h^{(\ell)}+b_\ell f_\ell(h^{(\ell)}),\quad b_\ell\sim\mathrm{Bernoulli}(p_\ell)
-$$
+$$h^{(\ell+1)}=h^{(\ell)}+b_\ell f_\ell(h^{(\ell)}),\quad b_\ell\sim\mathrm{Bernoulli}(p_\ell)$$
 
 **Plain-English explanation.** Randomly skips residual branches during training.
 
@@ -483,9 +433,7 @@ $$
 
 **Equation**
 
-$$
-W_{\mathrm{ij}}\sim U\left[-\sqrt{\frac{6}{n_{\mathrm{in}}+n_{\mathrm{out}}}},\sqrt{\frac{6}{n_{\mathrm{in}}+n_{\mathrm{out}}}}\right]
-$$
+$$W_{\mathrm{ij}}\sim U\left[-\sqrt{\frac{6}{n_{\mathrm{in}}+n_{\mathrm{out}}}},\sqrt{\frac{6}{n_{\mathrm{in}}+n_{\mathrm{out}}}}\right]$$
 
 **Plain-English explanation.** Initializes weights so variance is controlled across layers.
 
@@ -499,9 +447,7 @@ $$
 
 **Equation**
 
-$$
-W_{\mathrm{ij}}\sim \mathcal{N}\left(0,\frac{2}{n_{\mathrm{in}}}\right)
-$$
+$$W_{\mathrm{ij}}\sim \mathcal{N}\left(0,\frac{2}{n_{\mathrm{in}}}\right)$$
 
 **Plain-English explanation.** Initialization designed for ReLU-like activations.
 
@@ -517,9 +463,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{Attention}(Q,K,V)=\mathrm{softmax}\left(\frac{QK^\top}{\sqrt{d_k}}\right)V
-$$
+$$\mathrm{Attention}(Q,K,V)=\mathrm{softmax}\left(\frac{QK^\top}{\sqrt{d_k}}\right)V$$
 
 **Plain-English explanation.** Computes a weighted average of values using query-key similarity.
 
@@ -533,9 +477,7 @@ $$
 
 **Equation**
 
-$$
-A=\mathrm{softmax}\left(\frac{QK^\top}{\sqrt{d_k}}+M\right),\quad M_{\mathrm{ij}}=\begin{cases}0,&j\leq i\\-\infty,&j> i\end{cases}
-$$
+$$A=\mathrm{softmax}\left(\frac{QK^\top}{\sqrt{d_k}}+M\right),\quad M_{\mathrm{ij}}=\begin{cases}0,&j\leq i\\-\infty,&j> i\end{cases}$$
 
 **Plain-English explanation.** Prevents a token from attending to future tokens.
 
@@ -549,9 +491,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{MHA}(X)=\mathrm{Concat}(\mathrm{head}_1,\dots,\mathrm{head}_H)W^O,\quad \mathrm{head}_h=\mathrm{Attention}(XW_h^Q,XW_h^K,XW_h^V)
-$$
+$$\mathrm{MHA}(X)=\mathrm{Concat}(\mathrm{head}_1,\dots,\mathrm{head}_H)W^O,\quad \mathrm{head}_h=\mathrm{Attention}(XW_h^Q,XW_h^K,XW_h^V)$$
 
 **Plain-English explanation.** Runs attention in multiple learned subspaces then combines the results.
 
@@ -565,9 +505,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{CrossAttn}(Q_x,K_y,V_y)=\mathrm{softmax}\left(\frac{Q_xK_y^\top}{\sqrt{d_k}}\right)V_y
-$$
+$$\mathrm{CrossAttn}(Q_x,K_y,V_y)=\mathrm{softmax}\left(\frac{Q_xK_y^\top}{\sqrt{d_k}}\right)V_y$$
 
 **Plain-English explanation.** Queries from one sequence attend to keys/values from another sequence.
 
@@ -581,9 +519,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{head}_h=\mathrm{Attention}(XW_h^Q,XW^K,XW^V)
-$$
+$$\mathrm{head}_h=\mathrm{Attention}(XW_h^Q,XW^K,XW^V)$$
 
 **Plain-English explanation.** Each query head has its own query projection but all heads share keys and values.
 
@@ -597,9 +533,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{head}_h=\mathrm{Attention}(XW_h^Q,XW_{g(h)}^K,XW_{g(h)}^V)
-$$
+$$\mathrm{head}_h=\mathrm{Attention}(XW_h^Q,XW_{g(h)}^K,XW_{g(h)}^V)$$
 
 **Plain-English explanation.** Groups query heads so multiple query heads share a key/value head.
 
@@ -613,9 +547,7 @@ $$
 
 **Equation**
 
-$$
-A_{\mathrm{ij}}=0\quad\mathrm{if}\quad |i-j|> w
-$$
+$$A_{\mathrm{ij}}=0\quad\mathrm{if}\quad |i-j|> w$$
 
 **Plain-English explanation.** Restricts attention to a local window.
 
@@ -629,9 +561,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{SparseAttn}(Q,K,V)=\mathrm{softmax}\left(\frac{QK^\top}{\sqrt{d_k}}+M_S\right)V
-$$
+$$\mathrm{SparseAttn}(Q,K,V)=\mathrm{softmax}\left(\frac{QK^\top}{\sqrt{d_k}}+M_S\right)V$$
 
 **Plain-English explanation.** Uses a sparsity mask so only selected query-key pairs interact.
 
@@ -645,9 +575,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{Attn}(Q,K,V)_i=\frac{\phi(q_i)^\top\sum_j\phi(k_j)v_j^\top}{\phi(q_i)^\top\sum_j\phi(k_j)}
-$$
+$$\mathrm{Attn}(Q,K,V)_i=\frac{\phi(q_i)^\top\sum_j\phi(k_j)v_j^\top}{\phi(q_i)^\top\sum_j\phi(k_j)}$$
 
 **Plain-English explanation.** Rewrites attention using kernel features to avoid explicit quadratic attention matrix.
 
@@ -661,9 +589,7 @@ $$
 
 **Equation**
 
-$$
-\exp(q^\top k)\approx \phi(q)^\top\phi(k)
-$$
+$$\exp(q^\top k)\approx \phi(q)^\top\phi(k)$$
 
 **Plain-English explanation.** Approximates softmax attention with random feature maps.
 
@@ -677,9 +603,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{Attn}(Q,K,V)=\mathrm{softmax}\left(\frac{Q(EK)^\top}{\sqrt{d_k}}\right)FV
-$$
+$$\mathrm{Attn}(Q,K,V)=\mathrm{softmax}\left(\frac{Q(EK)^\top}{\sqrt{d_k}}\right)FV$$
 
 **Plain-English explanation.** Projects sequence-length dimension of keys and values to lower rank.
 
@@ -693,9 +617,7 @@ $$
 
 **Equation**
 
-$$
-h(q)=\mathrm{argmax}([qR;-qR])
-$$
+$$h(q)=\mathrm{argmax}([qR;-qR])$$
 
 **Plain-English explanation.** Hashes similar queries/keys into buckets using random projections.
 
@@ -709,9 +631,7 @@ $$
 
 **Equation**
 
-$$
-m_i=\max(m_i^{\mathrm{old}},m_i^{\mathrm{block}}),\quad l_i=e^{m_i^{\mathrm{old}}-m_i}l_i^{\mathrm{old}}+e^{m_i^{\mathrm{block}}-m_i}l_i^{\mathrm{block}}
-$$
+$$m_i=\max(m_i^{\mathrm{old}},m_i^{\mathrm{block}}),\quad l_i=e^{m_i^{\mathrm{old}}-m_i}l_i^{\mathrm{old}}+e^{m_i^{\mathrm{block}}-m_i}l_i^{\mathrm{block}}$$
 
 **Plain-English explanation.** Computes exact attention in blocks while maintaining stable softmax statistics.
 
@@ -725,9 +645,7 @@ $$
 
 **Equation**
 
-$$
-o_i=\frac{e^{m_i^{\mathrm{old}}-m_i}l_i^{\mathrm{old}}o_i^{\mathrm{old}}+e^{m_i^{\mathrm{block}}-m_i}l_i^{\mathrm{block}}o_i^{\mathrm{block}}}{l_i}
-$$
+$$o_i=\frac{e^{m_i^{\mathrm{old}}-m_i}l_i^{\mathrm{old}}o_i^{\mathrm{old}}+e^{m_i^{\mathrm{block}}-m_i}l_i^{\mathrm{block}}o_i^{\mathrm{block}}}{l_i}$$
 
 **Plain-English explanation.** Merges partial block outputs into the exact softmax attention output.
 
@@ -743,9 +661,7 @@ $$
 
 **Equation**
 
-$$
-PE_{\mathrm{pos},2i}=\sin\left(\frac{\mathrm{pos}}{10000^{2i/d}}\right),\quad PE_{\mathrm{pos},2i+1}=\cos\left(\frac{\mathrm{pos}}{10000^{2i/d}}\right)
-$$
+$$PE_{\mathrm{pos},2i}=\sin\left(\frac{\mathrm{pos}}{10000^{2i/d}}\right),\quad PE_{\mathrm{pos},2i+1}=\cos\left(\frac{\mathrm{pos}}{10000^{2i/d}}\right)$$
 
 **Plain-English explanation.** Encodes absolute position using sinusoids at different frequencies.
 
@@ -759,9 +675,7 @@ $$
 
 **Equation**
 
-$$
-h_i^{(0)}=E_{x_i}+P_i,\quad P\in\mathbb{R}^{n_{\max}\times d}
-$$
+$$h_i^{(0)}=E_{x_i}+P_i,\quad P\in\mathbb{R}^{n_{\max}\times d}$$
 
 **Plain-English explanation.** Learns one position vector per position.
 
@@ -775,9 +689,7 @@ $$
 
 **Equation**
 
-$$
-R_{\theta,i}=\begin{bmatrix}\cos(i\theta)&-\sin(i\theta)\\\sin(i\theta)&\cos(i\theta)\end{bmatrix}
-$$
+$$R_{\theta,i}=\begin{bmatrix}\cos(i\theta)&-\sin(i\theta)\\\sin(i\theta)&\cos(i\theta)\end{bmatrix}$$
 
 **Plain-English explanation.** Rotates query/key vector pairs by position-dependent angles.
 
@@ -791,9 +703,7 @@ $$
 
 **Equation**
 
-$$
-(R_m q)^\top(R_n k)=q^\top R_{n-m}k
-$$
+$$(R_m q)^\top(R_n k)=q^\top R_{n-m}k$$
 
 **Plain-English explanation.** Dot products depend on relative position difference.
 
@@ -807,9 +717,7 @@ $$
 
 **Equation**
 
-$$
-\tilde{x}_{2j}+i\tilde{x}_{2j+1}=(x_{2j}+ix_{2j+1})e^{i m\theta_j}
-$$
+$$\tilde{x}_{2j}+i\tilde{x}_{2j+1}=(x_{2j}+ix_{2j+1})e^{i m\theta_j}$$
 
 **Plain-English explanation.** Applies RoPE as complex multiplication.
 
@@ -823,9 +731,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{score}_{\mathrm{ij}}=\frac{q_i^\top k_j}{\sqrt{d_k}}-m_h(i-j)
-$$
+$$\mathrm{score}_{\mathrm{ij}}=\frac{q_i^\top k_j}{\sqrt{d_k}}-m_h(i-j)$$
 
 **Plain-English explanation.** Adds head-specific linear distance penalty to attention scores.
 
@@ -839,9 +745,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{score}_{\mathrm{ij}}=\frac{q_i^\top k_j}{\sqrt{d_k}}+b_{\mathrm{bucket}(i-j)}
-$$
+$$\mathrm{score}_{\mathrm{ij}}=\frac{q_i^\top k_j}{\sqrt{d_k}}+b_{\mathrm{bucket}(i-j)}$$
 
 **Plain-English explanation.** Adds a learned bias based on bucketed relative distance.
 
@@ -855,9 +759,7 @@ $$
 
 **Equation**
 
-$$
-q_m'=R_m q_m\odot s_m,\quad k_n'=R_n k_n\odot s_n^{-1}
-$$
+$$q_m'=R_m q_m\odot s_m,\quad k_n'=R_n k_n\odot s_n^{-1}$$
 
 **Plain-English explanation.** Adds a multiplicative scale to RoPE to improve length extrapolation.
 
@@ -871,9 +773,7 @@ $$
 
 **Equation**
 
-$$
-h_i^{(0)}=E_{x_i}
-$$
+$$h_i^{(0)}=E_{x_i}$$
 
 **Plain-English explanation.** Uses no explicit positional encoding.
 
@@ -887,9 +787,7 @@ $$
 
 **Equation**
 
-$$
-m' = m\cdot\frac{L_{\mathrm{train}}}{L_{\mathrm{target}}}
-$$
+$$m' = m\cdot\frac{L_{\mathrm{train}}}{L_{\mathrm{target}}}$$
 
 **Plain-English explanation.** Compresses target positions into the training position range.
 
@@ -903,9 +801,7 @@ $$
 
 **Equation**
 
-$$
-\theta_j' = \theta_j\cdot \alpha^{-2j/(d-2)}
-$$
+$$\theta_j' = \theta_j\cdot \alpha^{-2j/(d-2)}$$
 
 **Plain-English explanation.** Changes RoPE frequencies to support longer context.
 
@@ -919,9 +815,7 @@ $$
 
 **Equation**
 
-$$
-\theta_j' = \theta_j / s_j,\quad s_j = (1-r_j)s_{\mathrm{low}}+r_j s_{\mathrm{high}}
-$$
+$$\theta_j' = \theta_j / s_j,\quad s_j = (1-r_j)s_{\mathrm{low}}+r_j s_{\mathrm{high}}$$
 
 **Plain-English explanation.** Uses dimension-dependent scaling for RoPE frequencies.
 
@@ -935,9 +829,7 @@ $$
 
 **Equation**
 
-$$
-\alpha_{\mathrm{ij}}=\frac{\exp(q_i^\top k_j/\sqrt{d})}{\sum_{t}\exp(q_i^\top k_t/\sqrt{d})}
-$$
+$$\alpha_{\mathrm{ij}}=\frac{\exp(q_i^\top k_j/\sqrt{d})}{\sum_{t}\exp(q_i^\top k_t/\sqrt{d})}$$
 
 **Plain-English explanation.** Certain early tokens can receive persistent attention mass and act as sinks.
 
@@ -953,9 +845,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{LN}(x)=\gamma\odot\frac{x-\mu}{\sqrt{\sigma^2+\epsilon}}+\beta,\quad \mu=\frac{1}{d}\sum_i x_i,\quad \sigma^2=\frac{1}{d}\sum_i(x_i-\mu)^2
-$$
+$$\mathrm{LN}(x)=\gamma\odot\frac{x-\mu}{\sqrt{\sigma^2+\epsilon}}+\beta,\quad \mu=\frac{1}{d}\sum_i x_i,\quad \sigma^2=\frac{1}{d}\sum_i(x_i-\mu)^2$$
 
 **Plain-English explanation.** Normalizes features within one token representation.
 
@@ -969,9 +859,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{RMSNorm}(x)=\gamma\odot\frac{x}{\sqrt{\frac{1}{d}\sum_i x_i^2+\epsilon}}
-$$
+$$\mathrm{RMSNorm}(x)=\gamma\odot\frac{x}{\sqrt{\frac{1}{d}\sum_i x_i^2+\epsilon}}$$
 
 **Plain-English explanation.** Normalizes by root mean square without subtracting mean.
 
@@ -985,9 +873,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{BN}(x)=\gamma\frac{x-\mu_B}{\sqrt{\sigma_B^2+\epsilon}}+\beta
-$$
+$$\mathrm{BN}(x)=\gamma\frac{x-\mu_B}{\sqrt{\sigma_B^2+\epsilon}}+\beta$$
 
 **Plain-English explanation.** Normalizes using mini-batch statistics.
 
@@ -1001,9 +887,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{GN}(x)=\gamma\frac{x-\mu_G}{\sqrt{\sigma_G^2+\epsilon}}+\beta
-$$
+$$\mathrm{GN}(x)=\gamma\frac{x-\mu_G}{\sqrt{\sigma_G^2+\epsilon}}+\beta$$
 
 **Plain-English explanation.** Normalizes groups of channels independently.
 
@@ -1017,9 +901,7 @@ $$
 
 **Equation**
 
-$$
-x_{l+1}=\mathrm{LN}(\alpha x_l+G_l(x_l))
-$$
+$$x_{l+1}=\mathrm{LN}(\alpha x_l+G_l(x_l))$$
 
 **Plain-English explanation.** Scales residual paths to stabilize very deep Transformers.
 
@@ -1035,9 +917,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{ReLU}(x)=\max(0,x)
-$$
+$$\mathrm{ReLU}(x)=\max(0,x)$$
 
 **Plain-English explanation.** Keeps positive values and zeroes negative values.
 
@@ -1051,9 +931,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{GELU}(x)=x\Phi(x)
-$$
+$$\mathrm{GELU}(x)=x\Phi(x)$$
 
 **Plain-English explanation.** Weights input by the Gaussian CDF.
 
@@ -1067,9 +945,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{GELU}(x)\approx 0.5x\left(1+\tanh\left(\sqrt{2/\pi}(x+0.044715x^3)\right)\right)
-$$
+$$\mathrm{GELU}(x)\approx 0.5x\left(1+\tanh\left(\sqrt{2/\pi}(x+0.044715x^3)\right)\right)$$
 
 **Plain-English explanation.** Fast approximation of GELU.
 
@@ -1083,9 +959,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{SiLU}(x)=x\sigma(x)=\frac{x}{1+e^{-x}}
-$$
+$$\mathrm{SiLU}(x)=x\sigma(x)=\frac{x}{1+e^{-x}}$$
 
 **Plain-English explanation.** Smooth gated activation.
 
@@ -1099,9 +973,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{Mish}(x)=x\tanh(\log(1+e^x))
-$$
+$$\mathrm{Mish}(x)=x\tanh(\log(1+e^x))$$
 
 **Plain-English explanation.** Smooth non-monotonic activation.
 
@@ -1115,9 +987,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{GLU}(x)= (xW_a+b_a)\odot\sigma(xW_b+b_b)
-$$
+$$\mathrm{GLU}(x)= (xW_a+b_a)\odot\sigma(xW_b+b_b)$$
 
 **Plain-English explanation.** One projection gates another projection.
 
@@ -1131,9 +1001,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{ReGLU}(x)= (xW_a)\odot\mathrm{ReLU}(xW_b)
-$$
+$$\mathrm{ReGLU}(x)= (xW_a)\odot\mathrm{ReLU}(xW_b)$$
 
 **Plain-English explanation.** Uses a ReLU gate in a GLU-style block.
 
@@ -1147,9 +1015,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{GeGLU}(x)= (xW_a)\odot\mathrm{GELU}(xW_b)
-$$
+$$\mathrm{GeGLU}(x)= (xW_a)\odot\mathrm{GELU}(xW_b)$$
 
 **Plain-English explanation.** Uses GELU as the gate.
 
@@ -1163,9 +1029,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{SwiGLU}(x)= (xW_a)\odot\mathrm{SiLU}(xW_b)
-$$
+$$\mathrm{SwiGLU}(x)= (xW_a)\odot\mathrm{SiLU}(xW_b)$$
 
 **Plain-English explanation.** Uses SiLU as the multiplicative gate.
 
@@ -1181,9 +1045,7 @@ $$
 
 **Equation**
 
-$$
-y_i^{\mathrm{LS}}=(1-\epsilon)y_i+\frac{\epsilon}{V}
-$$
+$$y_i^{\mathrm{LS}}=(1-\epsilon)y_i+\frac{\epsilon}{V}$$
 
 **Plain-English explanation.** Moves some probability mass from the correct class to other classes.
 
@@ -1197,9 +1059,7 @@ $$
 
 **Equation**
 
-$$
-\mathcal{L}_{\mathrm{focal}}=-(1-p_t)^\gamma\log p_t
-$$
+$$\mathcal{L}_{\mathrm{focal}}=-(1-p_t)^\gamma\log p_t$$
 
 **Plain-English explanation.** Down-weights easy examples and focuses on hard examples.
 
@@ -1213,9 +1073,7 @@ $$
 
 **Equation**
 
-$$
-\mathcal{L}_{\mathrm{InfoNCE}}=-\log\frac{\exp(s(q,k^+)/\tau)}{\exp(s(q,k^+)/\tau)+\sum_{k^-}\exp(s(q,k^-)/\tau)}
-$$
+$$\mathcal{L}_{\mathrm{InfoNCE}}=-\log\frac{\exp(s(q,k^+)/\tau)}{\exp(s(q,k^+)/\tau)+\sum_{k^-}\exp(s(q,k^-)/\tau)}$$
 
 **Plain-English explanation.** Contrasts a positive pair against negatives.
 
@@ -1229,9 +1087,7 @@ $$
 
 **Equation**
 
-$$
-\ell_{i,j}=-\log\frac{\exp(\mathrm{sim}(z_i,z_j)/\tau)}{\sum_{k\ne i}\exp(\mathrm{sim}(z_i,z_k)/\tau)}
-$$
+$$\ell_{i,j}=-\log\frac{\exp(\mathrm{sim}(z_i,z_j)/\tau)}{\sum_{k\ne i}\exp(\mathrm{sim}(z_i,z_k)/\tau)}$$
 
 **Plain-English explanation.** Normalized temperature-scaled contrastive loss.
 
@@ -1245,9 +1101,7 @@ $$
 
 **Equation**
 
-$$
-\mathcal{L}=\max(0,d(a,p)-d(a,n)+m)
-$$
+$$\mathcal{L}=\max(0,d(a,p)-d(a,n)+m)$$
 
 **Plain-English explanation.** Pushes anchor-positive closer than anchor-negative by a margin.
 
@@ -1261,9 +1115,7 @@ $$
 
 **Equation**
 
-$$
-\mathcal{L}_{\mathrm{MLM}}=-\sum_{i\in M}\log p_\theta(x_i\mid x_{\setminus M})
-$$
+$$\mathcal{L}_{\mathrm{MLM}}=-\sum_{i\in M}\log p_\theta(x_i\mid x_{\setminus M})$$
 
 **Plain-English explanation.** Predicts masked tokens using bidirectional context.
 
@@ -1277,9 +1129,7 @@ $$
 
 **Equation**
 
-$$
-\mathcal{L}_{\mathrm{CLM}}=-\sum_{t}\log p_\theta(x_t\mid x_{1:t-1})
-$$
+$$\mathcal{L}_{\mathrm{CLM}}=-\sum_{t}\log p_\theta(x_t\mid x_{1:t-1})$$
 
 **Plain-English explanation.** Predicts each token from previous tokens only.
 
@@ -1293,9 +1143,7 @@ $$
 
 **Equation**
 
-$$
-\mathcal{L}_{\mathrm{span}}=-\sum_{t}\log p_\theta(y_t\mid y_{1:t-1},\tilde{x})
-$$
+$$\mathcal{L}_{\mathrm{span}}=-\sum_{t}\log p_\theta(y_t\mid y_{1:t-1},\tilde{x})$$
 
 **Plain-English explanation.** Reconstructs masked spans from corrupted input.
 
@@ -1309,9 +1157,7 @@ $$
 
 **Equation**
 
-$$
-\mathcal{L}_{\mathrm{KD}}=T^2D_{\mathrm{KL}}\left(\mathrm{softmax}(z_T/T)\Vert\mathrm{softmax}(z_S/T)\right)
-$$
+$$\mathcal{L}_{\mathrm{KD}}=T^2D_{\mathrm{KL}}\left(\mathrm{softmax}(z_T/T)\Vert\mathrm{softmax}(z_S/T)\right)$$
 
 **Plain-English explanation.** Trains a student to match teacher soft logits.
 
@@ -1325,9 +1171,7 @@ $$
 
 **Equation**
 
-$$
-\mathcal{L}_{\mathrm{hid}}=\sum_{\ell}\left\|H_{S}^{(\ell)}W_\ell-H_T^{(m(\ell))}\right\|_2^2
-$$
+$$\mathcal{L}_{\mathrm{hid}}=\sum_{\ell}\left\|H_{S}^{(\ell)}W_\ell-H_T^{(m(\ell))}\right\|_2^2$$
 
 **Plain-English explanation.** Matches student hidden states to teacher hidden states.
 
@@ -1343,9 +1187,7 @@ $$
 
 **Equation**
 
-$$
-\theta_{t+1}=\theta_t-\eta\nabla_\theta\mathcal{L}(\theta_t)
-$$
+$$\theta_{t+1}=\theta_t-\eta\nabla_\theta\mathcal{L}(\theta_t)$$
 
 **Plain-English explanation.** Moves parameters opposite the gradient.
 
@@ -1359,9 +1201,7 @@ $$
 
 **Equation**
 
-$$
-v_t=\mu v_{t-1}+g_t,\quad \theta_{t+1}=\theta_t-\eta v_t
-$$
+$$v_t=\mu v_{t-1}+g_t,\quad \theta_{t+1}=\theta_t-\eta v_t$$
 
 **Plain-English explanation.** Accumulates gradient direction over time.
 
@@ -1375,9 +1215,7 @@ $$
 
 **Equation**
 
-$$
-m_t=\beta_1m_{t-1}+(1-\beta_1)g_t,\quad v_t=\beta_2v_{t-1}+(1-\beta_2)g_t^2
-$$
+$$m_t=\beta_1m_{t-1}+(1-\beta_1)g_t,\quad v_t=\beta_2v_{t-1}+(1-\beta_2)g_t^2$$
 
 **Plain-English explanation.** Tracks first and second moments of gradients.
 
@@ -1391,9 +1229,7 @@ $$
 
 **Equation**
 
-$$
-\hat{m}_t=\frac{m_t}{1-\beta_1^t},\quad \hat{v}_t=\frac{v_t}{1-\beta_2^t},\quad \theta_{t+1}=\theta_t-\eta\frac{\hat{m}_t}{\sqrt{\hat{v}_t}+\epsilon}
-$$
+$$\hat{m}_t=\frac{m_t}{1-\beta_1^t},\quad \hat{v}_t=\frac{v_t}{1-\beta_2^t},\quad \theta_{t+1}=\theta_t-\eta\frac{\hat{m}_t}{\sqrt{\hat{v}_t}+\epsilon}$$
 
 **Plain-English explanation.** Bias-corrects moments and applies adaptive step size.
 
@@ -1407,9 +1243,7 @@ $$
 
 **Equation**
 
-$$
-\theta_{t+1}=\theta_t-\eta\left(\frac{\hat{m}_t}{\sqrt{\hat{v}_t}+\epsilon}+\lambda\theta_t\right)
-$$
+$$\theta_{t+1}=\theta_t-\eta\left(\frac{\hat{m}_t}{\sqrt{\hat{v}_t}+\epsilon}+\lambda\theta_t\right)$$
 
 **Plain-English explanation.** Decouples weight decay from adaptive gradient update.
 
@@ -1423,9 +1257,7 @@ $$
 
 **Equation**
 
-$$
-m_t=\beta_1m_{t-1}+(1-\beta_1)g_t,\quad \theta_{t+1}=\theta_t-\eta\mathrm{sign}(m_t)
-$$
+$$m_t=\beta_1m_{t-1}+(1-\beta_1)g_t,\quad \theta_{t+1}=\theta_t-\eta\mathrm{sign}(m_t)$$
 
 **Plain-English explanation.** Uses sign of momentum-like update.
 
@@ -1439,9 +1271,7 @@ $$
 
 **Equation**
 
-$$
-\hat{V}_{\mathrm{ij}}=\frac{r_i c_j}{\bar{r}},\quad r_i=\frac{1}{n}\sum_j V_{\mathrm{ij}},\quad c_j=\frac{1}{m}\sum_i V_{\mathrm{ij}}
-$$
+$$\hat{V}_{\mathrm{ij}}=\frac{r_i c_j}{\bar{r}},\quad r_i=\frac{1}{n}\sum_j V_{\mathrm{ij}},\quad c_j=\frac{1}{m}\sum_i V_{\mathrm{ij}}$$
 
 **Plain-English explanation.** Approximates second-moment matrix using row and column factors.
 
@@ -1455,9 +1285,7 @@ $$
 
 **Equation**
 
-$$
-g\leftarrow g\cdot\min\left(1,\frac{c}{\|g\|_2}\right)
-$$
+$$g\leftarrow g\cdot\min\left(1,\frac{c}{\|g\|_2}\right)$$
 
 **Plain-English explanation.** Scales gradients down when norm exceeds threshold.
 
@@ -1471,9 +1299,7 @@ $$
 
 **Equation**
 
-$$
-\eta_t=\eta_{\min}+\frac{1}{2}(\eta_{\max}-\eta_{\min})\left(1+\cos\frac{\pi t}{T}\right)
-$$
+$$\eta_t=\eta_{\min}+\frac{1}{2}(\eta_{\max}-\eta_{\min})\left(1+\cos\frac{\pi t}{T}\right)$$
 
 **Plain-English explanation.** Smoothly decays learning rate following a cosine curve.
 
@@ -1487,9 +1313,7 @@ $$
 
 **Equation**
 
-$$
-\eta_t=\eta_{\max}\frac{t}{T_{\mathrm{warm}}},\quad t\leq T_{\mathrm{warm}}
-$$
+$$\eta_t=\eta_{\max}\frac{t}{T_{\mathrm{warm}}},\quad t\leq T_{\mathrm{warm}}$$
 
 **Plain-English explanation.** Gradually increases learning rate at the beginning of training.
 
@@ -1503,9 +1327,7 @@ $$
 
 **Equation**
 
-$$
-\eta_t=d_{\mathrm{model}}^{-1/2}\min(t^{-1/2},tT_{\mathrm{warm}}^{-3/2})
-$$
+$$\eta_t=d_{\mathrm{model}}^{-1/2}\min(t^{-1/2},tT_{\mathrm{warm}}^{-3/2})$$
 
 **Plain-English explanation.** Warmup followed by inverse-square-root decay.
 
@@ -1521,9 +1343,7 @@ $$
 
 **Equation**
 
-$$
-x_t=\mathrm{argmax}_{i} p_\theta(i\mid x_{1:t-1})
-$$
+$$x_t=\mathrm{argmax}_{i} p_\theta(i\mid x_{1:t-1})$$
 
 **Plain-English explanation.** Selects the most likely next token.
 
@@ -1537,9 +1357,7 @@ $$
 
 **Equation**
 
-$$
-p_i^{(\tau)}=\frac{\exp(z_i/\tau)}{\sum_j\exp(z_j/\tau)}
-$$
+$$p_i^{(\tau)}=\frac{\exp(z_i/\tau)}{\sum_j\exp(z_j/\tau)}$$
 
 **Plain-English explanation.** Controls sharpness of the output distribution.
 
@@ -1553,9 +1371,7 @@ $$
 
 **Equation**
 
-$$
-S_k=\mathrm{TopK}(p,k),\quad p_i'=\frac{p_i\mathbf{1}[i\in S_k]}{\sum_{j\in S_k}p_j}
-$$
+$$S_k=\mathrm{TopK}(p,k),\quad p_i'=\frac{p_i\mathbf{1}[i\in S_k]}{\sum_{j\in S_k}p_j}$$
 
 **Plain-English explanation.** Keeps only the k most likely tokens and renormalizes.
 
@@ -1569,9 +1385,7 @@ $$
 
 **Equation**
 
-$$
-S_p=\min\left\{S:\sum_{i\in S}p_i\geq p\right\},\quad p_i'=\frac{p_i\mathbf{1}[i\in S_p]}{\sum_{j\in S_p}p_j}
-$$
+$$S_p=\min\left\{S:\sum_{i\in S}p_i\geq p\right\},\quad p_i'=\frac{p_i\mathbf{1}[i\in S_p]}{\sum_{j\in S_p}p_j}$$
 
 **Plain-English explanation.** Keeps the smallest token set whose cumulative probability exceeds threshold p.
 
@@ -1585,9 +1399,7 @@ $$
 
 **Equation**
 
-$$
-S=\left\{i:\left| -\log p_i-H(p)\right|\leq \tau\right\}
-$$
+$$S=\left\{i:\left| -\log p_i-H(p)\right|\leq \tau\right\}$$
 
 **Plain-English explanation.** Keeps tokens whose surprise is close to distribution entropy.
 
@@ -1601,9 +1413,7 @@ $$
 
 **Equation**
 
-$$
-S=\{i:p_i\geq \alpha\max_jp_j\}
-$$
+$$S=\{i:p_i\geq \alpha\max_jp_j\}$$
 
 **Plain-English explanation.** Keeps tokens whose probability is at least a fraction of the top token.
 
@@ -1617,9 +1427,7 @@ $$
 
 **Equation**
 
-$$
-B_t=\mathrm{TopB}_{y_{1:t}}\left[\log p_\theta(y_{1:t}\mid x)\right]
-$$
+$$B_t=\mathrm{TopB}_{y_{1:t}}\left[\log p_\theta(y_{1:t}\mid x)\right]$$
 
 **Plain-English explanation.** Maintains the top B partial sequences by log-probability.
 
@@ -1633,9 +1441,7 @@ $$
 
 **Equation**
 
-$$
-s(y)=\frac{\log p(y\mid x)}{\left(\frac{5+|y|}{6}\right)^\alpha}
-$$
+$$s(y)=\frac{\log p(y\mid x)}{\left(\frac{5+|y|}{6}\right)^\alpha}$$
 
 **Plain-English explanation.** Penalizes or normalizes beam scores by sequence length.
 
@@ -1649,9 +1455,7 @@ $$
 
 **Equation**
 
-$$
-x_t=\mathrm{argmax}_{x}\left[\log p_{\mathrm{expert}}(x\mid c)-\alpha\log p_{\mathrm{amateur}}(x\mid c)\right]
-$$
+$$x_t=\mathrm{argmax}_{x}\left[\log p_{\mathrm{expert}}(x\mid c)-\alpha\log p_{\mathrm{amateur}}(x\mid c)\right]$$
 
 **Plain-English explanation.** Selects tokens preferred by a strong model over a weaker model.
 
@@ -1665,9 +1469,7 @@ $$
 
 **Equation**
 
-$$
-a_t=\min\left(1,\frac{p(x_t\mid x_{1:t-1})}{q(x_t\mid x_{1:t-1})}\right)
-$$
+$$a_t=\min\left(1,\frac{p(x_t\mid x_{1:t-1})}{q(x_t\mid x_{1:t-1})}\right)$$
 
 **Plain-English explanation.** Accepts draft-model tokens with probability based on target/draft likelihood ratio.
 
@@ -1681,9 +1483,7 @@ $$
 
 **Equation**
 
-$$
-\mu_{t+1}=\mu_t-\eta(s_t-\tau)
-$$
+$$\mu_{t+1}=\mu_t-\eta(s_t-\tau)$$
 
 **Plain-English explanation.** Adjusts sampling to maintain target surprise/perplexity.
 
@@ -1699,9 +1499,7 @@ $$
 
 **Equation**
 
-$$
-\mathcal{L}_{\mathrm{SFT}}(\theta)=-\mathbb{E}_{(x,y)\sim D}\sum_t\log\pi_\theta(y_t\mid x,y_{1:t-1})
-$$
+$$\mathcal{L}_{\mathrm{SFT}}(\theta)=-\mathbb{E}_{(x,y)\sim D}\sum_t\log\pi_\theta(y_t\mid x,y_{1:t-1})$$
 
 **Plain-English explanation.** Trains the model on demonstration responses.
 
@@ -1715,9 +1513,7 @@ $$
 
 **Equation**
 
-$$
-P(y_w\succ y_l\mid x)=\sigma(r_\phi(x,y_w)-r_\phi(x,y_l))
-$$
+$$P(y_w\succ y_l\mid x)=\sigma(r_\phi(x,y_w)-r_\phi(x,y_l))$$
 
 **Plain-English explanation.** Models probability that a winning response is preferred to a losing response.
 
@@ -1731,9 +1527,7 @@ $$
 
 **Equation**
 
-$$
-\mathcal{L}_{\mathrm{RM}}=-\mathbb{E}\left[\log\sigma(r_\phi(x,y_w)-r_\phi(x,y_l))\right]
-$$
+$$\mathcal{L}_{\mathrm{RM}}=-\mathbb{E}\left[\log\sigma(r_\phi(x,y_w)-r_\phi(x,y_l))\right]$$
 
 **Plain-English explanation.** Trains rewards so preferred responses score higher.
 
@@ -1747,9 +1541,7 @@ $$
 
 **Equation**
 
-$$
-\max_\theta\;\mathbb{E}_{y\sim\pi_\theta}\left[r_\phi(x,y)-\beta D_{\mathrm{KL}}(\pi_\theta(\cdot\mid x)\Vert\pi_{\mathrm{ref}}(\cdot\mid x))\right]
-$$
+$$\max_\theta\;\mathbb{E}_{y\sim\pi_\theta}\left[r_\phi(x,y)-\beta D_{\mathrm{KL}}(\pi_\theta(\cdot\mid x)\Vert\pi_{\mathrm{ref}}(\cdot\mid x))\right]$$
 
 **Plain-English explanation.** Optimizes reward while preventing policy from drifting too far from reference model.
 
@@ -1763,9 +1555,7 @@ $$
 
 **Equation**
 
-$$
-\mathcal{L}^{\mathrm{CLIP}}(\theta)=\mathbb{E}_t\left[\min(r_t(\theta)A_t,\mathrm{clip}(r_t(\theta),1-\epsilon,1+\epsilon)A_t)\right]
-$$
+$$\mathcal{L}^{\mathrm{CLIP}}(\theta)=\mathbb{E}_t\left[\min(r_t(\theta)A_t,\mathrm{clip}(r_t(\theta),1-\epsilon,1+\epsilon)A_t)\right]$$
 
 **Plain-English explanation.** Limits how much a policy update can change action probabilities.
 
@@ -1779,9 +1569,7 @@ $$
 
 **Equation**
 
-$$
-\mathcal{L}_V=\mathbb{E}_t\left[(V_\psi(s_t)-R_t)^2\right]
-$$
+$$\mathcal{L}_V=\mathbb{E}_t\left[(V_\psi(s_t)-R_t)^2\right]$$
 
 **Plain-English explanation.** Trains a critic to predict returns.
 
@@ -1795,9 +1583,7 @@ $$
 
 **Equation**
 
-$$
-\hat{A}_t^{\mathrm{GAE}}=\sum_{l=0}^{\infty}(\gamma\lambda)^l\delta_{t+l},\quad \delta_t=r_t+\gamma V(s_{t+1})-V(s_t)
-$$
+$$\hat{A}_t^{\mathrm{GAE}}=\sum_{l=0}^{\infty}(\gamma\lambda)^l\delta_{t+l},\quad \delta_t=r_t+\gamma V(s_{t+1})-V(s_t)$$
 
 **Plain-English explanation.** Computes a low-variance advantage estimate from TD residuals.
 
@@ -1811,9 +1597,7 @@ $$
 
 **Equation**
 
-$$
-r_\theta(x,y)=\beta\log\frac{\pi_\theta(y\mid x)}{\pi_{\mathrm{ref}}(y\mid x)}+C(x)
-$$
+$$r_\theta(x,y)=\beta\log\frac{\pi_\theta(y\mid x)}{\pi_{\mathrm{ref}}(y\mid x)}+C(x)$$
 
 **Plain-English explanation.** Defines an implicit reward from policy/reference log-ratio.
 
@@ -1827,9 +1611,7 @@ $$
 
 **Equation**
 
-$$
-\mathcal{L}_{\mathrm{DPO}}=-\mathbb{E}\log\sigma\left(\beta\log\frac{\pi_\theta(y_w\mid x)}{\pi_{\mathrm{ref}}(y_w\mid x)}-\beta\log\frac{\pi_\theta(y_l\mid x)}{\pi_{\mathrm{ref}}(y_l\mid x)}\right)
-$$
+$$\mathcal{L}_{\mathrm{DPO}}=-\mathbb{E}\log\sigma\left(\beta\log\frac{\pi_\theta(y_w\mid x)}{\pi_{\mathrm{ref}}(y_w\mid x)}-\beta\log\frac{\pi_\theta(y_l\mid x)}{\pi_{\mathrm{ref}}(y_l\mid x)}\right)$$
 
 **Plain-English explanation.** Optimizes preference pairs directly without an explicit reward model.
 
@@ -1843,9 +1625,7 @@ $$
 
 **Equation**
 
-$$
-\mathcal{L}_{\mathrm{IPO}}=\mathbb{E}\left[\left(\log\frac{\pi_\theta(y_w\mid x)\pi_{\mathrm{ref}}(y_l\mid x)}{\pi_\theta(y_l\mid x)\pi_{\mathrm{ref}}(y_w\mid x)}-\frac{1}{2\beta}\right)^2\right]
-$$
+$$\mathcal{L}_{\mathrm{IPO}}=\mathbb{E}\left[\left(\log\frac{\pi_\theta(y_w\mid x)\pi_{\mathrm{ref}}(y_l\mid x)}{\pi_\theta(y_l\mid x)\pi_{\mathrm{ref}}(y_w\mid x)}-\frac{1}{2\beta}\right)^2\right]$$
 
 **Plain-English explanation.** Uses a squared loss on preference log-ratio margins.
 
@@ -1859,9 +1639,7 @@ $$
 
 **Equation**
 
-$$
-v(x,y)=\beta\log\frac{\pi_\theta(y\mid x)}{\pi_{\mathrm{ref}}(y\mid x)}
-$$
+$$v(x,y)=\beta\log\frac{\pi_\theta(y\mid x)}{\pi_{\mathrm{ref}}(y\mid x)}$$
 
 **Plain-English explanation.** Computes desirability from policy/reference log-ratio.
 
@@ -1875,9 +1653,7 @@ $$
 
 **Equation**
 
-$$
-\mathcal{L}_{\mathrm{ORPO}}=\mathcal{L}_{\mathrm{SFT}}-\lambda\log\sigma\left(\log\frac{\pi_\theta(y_w\mid x)}{1-\pi_\theta(y_w\mid x)}-\log\frac{\pi_\theta(y_l\mid x)}{1-\pi_\theta(y_l\mid x)}\right)
-$$
+$$\mathcal{L}_{\mathrm{ORPO}}=\mathcal{L}_{\mathrm{SFT}}-\lambda\log\sigma\left(\log\frac{\pi_\theta(y_w\mid x)}{1-\pi_\theta(y_w\mid x)}-\log\frac{\pi_\theta(y_l\mid x)}{1-\pi_\theta(y_l\mid x)}\right)$$
 
 **Plain-English explanation.** Combines supervised learning with an odds-ratio preference penalty.
 
@@ -1891,9 +1667,7 @@ $$
 
 **Equation**
 
-$$
-\mathcal{L}_{\mathrm{SimPO}}=-\log\sigma\left(\frac{\beta}{|y_w|}\log\pi_\theta(y_w\mid x)-\frac{\beta}{|y_l|}\log\pi_\theta(y_l\mid x)-\gamma\right)
-$$
+$$\mathcal{L}_{\mathrm{SimPO}}=-\log\sigma\left(\frac{\beta}{|y_w|}\log\pi_\theta(y_w\mid x)-\frac{\beta}{|y_l|}\log\pi_\theta(y_l\mid x)-\gamma\right)$$
 
 **Plain-English explanation.** Uses length-normalized policy likelihood margin without reference model.
 
@@ -1907,9 +1681,7 @@ $$
 
 **Equation**
 
-$$
-\hat{A}_{i}=\frac{r_i-\mathrm{mean}(r_{1:G})}{\mathrm{std}(r_{1:G})}
-$$
+$$\hat{A}_{i}=\frac{r_i-\mathrm{mean}(r_{1:G})}{\mathrm{std}(r_{1:G})}$$
 
 **Plain-English explanation.** Computes advantage relative to other sampled responses for the same prompt.
 
@@ -1923,9 +1695,7 @@ $$
 
 **Equation**
 
-$$
-\mathcal{J}_{\mathrm{GRPO}}=\mathbb{E}\left[\frac{1}{G}\sum_{i=1}^{G}\min(\rho_i\hat{A}_i,\mathrm{clip}(\rho_i,1-\epsilon,1+\epsilon)\hat{A}_i)-\beta D_{\mathrm{KL}}(\pi_\theta\Vert\pi_{\mathrm{ref}})\right]
-$$
+$$\mathcal{J}_{\mathrm{GRPO}}=\mathbb{E}\left[\frac{1}{G}\sum_{i=1}^{G}\min(\rho_i\hat{A}_i,\mathrm{clip}(\rho_i,1-\epsilon,1+\epsilon)\hat{A}_i)-\beta D_{\mathrm{KL}}(\pi_\theta\Vert\pi_{\mathrm{ref}})\right]$$
 
 **Plain-English explanation.** PPO-style clipped objective with group-relative advantages.
 
@@ -1939,9 +1709,7 @@ $$
 
 **Equation**
 
-$$
-\hat{A}_i=r_i-\frac{1}{G-1}\sum_{j\ne i}r_j
-$$
+$$\hat{A}_i=r_i-\frac{1}{G-1}\sum_{j\ne i}r_j$$
 
 **Plain-English explanation.** Uses leave-one-out average reward as baseline.
 
@@ -1955,9 +1723,7 @@ $$
 
 **Equation**
 
-$$
-D' = \{(x,y): r_\phi(x,y)\geq \tau\},\quad \mathcal{L}=-\mathbb{E}_{(x,y)\in D'}\log\pi_\theta(y\mid x)
-$$
+$$D' = \{(x,y): r_\phi(x,y)\geq \tau\},\quad \mathcal{L}=-\mathbb{E}_{(x,y)\in D'}\log\pi_\theta(y\mid x)$$
 
 **Plain-English explanation.** Filters generated samples by reward then trains on accepted samples.
 
@@ -1973,9 +1739,7 @@ $$
 
 **Equation**
 
-$$
-W'=W+\Delta W,\quad \Delta W=\frac{\alpha}{r}BA
-$$
+$$W'=W+\Delta W,\quad \Delta W=\frac{\alpha}{r}BA$$
 
 **Plain-English explanation.** Adds a trainable low-rank update to frozen weights.
 
@@ -1989,9 +1753,7 @@ $$
 
 **Equation**
 
-$$
-y=x\mathrm{dequant}(W_q)+x\frac{\alpha}{r}BA
-$$
+$$y=x\mathrm{dequant}(W_q)+x\frac{\alpha}{r}BA$$
 
 **Plain-English explanation.** Combines quantized frozen weights with trainable LoRA adapters.
 
@@ -2005,9 +1767,7 @@ $$
 
 **Equation**
 
-$$
-W'=m\frac{W+\Delta W}{\|W+\Delta W\|_c}
-$$
+$$W'=m\frac{W+\Delta W}{\|W+\Delta W\|_c}$$
 
 **Plain-English explanation.** Separates weight magnitude and direction adaptation.
 
@@ -2021,9 +1781,7 @@ $$
 
 **Equation**
 
-$$
-\Delta W=\sum_{i=1}^{r}s_i u_i v_i^\top
-$$
+$$\Delta W=\sum_{i=1}^{r}s_i u_i v_i^\top$$
 
 **Plain-English explanation.** Allocates rank budget by learned importance scores.
 
@@ -2037,9 +1795,7 @@ $$
 
 **Equation**
 
-$$
-K'=[K_p;K],\quad V'=[V_p;V]
-$$
+$$K'=[K_p;K],\quad V'=[V_p;V]$$
 
 **Plain-English explanation.** Prepends trainable key/value vectors to attention.
 
@@ -2053,9 +1809,7 @@ $$
 
 **Equation**
 
-$$
-h^{(0)}=[P_1,\dots,P_m,E_{x_1},\dots,E_{x_n}]
-$$
+$$h^{(0)}=[P_1,\dots,P_m,E_{x_1},\dots,E_{x_n}]$$
 
 **Plain-English explanation.** Prepends trainable soft prompt embeddings.
 
@@ -2069,9 +1823,7 @@ $$
 
 **Equation**
 
-$$
-h_\ell'=[P_\ell;h_\ell]
-$$
+$$h_\ell'=[P_\ell;h_\ell]$$
 
 **Plain-English explanation.** Adds trainable prompts at multiple layers.
 
@@ -2085,9 +1837,7 @@ $$
 
 **Equation**
 
-$$
-y=(l_W\odot W)x,\quad K'=l_K\odot K,\quad V'=l_V\odot V
-$$
+$$y=(l_W\odot W)x,\quad K'=l_K\odot K,\quad V'=l_V\odot V$$
 
 **Plain-English explanation.** Learns multiplicative vectors that rescale activations or weights.
 
@@ -2101,9 +1851,7 @@ $$
 
 **Equation**
 
-$$
-\theta_{\mathrm{train}}=\{b: b\in\theta\}
-$$
+$$\theta_{\mathrm{train}}=\{b: b\in\theta\}$$
 
 **Plain-English explanation.** Fine-tunes only bias parameters.
 
@@ -2119,9 +1867,7 @@ $$
 
 **Equation**
 
-$$
-q=\mathrm{clip}\left(\mathrm{round}\left(\frac{x}{s}\right)+z,q_{\min},q_{\max}\right),\quad \hat{x}=s(q-z)
-$$
+$$q=\mathrm{clip}\left(\mathrm{round}\left(\frac{x}{s}\right)+z,q_{\min},q_{\max}\right),\quad \hat{x}=s(q-z)$$
 
 **Plain-English explanation.** Maps floating-point values to integers using scale and zero-point.
 
@@ -2135,9 +1881,7 @@ $$
 
 **Equation**
 
-$$
-s=\frac{\max(|x|)}{2^{b-1}-1},\quad q=\mathrm{round}(x/s)
-$$
+$$s=\frac{\max(|x|)}{2^{b-1}-1},\quad q=\mathrm{round}(x/s)$$
 
 **Plain-English explanation.** Uses zero-centered integer range.
 
@@ -2151,9 +1895,7 @@ $$
 
 **Equation**
 
-$$
-s=\frac{x_{\max}-x_{\min}}{q_{\max}-q_{\min}},\quad z=\mathrm{round}\left(q_{\min}-\frac{x_{\min}}{s}\right)
-$$
+$$s=\frac{x_{\max}-x_{\min}}{q_{\max}-q_{\min}},\quad z=\mathrm{round}\left(q_{\min}-\frac{x_{\min}}{s}\right)$$
 
 **Plain-English explanation.** Uses non-zero zero-point to cover arbitrary ranges.
 
@@ -2167,9 +1909,7 @@ $$
 
 **Equation**
 
-$$
-s_c=\frac{\max_i |W_{c,i}|}{2^{b-1}-1}
-$$
+$$s_c=\frac{\max_i |W_{c,i}|}{2^{b-1}-1}$$
 
 **Plain-English explanation.** Computes a separate scale for each channel.
 
@@ -2183,9 +1923,7 @@ $$
 
 **Equation**
 
-$$
-\min_{\hat{W}}\|WX-\hat{W}X\|_2^2
-$$
+$$\min_{\hat{W}}\|WX-\hat{W}X\|_2^2$$
 
 **Plain-English explanation.** Quantizes weights while minimizing output reconstruction error.
 
@@ -2199,9 +1937,7 @@ $$
 
 **Equation**
 
-$$
-\min_s\left\|Q(W\mathrm{diag}(s))\mathrm{diag}(s)^{-1}X-WX\right\|_2^2
-$$
+$$\min_s\left\|Q(W\mathrm{diag}(s))\mathrm{diag}(s)^{-1}X-WX\right\|_2^2$$
 
 **Plain-English explanation.** Scales channels before quantization to protect important weights.
 
@@ -2215,9 +1951,7 @@ $$
 
 **Equation**
 
-$$
-\hat{X}=X\mathrm{diag}(s)^{-1},\quad \hat{W}=\mathrm{diag}(s)W
-$$
+$$\hat{X}=X\mathrm{diag}(s)^{-1},\quad \hat{W}=\mathrm{diag}(s)W$$
 
 **Plain-English explanation.** Migrates activation outlier difficulty into weights.
 
@@ -2231,9 +1965,7 @@ $$
 
 **Equation**
 
-$$
-XW=X_{\mathrm{normal}}W_{\mathrm{int8}}+X_{\mathrm{outlier}}W_{\mathrm{fp16}}
-$$
+$$XW=X_{\mathrm{normal}}W_{\mathrm{int8}}+X_{\mathrm{outlier}}W_{\mathrm{fp16}}$$
 
 **Plain-English explanation.** Computes most values in int8 while keeping outliers in higher precision.
 
@@ -2247,9 +1979,7 @@ $$
 
 **Equation**
 
-$$
-q_i=\mathrm{argmin}_{c_j\in C_{\mathrm{NF4}}}|x_i/s-c_j|
-$$
+$$q_i=\mathrm{argmin}_{c_j\in C_{\mathrm{NF4}}}|x_i/s-c_j|$$
 
 **Plain-English explanation.** Maps normalized values to a learned/non-uniform 4-bit codebook optimized for normal weights.
 
@@ -2263,9 +1993,7 @@ $$
 
 **Equation**
 
-$$
-q_s=Q(s),\quad \hat{x}=\mathrm{dequant}(q_x,\mathrm{dequant}(q_s))
-$$
+$$q_s=Q(s),\quad \hat{x}=\mathrm{dequant}(q_x,\mathrm{dequant}(q_s))$$
 
 **Plain-English explanation.** Quantizes the quantization scales themselves.
 
@@ -2279,9 +2007,7 @@ $$
 
 **Equation**
 
-$$
-\hat{K}=s_K(Q(K)-z_K),\quad \hat{V}=s_V(Q(V)-z_V)
-$$
+$$\hat{K}=s_K(Q(K)-z_K),\quad \hat{V}=s_V(Q(V)-z_V)$$
 
 **Plain-English explanation.** Stores keys and values in lower precision and dequantizes for attention.
 
@@ -2295,9 +2021,7 @@ $$
 
 **Equation**
 
-$$
-\min_\theta \mathbb{E}_{(x,y)}\mathcal{L}(f_{Q(\theta)}(x),y)
-$$
+$$\min_\theta \mathbb{E}_{(x,y)}\mathcal{L}(f_{Q(\theta)}(x),y)$$
 
 **Plain-English explanation.** Trains while simulating quantized weights/activations.
 
@@ -2313,9 +2037,7 @@ $$
 
 **Equation**
 
-$$
-L(N,D)=L_\infty + aN^{-\alpha}+bD^{-\beta}
-$$
+$$L(N,D)=L_\infty + aN^{-\alpha}+bD^{-\beta}$$
 
 **Plain-English explanation.** Models loss as a power law of parameter count and data size.
 
@@ -2329,9 +2051,7 @@ $$
 
 **Equation**
 
-$$
-C\approx 6ND
-$$
+$$C\approx 6ND$$
 
 **Plain-English explanation.** Approximates training compute for dense Transformer training.
 
@@ -2345,9 +2065,7 @@ $$
 
 **Equation**
 
-$$
-N_{\mathrm{opt}}\propto C^a,\quad D_{\mathrm{opt}}\propto C^b,\quad a\approx b\approx 0.5
-$$
+$$N_{\mathrm{opt}}\propto C^a,\quad D_{\mathrm{opt}}\propto C^b,\quad a\approx b\approx 0.5$$
 
 **Plain-English explanation.** Compute-optimal training scales parameters and data roughly equally.
 
@@ -2361,9 +2079,7 @@ $$
 
 **Equation**
 
-$$
-L(C)=L_\infty + AC^{-\alpha}
-$$
+$$L(C)=L_\infty + AC^{-\alpha}$$
 
 **Plain-English explanation.** Represents loss decreasing as a power law with compute.
 
@@ -2377,9 +2093,7 @@ $$
 
 **Equation**
 
-$$
-P(\mathrm{success}\mid C)=\frac{1}{1+\exp[-a(\log C-b)]}
-$$
+$$P(\mathrm{success}\mid C)=\frac{1}{1+\exp[-a(\log C-b)]}$$
 
 **Plain-English explanation.** A smooth proxy for abrupt benchmark transitions.
 
@@ -2395,9 +2109,7 @@ $$
 
 **Equation**
 
-$$
-g(x)=\mathrm{softmax}(W_gx)
-$$
+$$g(x)=\mathrm{softmax}(W_gx)$$
 
 **Plain-English explanation.** Computes expert-selection probabilities.
 
@@ -2411,9 +2123,7 @@ $$
 
 **Equation**
 
-$$
-S(x)=\mathrm{TopK}(g(x),k)
-$$
+$$S(x)=\mathrm{TopK}(g(x),k)$$
 
 **Plain-English explanation.** Selects the highest-scoring experts for a token.
 
@@ -2427,9 +2137,7 @@ $$
 
 **Equation**
 
-$$
-y=\sum_{e\in S(x)}g_e(x)E_e(x)
-$$
+$$y=\sum_{e\in S(x)}g_e(x)E_e(x)$$
 
 **Plain-English explanation.** Combines selected expert outputs weighted by router probabilities.
 
@@ -2443,9 +2151,7 @@ $$
 
 **Equation**
 
-$$
-e^*=\mathrm{argmax}_{e} g_e(x),\quad y=g_{e^*}(x)E_{e^*}(x)
-$$
+$$e^*=\mathrm{argmax}_{e} g_e(x),\quad y=g_{e^*}(x)E_{e^*}(x)$$
 
 **Plain-English explanation.** Routes each token to one expert only.
 
@@ -2459,9 +2165,7 @@ $$
 
 **Equation**
 
-$$
-\mathcal{L}_{\mathrm{aux}}=\alpha N\sum_{e=1}^{N}f_ep_e
-$$
+$$\mathcal{L}_{\mathrm{aux}}=\alpha N\sum_{e=1}^{N}f_ep_e$$
 
 **Plain-English explanation.** Encourages balanced expert usage.
 
@@ -2475,9 +2179,7 @@ $$
 
 **Equation**
 
-$$
-C_e=\left\lceil\frac{T}{N}\cdot c\right\rceil
-$$
+$$C_e=\left\lceil\frac{T}{N}\cdot c\right\rceil$$
 
 **Plain-English explanation.** Limits how many tokens each expert can process.
 
@@ -2491,9 +2193,7 @@ $$
 
 **Equation**
 
-$$
-\mathcal{L}_z=\frac{1}{B}\sum_{i=1}^{B}\left(\log\sum_j e^{z_{\mathrm{ij}}}\right)^2
-$$
+$$\mathcal{L}_z=\frac{1}{B}\sum_{i=1}^{B}\left(\log\sum_j e^{z_{\mathrm{ij}}}\right)^2$$
 
 **Plain-English explanation.** Penalizes large router logits for stability.
 
@@ -2509,9 +2209,7 @@ $$
 
 **Equation**
 
-$$
-(a^*,b^*)=\mathrm{argmax}_{(a,b)}\mathrm{count}(a,b)
-$$
+$$(a^*,b^*)=\mathrm{argmax}_{(a,b)}\mathrm{count}(a,b)$$
 
 **Plain-English explanation.** Merges the most frequent adjacent symbol pair.
 
@@ -2525,9 +2223,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{score}(a,b)=\frac{\mathrm{count}(ab)}{\mathrm{count}(a)\mathrm{count}(b)}
-$$
+$$\mathrm{score}(a,b)=\frac{\mathrm{count}(ab)}{\mathrm{count}(a)\mathrm{count}(b)}$$
 
 **Plain-English explanation.** Chooses merges using likelihood-inspired association score.
 
@@ -2541,9 +2237,7 @@ $$
 
 **Equation**
 
-$$
-P(x)=\prod_{t\in\mathrm{seg}(x)}p(t)
-$$
+$$P(x)=\prod_{t\in\mathrm{seg}(x)}p(t)$$
 
 **Plain-English explanation.** Assigns probability to a segmentation as product of token probabilities.
 
@@ -2557,9 +2251,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{seg}^*(x)=\mathrm{argmax}_{s\in\mathcal{S}(x)}\sum_{t\in s}\log p(t)
-$$
+$$\mathrm{seg}^*(x)=\mathrm{argmax}_{s\in\mathcal{S}(x)}\sum_{t\in s}\log p(t)$$
 
 **Plain-English explanation.** Finds most likely subword segmentation.
 
@@ -2573,9 +2265,7 @@ $$
 
 **Equation**
 
-$$
-\mathcal{L}=-\log\sigma(v_c^\top v_w)-\sum_{i=1}^{k}\mathbb{E}_{n_i\sim P_n}\log\sigma(-v_{n_i}^\top v_w)
-$$
+$$\mathcal{L}=-\log\sigma(v_c^\top v_w)-\sum_{i=1}^{k}\mathbb{E}_{n_i\sim P_n}\log\sigma(-v_{n_i}^\top v_w)$$
 
 **Plain-English explanation.** Predicts context words from a center word while contrasting negatives.
 
@@ -2589,9 +2279,7 @@ $$
 
 **Equation**
 
-$$
-p(w_t\mid \mathrm{context})=\mathrm{softmax}\left(W\frac{1}{2m}\sum_{-m\leq j\leq m,j\ne0}v_{w_{t+j}}\right)
-$$
+$$p(w_t\mid \mathrm{context})=\mathrm{softmax}\left(W\frac{1}{2m}\sum_{-m\leq j\leq m,j\ne0}v_{w_{t+j}}\right)$$
 
 **Plain-English explanation.** Predicts a word from averaged context embeddings.
 
@@ -2605,9 +2293,7 @@ $$
 
 **Equation**
 
-$$
-J=\sum_{i,j}f(X_{\mathrm{ij}})(w_i^\top\tilde{w}_j+b_i+\tilde{b}_j-\log X_{\mathrm{ij}})^2
-$$
+$$J=\sum_{i,j}f(X_{\mathrm{ij}})(w_i^\top\tilde{w}_j+b_i+\tilde{b}_j-\log X_{\mathrm{ij}})^2$$
 
 **Plain-English explanation.** Fits word vectors to log co-occurrence counts.
 
@@ -2621,9 +2307,7 @@ $$
 
 **Equation**
 
-$$
-v_w=\sum_{g\in G_w}z_g
-$$
+$$v_w=\sum_{g\in G_w}z_g$$
 
 **Plain-English explanation.** Represents a word as sum of character n-gram embeddings.
 
@@ -2639,9 +2323,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{BLEU}=BP\cdot\exp\left(\sum_{n=1}^{N}w_n\log p_n\right)
-$$
+$$\mathrm{BLEU}=BP\cdot\exp\left(\sum_{n=1}^{N}w_n\log p_n\right)$$
 
 **Plain-English explanation.** Measures n-gram overlap with brevity penalty.
 
@@ -2655,12 +2337,7 @@ $$
 
 **Equation**
 
-$$
-BP=\begin{cases}
-1,& c>r\\
-e^{1-r/c},& c\leq r
-\end{cases}
-$$
+$$BP=\begin{cases} 1,& c>r\\ e^{1-r/c},& c\leq r \end{cases}$$
 
 **Plain-English explanation.** Penalizes translations shorter than reference.
 
@@ -2674,9 +2351,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{ROUGE}-N=\frac{\sum_{S\in \mathrm{Ref}}\sum_{\mathrm{gram}_n\in S}\min(\mathrm{count}_{\mathrm{cand}}(\mathrm{gram}_n),\mathrm{count}_S(\mathrm{gram}_n))}{\sum_{S\in \mathrm{Ref}}\sum_{\mathrm{gram}_n\in S}\mathrm{count}_S(\mathrm{gram}_n)}
-$$
+$$\mathrm{ROUGE}-N=\frac{\sum_{S\in \mathrm{Ref}}\sum_{\mathrm{gram}_n\in S}\min(\mathrm{count}_{\mathrm{cand}}(\mathrm{gram}_n),\mathrm{count}_S(\mathrm{gram}_n))}{\sum_{S\in \mathrm{Ref}}\sum_{\mathrm{gram}_n\in S}\mathrm{count}_S(\mathrm{gram}_n)}$$
 
 **Plain-English explanation.** Measures recall of reference n-grams.
 
@@ -2690,9 +2365,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{ROUGE}-L=\frac{(1+\beta^2)R_{\mathrm{LCS}}P_{\mathrm{LCS}}}{R_{\mathrm{LCS}}+\beta^2P_{\mathrm{LCS}}}
-$$
+$$\mathrm{ROUGE}-L=\frac{(1+\beta^2)R_{\mathrm{LCS}}P_{\mathrm{LCS}}}{R_{\mathrm{LCS}}+\beta^2P_{\mathrm{LCS}}}$$
 
 **Plain-English explanation.** Uses longest common subsequence precision and recall.
 
@@ -2706,9 +2379,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{METEOR}=F_{\mathrm{mean}}(1-\mathrm{Penalty})
-$$
+$$\mathrm{METEOR}=F_{\mathrm{mean}}(1-\mathrm{Penalty})$$
 
 **Plain-English explanation.** Combines unigram precision/recall with fragmentation penalty.
 
@@ -2722,9 +2393,7 @@ $$
 
 **Equation**
 
-$$
-P=\frac{1}{|\hat{x}|}\sum_{\hat{x}_i}\max_{x_j} \hat{x}_i^\top x_j
-$$
+$$P=\frac{1}{|\hat{x}|}\sum_{\hat{x}_i}\max_{x_j} \hat{x}_i^\top x_j$$
 
 **Plain-English explanation.** Matches candidate tokens to reference tokens in embedding space.
 
@@ -2738,9 +2407,7 @@ $$
 
 **Equation**
 
-$$
-EM=\mathbf{1}[\mathrm{normalize}(\hat{y})=\mathrm{normalize}(y)]
-$$
+$$EM=\mathbf{1}[\mathrm{normalize}(\hat{y})=\mathrm{normalize}(y)]$$
 
 **Plain-English explanation.** Checks whether normalized prediction exactly equals answer.
 
@@ -2754,9 +2421,7 @@ $$
 
 **Equation**
 
-$$
-F1=\frac{2\mathrm{PR}}{P+R}
-$$
+$$F1=\frac{2\mathrm{PR}}{P+R}$$
 
 **Plain-English explanation.** Harmonic mean of token precision and recall.
 
@@ -2770,9 +2435,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{pass}@k=1-\frac{\binom{n-c}{k}}{\binom{n}{k}}
-$$
+$$\mathrm{pass}@k=1-\frac{\binom{n-c}{k}}{\binom{n}{k}}$$
 
 **Plain-English explanation.** Estimates probability that at least one of k samples passes tests.
 
@@ -2786,9 +2449,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{MAUVE}=\mathrm{Area}\left(\{(e^{-D_{\mathrm{KL}}(P\Vert Q_\lambda)},e^{-D_{\mathrm{KL}}(Q\Vert P_\lambda)})\}_{\lambda}\right)
-$$
+$$\mathrm{MAUVE}=\mathrm{Area}\left(\{(e^{-D_{\mathrm{KL}}(P\Vert Q_\lambda)},e^{-D_{\mathrm{KL}}(Q\Vert P_\lambda)})\}_{\lambda}\right)$$
 
 **Plain-English explanation.** Compares generated and real text distributions using divergence frontier.
 
@@ -2804,9 +2465,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{FLOPs}_{\mathrm{attn}}=O(n^2d)
-$$
+$$\mathrm{FLOPs}_{\mathrm{attn}}=O(n^2d)$$
 
 **Plain-English explanation.** Attention cost grows quadratically with sequence length.
 
@@ -2820,9 +2479,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{FLOPs}_{\mathrm{MLP}}\approx 2nd\,d_{\mathrm{ff}}
-$$
+$$\mathrm{FLOPs}_{\mathrm{MLP}}\approx 2nd\,d_{\mathrm{ff}}$$
 
 **Plain-English explanation.** Feed-forward layers cost proportional to sequence length and intermediate dimension.
 
@@ -2836,9 +2493,7 @@ $$
 
 **Equation**
 
-$$
-M_{\mathrm{KV}}=2\cdot L\cdot B\cdot S\cdot H_{\mathrm{kv}}\cdot d_h\cdot \mathrm{bytes}
-$$
+$$M_{\mathrm{KV}}=2\cdot L\cdot B\cdot S\cdot H_{\mathrm{kv}}\cdot d_h\cdot \mathrm{bytes}$$
 
 **Plain-English explanation.** Memory needed to store cached keys and values.
 
@@ -2852,9 +2507,7 @@ $$
 
 **Equation**
 
-$$
-\frac{M_{\mathrm{GQA}}}{M_{\mathrm{MHA}}}=\frac{H_{\mathrm{kv}}}{H_q}
-$$
+$$\frac{M_{\mathrm{GQA}}}{M_{\mathrm{MHA}}}=\frac{H_{\mathrm{kv}}}{H_q}$$
 
 **Plain-English explanation.** KV-cache memory scales with KV heads, not query heads.
 
@@ -2868,9 +2521,7 @@ $$
 
 **Equation**
 
-$$
-T_{\mathrm{prefill}}\approx\frac{\mathrm{FLOPs}_{\mathrm{prefill}}}{\mathrm{FLOPs/s}_{\mathrm{GPU}}}+T_{\mathrm{overhead}}
-$$
+$$T_{\mathrm{prefill}}\approx\frac{\mathrm{FLOPs}_{\mathrm{prefill}}}{\mathrm{FLOPs/s}_{\mathrm{GPU}}}+T_{\mathrm{overhead}}$$
 
 **Plain-English explanation.** Estimates time to process prompt tokens.
 
@@ -2884,9 +2535,7 @@ $$
 
 **Equation**
 
-$$
-T_{\mathrm{decode}}\approx\frac{\mathrm{FLOPs}_{\mathrm{decode}}}{\mathrm{FLOPs/s}_{\mathrm{GPU}}}+\frac{M_{\mathrm{read}}}{BW}+T_{\mathrm{overhead}}
-$$
+$$T_{\mathrm{decode}}\approx\frac{\mathrm{FLOPs}_{\mathrm{decode}}}{\mathrm{FLOPs/s}_{\mathrm{GPU}}}+\frac{M_{\mathrm{read}}}{BW}+T_{\mathrm{overhead}}$$
 
 **Plain-English explanation.** Decode is often limited by memory reads and bandwidth.
 
@@ -2900,9 +2549,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{TTFT}=T_{\mathrm{queue}}+T_{\mathrm{prefill}}+T_{\mathrm{schedule}}
-$$
+$$\mathrm{TTFT}=T_{\mathrm{queue}}+T_{\mathrm{prefill}}+T_{\mathrm{schedule}}$$
 
 **Plain-English explanation.** Time until first generated token.
 
@@ -2916,9 +2563,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{TPOT}=\frac{T_{\mathrm{decode},\mathrm{total}}}{N_{\mathrm{generated}}}
-$$
+$$\mathrm{TPOT}=\frac{T_{\mathrm{decode},\mathrm{total}}}{N_{\mathrm{generated}}}$$
 
 **Plain-English explanation.** Average time per output token.
 
@@ -2932,9 +2577,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{throughput}=\frac{N_{\mathrm{tokens}}}{T_{\mathrm{wall}}}
-$$
+$$\mathrm{throughput}=\frac{N_{\mathrm{tokens}}}{T_{\mathrm{wall}}}$$
 
 **Plain-English explanation.** Tokens processed per unit time.
 
@@ -2948,9 +2591,7 @@ $$
 
 **Equation**
 
-$$
-AI=\frac{\mathrm{FLOPs}}{\text{Bytes moved}}
-$$
+$$AI=\frac{\mathrm{FLOPs}}{\text{Bytes moved}}$$
 
 **Plain-English explanation.** Measures compute per byte of memory traffic.
 
@@ -2964,9 +2605,7 @@ $$
 
 **Equation**
 
-$$
-P\leq \min(P_{\mathrm{peak}},BW\cdot AI)
-$$
+$$P\leq \min(P_{\mathrm{peak}},BW\cdot AI)$$
 
 **Plain-English explanation.** Performance is bounded by peak compute or memory bandwidth.
 
@@ -2980,9 +2619,7 @@ $$
 
 **Equation**
 
-$$
-M_{\mathrm{alloc}}=N_{\mathrm{blocks}}\cdot \mathrm{block\_size}\cdot H_{\mathrm{kv}}\cdot d_h\cdot 2\cdot \mathrm{bytes}
-$$
+$$M_{\mathrm{alloc}}=N_{\mathrm{blocks}}\cdot \mathrm{block\_size}\cdot H_{\mathrm{kv}}\cdot d_h\cdot 2\cdot \mathrm{bytes}$$
 
 **Plain-English explanation.** Allocates KV cache in blocks instead of contiguous sequence buffers.
 
@@ -2996,9 +2633,7 @@ $$
 
 **Equation**
 
-$$
-U=\frac{\sum_i \mathrm{tokens}_i}{B_{\max}\cdot \mathrm{steps}}
-$$
+$$U=\frac{\sum_i \mathrm{tokens}_i}{B_{\max}\cdot \mathrm{steps}}$$
 
 **Plain-English explanation.** Measures how full decode batches are over time.
 
@@ -3014,9 +2649,7 @@ $$
 
 **Equation**
 
-$$
-x'(t)=Ax(t)+Bu(t),\quad y(t)=Cx(t)+Du(t)
-$$
+$$x'(t)=Ax(t)+Bu(t),\quad y(t)=Cx(t)+Du(t)$$
 
 **Plain-English explanation.** Models sequence dynamics with a latent state.
 
@@ -3030,9 +2663,7 @@ $$
 
 **Equation**
 
-$$
-x_k=\bar{A}x_{k-1}+\bar{B}u_k,\quad y_k=Cx_k+Du_k
-$$
+$$x_k=\bar{A}x_{k-1}+\bar{B}u_k,\quad y_k=Cx_k+Du_k$$
 
 **Plain-English explanation.** Discretized recurrent form of state-space model.
 
@@ -3046,9 +2677,7 @@ $$
 
 **Equation**
 
-$$
-y_k=\sum_{i=0}^{k}K_i u_{k-i},\quad K_i=C\bar{A}^{i}\bar{B}
-$$
+$$y_k=\sum_{i=0}^{k}K_i u_{k-i},\quad K_i=C\bar{A}^{i}\bar{B}$$
 
 **Plain-English explanation.** Represents SSM recurrence as convolution.
 
@@ -3062,9 +2691,7 @@ $$
 
 **Equation**
 
-$$
-h_t=\bar{A}_t h_{t-1}+\bar{B}_t x_t,\quad y_t=C_t h_t
-$$
+$$h_t=\bar{A}_t h_{t-1}+\bar{B}_t x_t,\quad y_t=C_t h_t$$
 
 **Plain-English explanation.** Makes SSM parameters input-dependent.
 
@@ -3078,9 +2705,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{wkv}_t=\frac{\sum_{i=1}^{t}e^{-(t-i)w+k_i}v_i}{\sum_{i=1}^{t}e^{-(t-i)w+k_i}}
-$$
+$$\mathrm{wkv}_t=\frac{\sum_{i=1}^{t}e^{-(t-i)w+k_i}v_i}{\sum_{i=1}^{t}e^{-(t-i)w+k_i}}$$
 
 **Plain-English explanation.** Computes attention-like weighted values through recurrence.
 
@@ -3094,9 +2719,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{Retention}(Q,K,V)= (QK^\top\odot D)V
-$$
+$$\mathrm{Retention}(Q,K,V)= (QK^\top\odot D)V$$
 
 **Plain-English explanation.** Uses decay matrix for causal retention.
 
@@ -3110,9 +2733,7 @@ $$
 
 **Equation**
 
-$$
-y = x * h_\theta
-$$
+$$y = x * h_\theta$$
 
 **Plain-English explanation.** Applies long convolution with an implicit filter.
 
@@ -3128,9 +2749,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{ECE}=\sum_{m=1}^{M}\frac{|B_m|}{n}\left|\mathrm{acc}(B_m)-\mathrm{conf}(B_m)\right|
-$$
+$$\mathrm{ECE}=\sum_{m=1}^{M}\frac{|B_m|}{n}\left|\mathrm{acc}(B_m)-\mathrm{conf}(B_m)\right|$$
 
 **Plain-English explanation.** Measures mismatch between confidence and empirical accuracy.
 
@@ -3144,9 +2763,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{MCE}=\max_m\left|\mathrm{acc}(B_m)-\mathrm{conf}(B_m)\right|
-$$
+$$\mathrm{MCE}=\max_m\left|\mathrm{acc}(B_m)-\mathrm{conf}(B_m)\right|$$
 
 **Plain-English explanation.** Worst-bin calibration gap.
 
@@ -3160,9 +2777,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{BS}=\frac{1}{n}\sum_{i=1}^{n}\sum_{c=1}^{C}(p_{\mathrm{ic}}-y_{\mathrm{ic}})^2
-$$
+$$\mathrm{BS}=\frac{1}{n}\sum_{i=1}^{n}\sum_{c=1}^{C}(p_{\mathrm{ic}}-y_{\mathrm{ic}})^2$$
 
 **Plain-English explanation.** Mean squared error of predicted probabilities.
 
@@ -3176,9 +2791,7 @@ $$
 
 **Equation**
 
-$$
-p_i=\mathrm{softmax}(z_i/T)
-$$
+$$p_i=\mathrm{softmax}(z_i/T)$$
 
 **Plain-English explanation.** Calibrates confidence by rescaling logits.
 
@@ -3192,9 +2805,7 @@ $$
 
 **Equation**
 
-$$
-R(f,g)=\frac{\mathbb{E}[\ell(f(x),y)g(x)]}{\mathbb{E}[g(x)]}
-$$
+$$R(f,g)=\frac{\mathbb{E}[\ell(f(x),y)g(x)]}{\mathbb{E}[g(x)]}$$
 
 **Plain-English explanation.** Risk over examples the model chooses to answer.
 
@@ -3208,9 +2819,7 @@ $$
 
 **Equation**
 
-$$
-C(x)=\{y:s(x,y)\leq q_{1-\alpha}\}
-$$
+$$C(x)=\{y:s(x,y)\leq q_{1-\alpha}\}$$
 
 **Plain-English explanation.** Returns a set of labels with finite-sample coverage.
 
@@ -3228,9 +2837,7 @@ $$
 
 **Equation**
 
-$$
-\cos(x,y)=\frac{x^\top y}{\|x\|_2\|y\|_2}
-$$
+$$\cos(x,y)=\frac{x^\top y}{\|x\|_2\|y\|_2}$$
 
 **Plain-English explanation.** Measures angle similarity between vectors.
 
@@ -3244,9 +2851,7 @@ $$
 
 **Equation**
 
-$$
-s(x,y)=x^\top y
-$$
+$$s(x,y)=x^\top y$$
 
 **Plain-English explanation.** Measures unnormalized vector alignment.
 
@@ -3260,9 +2865,7 @@ $$
 
 **Equation**
 
-$$
-d_2(x,y)=\sqrt{\sum_i(x_i-y_i)^2}
-$$
+$$d_2(x,y)=\sqrt{\sum_i(x_i-y_i)^2}$$
 
 **Plain-English explanation.** Straight-line distance between vectors.
 
@@ -3276,9 +2879,7 @@ $$
 
 **Equation**
 
-$$
-d_1(x,y)=\sum_i|x_i-y_i|
-$$
+$$d_1(x,y)=\sum_i|x_i-y_i|$$
 
 **Plain-English explanation.** Sum of absolute coordinate differences.
 
@@ -3292,9 +2893,7 @@ $$
 
 **Equation**
 
-$$
-d_p(x,y)=\left(\sum_i|x_i-y_i|^p\right)^{1/p}
-$$
+$$d_p(x,y)=\left(\sum_i|x_i-y_i|^p\right)^{1/p}$$
 
 **Plain-English explanation.** Generalizes L1 and L2 distance.
 
@@ -3308,9 +2907,7 @@ $$
 
 **Equation**
 
-$$
-J(A,B)=\frac{|A\cap B|}{|A\cup B|}
-$$
+$$J(A,B)=\frac{|A\cap B|}{|A\cup B|}$$
 
 **Plain-English explanation.** Compares overlap between sets.
 
@@ -3324,9 +2921,7 @@ $$
 
 **Equation**
 
-$$
-d_H(x,y)=\sum_i\mathbf{1}[x_i\ne y_i]
-$$
+$$d_H(x,y)=\sum_i\mathbf{1}[x_i\ne y_i]$$
 
 **Plain-English explanation.** Counts positions where two discrete vectors differ.
 
@@ -3340,9 +2935,7 @@ $$
 
 **Equation**
 
-$$
-d_M(x,y)=\sqrt{(x-y)^\top\Sigma^{-1}(x-y)}
-$$
+$$d_M(x,y)=\sqrt{(x-y)^\top\Sigma^{-1}(x-y)}$$
 
 **Plain-English explanation.** Distance adjusted by covariance structure.
 
@@ -3356,9 +2949,7 @@ $$
 
 **Equation**
 
-$$
-d_{\mathrm{ang}}(x,y)=\frac{\arccos(\cos(x,y))}{\pi}
-$$
+$$d_{\mathrm{ang}}(x,y)=\frac{\arccos(\cos(x,y))}{\pi}$$
 
 **Plain-English explanation.** Converts cosine similarity to normalized angle distance.
 
@@ -3374,9 +2965,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{tf}(t,d)=\mathrm{count}(t,d)
-$$
+$$\mathrm{tf}(t,d)=\mathrm{count}(t,d)$$
 
 **Plain-English explanation.** Counts how often a term appears in a document.
 
@@ -3390,9 +2979,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{tf}(t,d)=1+\log \mathrm{count}(t,d)
-$$
+$$\mathrm{tf}(t,d)=1+\log \mathrm{count}(t,d)$$
 
 **Plain-English explanation.** Dampens the effect of repeated terms.
 
@@ -3406,9 +2993,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{idf}(t)=\log\frac{N}{\mathrm{df}(t)}
-$$
+$$\mathrm{idf}(t)=\log\frac{N}{\mathrm{df}(t)}$$
 
 **Plain-English explanation.** Down-weights common terms and up-weights rare terms.
 
@@ -3422,9 +3007,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{idf}(t)=\log\frac{N-\mathrm{df}(t)+0.5}{\mathrm{df}(t)+0.5}
-$$
+$$\mathrm{idf}(t)=\log\frac{N-\mathrm{df}(t)+0.5}{\mathrm{df}(t)+0.5}$$
 
 **Plain-English explanation.** Probabilistic IDF with smoothing.
 
@@ -3438,9 +3021,7 @@ $$
 
 **Equation**
 
-$$
-w(t,d)=\mathrm{tf}(t,d)\cdot \mathrm{idf}(t)
-$$
+$$w(t,d)=\mathrm{tf}(t,d)\cdot \mathrm{idf}(t)$$
 
 **Plain-English explanation.** Weights a term by within-document frequency and corpus rarity.
 
@@ -3454,9 +3035,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{BM25}(q,d)=\sum_{t\in q}\mathrm{idf}(t)\frac{\mathrm{tf}(t,d)(k_1+1)}{\mathrm{tf}(t,d)+k_1(1-b+b\frac{|d|}{\mathrm{avgdl}})}
-$$
+$$\mathrm{BM25}(q,d)=\sum_{t\in q}\mathrm{idf}(t)\frac{\mathrm{tf}(t,d)(k_1+1)}{\mathrm{tf}(t,d)+k_1(1-b+b\frac{|d|}{\mathrm{avgdl}})}$$
 
 **Plain-English explanation.** Scores documents by saturated term frequency and length normalization.
 
@@ -3470,9 +3049,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{BM25}^+(q,d)=\sum_{t\in q}\mathrm{idf}(t)\left(\frac{\mathrm{tf}(t,d)(k_1+1)}{\mathrm{tf}(t,d)+k_1(1-b+b\frac{|d|}{\mathrm{avgdl}})}+\delta\right)
-$$
+$$\mathrm{BM25}^+(q,d)=\sum_{t\in q}\mathrm{idf}(t)\left(\frac{\mathrm{tf}(t,d)(k_1+1)}{\mathrm{tf}(t,d)+k_1(1-b+b\frac{|d|}{\mathrm{avgdl}})}+\delta\right)$$
 
 **Plain-English explanation.** Adds a lower-bound delta to reduce over-penalization of long docs.
 
@@ -3486,9 +3063,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{BM25L}=\sum_{t\in q}\mathrm{idf}(t)\frac{(k_1+1)(c(t,d)+\delta)}{k_1+c(t,d)+\delta},\quad c(t,d)=\frac{\mathrm{tf}(t,d)}{1-b+b|d|/\mathrm{avgdl}}
-$$
+$$\mathrm{BM25L}=\sum_{t\in q}\mathrm{idf}(t)\frac{(k_1+1)(c(t,d)+\delta)}{k_1+c(t,d)+\delta},\quad c(t,d)=\frac{\mathrm{tf}(t,d)}{1-b+b|d|/\mathrm{avgdl}}$$
 
 **Plain-English explanation.** A BM25 variant with modified term-frequency normalization.
 
@@ -3502,9 +3077,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{BM25F}(q,d)=\sum_{t\in q}\mathrm{idf}(t)\frac{w_t(d)}{k_1+w_t(d)},\quad w_t(d)=\sum_f\frac{w_f \mathrm{tf}_{t,f}}{1-b_f+b_f|d_f|/\mathrm{avgdl}_f}
-$$
+$$\mathrm{BM25F}(q,d)=\sum_{t\in q}\mathrm{idf}(t)\frac{w_t(d)}{k_1+w_t(d)},\quad w_t(d)=\sum_f\frac{w_f \mathrm{tf}_{t,f}}{1-b_f+b_f|d_f|/\mathrm{avgdl}_f}$$
 
 **Plain-English explanation.** Combines weighted fields such as title, body, anchor text.
 
@@ -3518,9 +3091,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{score}(q,d)=\log P(q\mid d)=\sum_{t\in q}\mathrm{count}(t,q)\log P(t\mid d)
-$$
+$$\mathrm{score}(q,d)=\log P(q\mid d)=\sum_{t\in q}\mathrm{count}(t,q)\log P(t\mid d)$$
 
 **Plain-English explanation.** Ranks documents by probability of generating the query.
 
@@ -3534,9 +3105,7 @@ $$
 
 **Equation**
 
-$$
-P(t\mid d)=\frac{\mathrm{count}(t,d)+\mu P(t\mid C)}{|d|+\mu}
-$$
+$$P(t\mid d)=\frac{\mathrm{count}(t,d)+\mu P(t\mid C)}{|d|+\mu}$$
 
 **Plain-English explanation.** Smooths document term probabilities using collection probabilities.
 
@@ -3550,9 +3119,7 @@ $$
 
 **Equation**
 
-$$
-P(t\mid d)=(1-\lambda)P_{\mathrm{ML}}(t\mid d)+\lambda P(t\mid C)
-$$
+$$P(t\mid d)=(1-\lambda)P_{\mathrm{ML}}(t\mid d)+\lambda P(t\mid C)$$
 
 **Plain-English explanation.** Interpolates document and collection language models.
 
@@ -3566,9 +3133,7 @@ $$
 
 **Equation**
 
-$$
-d_i \succ d_j \iff P(R=1\mid d_i,q)> P(R=1\mid d_j,q)
-$$
+$$d_i \succ d_j \iff P(R=1\mid d_i,q)> P(R=1\mid d_j,q)$$
 
 **Plain-English explanation.** Rank by probability of relevance.
 
@@ -3582,9 +3147,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{score}(d,q)=\sum_{t\in q\cap d}\log\frac{p_t(1-u_t)}{u_t(1-p_t)}
-$$
+$$\mathrm{score}(d,q)=\sum_{t\in q\cap d}\log\frac{p_t(1-u_t)}{u_t(1-p_t)}$$
 
 **Plain-English explanation.** Scores terms using relevance and non-relevance occurrence probabilities.
 
@@ -3600,9 +3163,7 @@ $$
 
 **Equation**
 
-$$
-s(q,d)=f_\theta(q)^\top g_\phi(d)
-$$
+$$s(q,d)=f_\theta(q)^\top g_\phi(d)$$
 
 **Plain-English explanation.** Scores query and document using separately encoded embeddings.
 
@@ -3616,9 +3177,7 @@ $$
 
 **Equation**
 
-$$
-\mathcal{L}=-\log\frac{\exp(s(q,d^+)/\tau)}{\exp(s(q,d^+)/\tau)+\sum_{d^-}\exp(s(q,d^-)/\tau)}
-$$
+$$\mathcal{L}=-\log\frac{\exp(s(q,d^+)/\tau)}{\exp(s(q,d^+)/\tau)+\sum_{d^-}\exp(s(q,d^-)/\tau)}$$
 
 **Plain-English explanation.** Trains dense retriever to score positive passages above negatives.
 
@@ -3632,9 +3191,7 @@ $$
 
 **Equation**
 
-$$
-s(q,d)=\sum_{i\in q}\max_{j\in d}E_{q_i}^\top E_{d_j}
-$$
+$$s(q,d)=\sum_{i\in q}\max_{j\in d}E_{q_i}^\top E_{d_j}$$
 
 **Plain-English explanation.** Late interaction: each query token matches its best document token.
 
@@ -3648,9 +3205,7 @@ $$
 
 **Equation**
 
-$$
-s(q,d)=\sum_{j=1}^{V}w_{\mathrm{qj}}w_{\mathrm{dj}}
-$$
+$$s(q,d)=\sum_{j=1}^{V}w_{\mathrm{qj}}w_{\mathrm{dj}}$$
 
 **Plain-English explanation.** Scores sparse learned lexical expansion vectors.
 
@@ -3664,9 +3219,7 @@ $$
 
 **Equation**
 
-$$
-w_j=\max_i \log(1+\mathrm{ReLU}(z_{\mathrm{ij}}))
-$$
+$$w_j=\max_i \log(1+\mathrm{ReLU}(z_{\mathrm{ij}}))$$
 
 **Plain-English explanation.** Builds sparse vocabulary weights from MLM logits.
 
@@ -3680,9 +3233,7 @@ $$
 
 **Equation**
 
-$$
-\mathcal{L}_{\mathrm{FLOPS}}=\sum_j \left(\frac{1}{N}\sum_i w_{\mathrm{ij}}\right)^2
-$$
+$$\mathcal{L}_{\mathrm{FLOPS}}=\sum_j \left(\frac{1}{N}\sum_i w_{\mathrm{ij}}\right)^2$$
 
 **Plain-English explanation.** Penalizes dense usage of vocabulary dimensions.
 
@@ -3698,9 +3249,7 @@ $$
 
 **Equation**
 
-$$
-s(q,d)=\lambda s_{\mathrm{dense}}(q,d)+(1-\lambda)s_{\mathrm{sparse}}(q,d)
-$$
+$$s(q,d)=\lambda s_{\mathrm{dense}}(q,d)+(1-\lambda)s_{\mathrm{sparse}}(q,d)$$
 
 **Plain-English explanation.** Blends dense and sparse retrieval scores.
 
@@ -3714,9 +3263,7 @@ $$
 
 **Equation**
 
-$$
-s(q,d)=\sum_m w_m\frac{s_m(q,d)-\mu_m}{\sigma_m}
-$$
+$$s(q,d)=\sum_m w_m\frac{s_m(q,d)-\mu_m}{\sigma_m}$$
 
 **Plain-English explanation.** Combines normalized scores from multiple rankers.
 
@@ -3730,9 +3277,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{RRF}(d)=\sum_{r\in R}\frac{1}{k+\mathrm{rank}_r(d)}
-$$
+$$\mathrm{RRF}(d)=\sum_{r\in R}\frac{1}{k+\mathrm{rank}_r(d)}$$
 
 **Plain-English explanation.** Fuses ranked lists using reciprocal ranks.
 
@@ -3746,9 +3291,7 @@ $$
 
 **Equation**
 
-$$
-s(q,d)=w^\top\phi(q,d)
-$$
+$$s(q,d)=w^\top\phi(q,d)$$
 
 **Plain-English explanation.** Learns rank score from features.
 
@@ -3764,9 +3307,7 @@ $$
 
 **Equation**
 
-$$
-\min_{c_1,\dots,c_K}\sum_i\min_k\|x_i-c_k\|_2^2
-$$
+$$\min_{c_1,\dots,c_K}\sum_i\min_k\|x_i-c_k\|_2^2$$
 
 **Plain-English explanation.** Learns coarse clusters for inverted file indexing.
 
@@ -3780,9 +3321,7 @@ $$
 
 **Equation**
 
-$$
-a(x)=\mathrm{argmin}_{k}\|x-c_k\|_2
-$$
+$$a(x)=\mathrm{argmin}_{k}\|x-c_k\|_2$$
 
 **Plain-English explanation.** Assigns vector to nearest centroid.
 
@@ -3796,9 +3335,7 @@ $$
 
 **Equation**
 
-$$
-q(x)=[q_1(x^{(1)}),\dots,q_M(x^{(M)})]
-$$
+$$q(x)=[q_1(x^{(1)}),\dots,q_M(x^{(M)})]$$
 
 **Plain-English explanation.** Splits vector into subspaces and quantizes each subvector.
 
@@ -3812,9 +3349,7 @@ $$
 
 **Equation**
 
-$$
-\|q-y\|^2\approx\sum_{m=1}^{M}\|c_{m,k_m}-y^{(m)}\|^2
-$$
+$$\|q-y\|^2\approx\sum_{m=1}^{M}\|c_{m,k_m}-y^{(m)}\|^2$$
 
 **Plain-English explanation.** Approximates distance using sub-codebook lookups.
 
@@ -3828,9 +3363,7 @@ $$
 
 **Equation**
 
-$$
-v_{\mathrm{next}}=\mathrm{argmin}_{u\in N(v)}d(u,q)
-$$
+$$v_{\mathrm{next}}=\mathrm{argmin}_{u\in N(v)}d(u,q)$$
 
 **Plain-English explanation.** Moves through graph neighbors toward query.
 
@@ -3844,9 +3377,7 @@ $$
 
 **Equation**
 
-$$
-P(\mathrm{level}\geq l)=e^{-l/\lambda}
-$$
+$$P(\mathrm{level}\geq l)=e^{-l/\lambda}$$
 
 **Plain-English explanation.** Assigns fewer nodes to higher graph layers.
 
@@ -3860,9 +3391,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{score}(q,x)=q^\top x - \lambda\|x-q_{\mathrm{proj}}\|^2
-$$
+$$\mathrm{score}(q,x)=q^\top x - \lambda\|x-q_{\mathrm{proj}}\|^2$$
 
 **Plain-English explanation.** Combines inner product with quantization-aware penalty.
 
@@ -3878,9 +3407,7 @@ $$
 
 **Equation**
 
-$$
-s(q,d)=w^\top h_{[CLS]}(q,d)
-$$
+$$s(q,d)=w^\top h_{[CLS]}(q,d)$$
 
 **Plain-English explanation.** Jointly encodes query and document to produce relevance score.
 
@@ -3894,9 +3421,7 @@ $$
 
 **Equation**
 
-$$
-s(q,d)=\log p_\theta(\mathrm{true}\mid q,d)
-$$
+$$s(q,d)=\log p_\theta(\mathrm{true}\mid q,d)$$
 
 **Plain-English explanation.** Scores relevance as probability of generating token true.
 
@@ -3910,9 +3435,7 @@ $$
 
 **Equation**
 
-$$
-\mathcal{L}=-(y\log\sigma(s)+(1-y)\log(1-\sigma(s)))
-$$
+$$\mathcal{L}=-(y\log\sigma(s)+(1-y)\log(1-\sigma(s)))$$
 
 **Plain-English explanation.** Treats relevance prediction as binary classification.
 
@@ -3926,9 +3449,7 @@ $$
 
 **Equation**
 
-$$
-\mathcal{L}=\max(0,m-s(q,d^+)+s(q,d^-))
-$$
+$$\mathcal{L}=\max(0,m-s(q,d^+)+s(q,d^-))$$
 
 **Plain-English explanation.** Requires positive doc score to exceed negative by margin.
 
@@ -3942,9 +3463,7 @@ $$
 
 **Equation**
 
-$$
-\mathcal{L}= -\bar{P}_{\mathrm{ij}}\log P_{\mathrm{ij}}-(1-\bar{P}_{\mathrm{ij}})\log(1-P_{\mathrm{ij}}),\quad P_{\mathrm{ij}}=\sigma(s_i-s_j)
-$$
+$$\mathcal{L}= -\bar{P}_{\mathrm{ij}}\log P_{\mathrm{ij}}-(1-\bar{P}_{\mathrm{ij}})\log(1-P_{\mathrm{ij}}),\quad P_{\mathrm{ij}}=\sigma(s_i-s_j)$$
 
 **Plain-English explanation.** Learns pairwise ordering probabilities.
 
@@ -3958,9 +3477,7 @@ $$
 
 **Equation**
 
-$$
-\mathcal{L}=-\sum_{i=1}^{n}\log\frac{e^{s_{\pi_i}}}{\sum_{j=i}^{n}e^{s_{\pi_j}}}
-$$
+$$\mathcal{L}=-\sum_{i=1}^{n}\log\frac{e^{s_{\pi_i}}}{\sum_{j=i}^{n}e^{s_{\pi_j}}}$$
 
 **Plain-English explanation.** Maximizes likelihood of the correct ranked permutation.
 
@@ -3974,9 +3491,7 @@ $$
 
 **Equation**
 
-$$
-\mathcal{L}=-\sum_i P_y(i)\log P_s(i),\quad P_s(i)=\frac{e^{s_i}}{\sum_j e^{s_j}}
-$$
+$$\mathcal{L}=-\sum_i P_y(i)\log P_s(i),\quad P_s(i)=\frac{e^{s_i}}{\sum_j e^{s_j}}$$
 
 **Plain-English explanation.** Matches top-one probability distributions from labels and scores.
 
@@ -3990,9 +3505,7 @@ $$
 
 **Equation**
 
-$$
-\lambda_{\mathrm{ij}}=\frac{-\sigma}{1+e^{\sigma(s_i-s_j)}}|\Delta \mathrm{NDCG}_{\mathrm{ij}}|
-$$
+$$\lambda_{\mathrm{ij}}=\frac{-\sigma}{1+e^{\sigma(s_i-s_j)}}|\Delta \mathrm{NDCG}_{\mathrm{ij}}|$$
 
 **Plain-English explanation.** Scales pairwise gradients by NDCG impact.
 
@@ -4008,9 +3521,7 @@ $$
 
 **Equation**
 
-$$
-P@k=\frac{1}{k}\sum_{i=1}^{k}\mathrm{rel}_i
-$$
+$$P@k=\frac{1}{k}\sum_{i=1}^{k}\mathrm{rel}_i$$
 
 **Plain-English explanation.** Fraction of top-k results that are relevant.
 
@@ -4024,9 +3535,7 @@ $$
 
 **Equation**
 
-$$
-R@k=\frac{\sum_{i=1}^{k}\mathrm{rel}_i}{\sum_{j=1}^{N}\mathrm{rel}_j}
-$$
+$$R@k=\frac{\sum_{i=1}^{k}\mathrm{rel}_i}{\sum_{j=1}^{N}\mathrm{rel}_j}$$
 
 **Plain-English explanation.** Fraction of all relevant documents retrieved in top k.
 
@@ -4040,9 +3549,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{HR}@k=\mathbf{1}\left[\sum_{i=1}^{k}\mathrm{rel}_i> 0\right]
-$$
+$$\mathrm{HR}@k=\mathbf{1}\left[\sum_{i=1}^{k}\mathrm{rel}_i> 0\right]$$
 
 **Plain-English explanation.** Checks whether at least one relevant document appears in top k.
 
@@ -4056,9 +3563,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{MRR}=\frac{1}{|Q|}\sum_{q\in Q}\frac{1}{\mathrm{rank}_q}
-$$
+$$\mathrm{MRR}=\frac{1}{|Q|}\sum_{q\in Q}\frac{1}{\mathrm{rank}_q}$$
 
 **Plain-English explanation.** Averages reciprocal rank of first relevant result.
 
@@ -4072,9 +3577,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{AP}=\frac{1}{R}\sum_{k=1}^{N}P@k\cdot \mathrm{rel}_k
-$$
+$$\mathrm{AP}=\frac{1}{R}\sum_{k=1}^{N}P@k\cdot \mathrm{rel}_k$$
 
 **Plain-English explanation.** Averages precision at every relevant result.
 
@@ -4088,9 +3591,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{MAP}=\frac{1}{|Q|}\sum_{q\in Q}\mathrm{AP}(q)
-$$
+$$\mathrm{MAP}=\frac{1}{|Q|}\sum_{q\in Q}\mathrm{AP}(q)$$
 
 **Plain-English explanation.** Mean average precision over queries.
 
@@ -4104,9 +3605,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{DCG}@k=\sum_{i=1}^{k}\frac{2^{\mathrm{rel}_i}-1}{\log_2(i+1)}
-$$
+$$\mathrm{DCG}@k=\sum_{i=1}^{k}\frac{2^{\mathrm{rel}_i}-1}{\log_2(i+1)}$$
 
 **Plain-English explanation.** Discounted gain rewards relevant docs higher in ranking.
 
@@ -4120,9 +3619,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{NDCG}@k=\frac{\mathrm{DCG}@k}{\mathrm{IDCG}@k}
-$$
+$$\mathrm{NDCG}@k=\frac{\mathrm{DCG}@k}{\mathrm{IDCG}@k}$$
 
 **Plain-English explanation.** Normalizes DCG by the ideal ranking.
 
@@ -4136,9 +3633,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{R\text{-}Prec}=\frac{\mathrm{relcount}(R)}{R}
-$$
+$$\mathrm{R\text{-}Prec}=\frac{\mathrm{relcount}(R)}{R}$$
 
 **Plain-English explanation.** Precision at R, where R is number of relevant docs.
 
@@ -4154,9 +3649,7 @@ $$
 
 **Equation**
 
-$$
-C_i=x_{iS:iS+L-1}
-$$
+$$C_i=x_{iS:iS+L-1}$$
 
 **Plain-English explanation.** Splits text into chunks of length L using stride S.
 
@@ -4170,9 +3663,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{overlap}=L-S
-$$
+$$\mathrm{overlap}=L-S$$
 
 **Plain-English explanation.** Defines repeated tokens between adjacent chunks.
 
@@ -4186,9 +3677,7 @@ $$
 
 **Equation**
 
-$$
-b_i=\mathbf{1}[1-\cos(e_i,e_{i+1})> \tau]
-$$
+$$b_i=\mathbf{1}[1-\cos(e_i,e_{i+1})> \tau]$$
 
 **Plain-English explanation.** Creates a boundary when adjacent sentence embeddings differ enough.
 
@@ -4202,9 +3691,7 @@ $$
 
 **Equation**
 
-$$
-\max_{S}\sum_{i\in S}u_i\quad\mathrm{s.t.}\quad\sum_{i\in S}l_i\leq B
-$$
+$$\max_{S}\sum_{i\in S}u_i\quad\mathrm{s.t.}\quad\sum_{i\in S}l_i\leq B$$
 
 **Plain-English explanation.** Selects chunks maximizing utility under token budget.
 
@@ -4218,9 +3705,7 @@ $$
 
 **Equation**
 
-$$
-w(\mathrm{pos})=\alpha+\beta\left|2\frac{\mathrm{pos}}{L}-1\right|
-$$
+$$w(\mathrm{pos})=\alpha+\beta\left|2\frac{\mathrm{pos}}{L}-1\right|$$
 
 **Plain-English explanation.** Models higher attention/usefulness near beginning and end than middle.
 
@@ -4234,9 +3719,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{score}(c)=\lambda \mathrm{rel}(q,c)-(1-\lambda)\mathrm{len}(c)
-$$
+$$\mathrm{score}(c)=\lambda \mathrm{rel}(q,c)-(1-\lambda)\mathrm{len}(c)$$
 
 **Plain-English explanation.** Balances relevance against token cost.
 
@@ -4252,9 +3735,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{MMR}(d)=\lambda \mathrm{Sim}_1(d,q)-(1-\lambda)\max_{d'\in S}\mathrm{Sim}_2(d,d')
-$$
+$$\mathrm{MMR}(d)=\lambda \mathrm{Sim}_1(d,q)-(1-\lambda)\max_{d'\in S}\mathrm{Sim}_2(d,d')$$
 
 **Plain-English explanation.** Selects relevant but non-redundant documents.
 
@@ -4268,9 +3749,7 @@ $$
 
 **Equation**
 
-$$
-P(S)\propto\det(L_S)
-$$
+$$P(S)\propto\det(L_S)$$
 
 **Plain-English explanation.** Gives high probability to diverse subsets.
 
@@ -4284,9 +3763,7 @@ $$
 
 **Equation**
 
-$$
-K=L(L+I)^{-1}
-$$
+$$K=L(L+I)^{-1}$$
 
 **Plain-English explanation.** Converts DPP L-ensemble kernel to marginal kernel.
 
@@ -4302,9 +3779,7 @@ $$
 
 **Equation**
 
-$$
-p(y\mid x)=\sum_{z\in \mathrm{topk}(p_\eta(\cdot\mid x))}p_\eta(z\mid x)p_\theta(y\mid x,z)
-$$
+$$p(y\mid x)=\sum_{z\in \mathrm{topk}(p_\eta(\cdot\mid x))}p_\eta(z\mid x)p_\theta(y\mid x,z)$$
 
 **Plain-English explanation.** Marginalizes answer likelihood over retrieved documents.
 
@@ -4318,9 +3793,7 @@ $$
 
 **Equation**
 
-$$
-p(y\mid x)=\prod_{i=1}^{N}\sum_z p_\eta(z\mid x,y_{1:i-1})p_\theta(y_i\mid x,z,y_{1:i-1})
-$$
+$$p(y\mid x)=\prod_{i=1}^{N}\sum_z p_\eta(z\mid x,y_{1:i-1})p_\theta(y_i\mid x,z,y_{1:i-1})$$
 
 **Plain-English explanation.** Allows retrieval distribution to vary per generated token.
 
@@ -4334,9 +3807,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{ContextPrecision}@k=\frac{1}{k}\sum_{i=1}^{k}\mathbf{1}[\mathrm{relevant}(c_i)]
-$$
+$$\mathrm{ContextPrecision}@k=\frac{1}{k}\sum_{i=1}^{k}\mathbf{1}[\mathrm{relevant}(c_i)]$$
 
 **Plain-English explanation.** Measures fraction of retrieved contexts that are relevant.
 
@@ -4350,9 +3821,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{ContextRecall}=\frac{|\{\text{grounded facts covered by contexts}\}|}{|\{\text{ground-truth facts}\}|}
-$$
+$$\mathrm{ContextRecall}=\frac{|\{\text{grounded facts covered by contexts}\}|}{|\{\text{ground-truth facts}\}|}$$
 
 **Plain-English explanation.** Measures how much required evidence is retrieved.
 
@@ -4366,9 +3835,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{Faithfulness}=\frac{|\{\text{claims supported by context}\}|}{|\{\text{claims in answer}\}|}
-$$
+$$\mathrm{Faithfulness}=\frac{|\{\text{claims supported by context}\}|}{|\{\text{claims in answer}\}|}$$
 
 **Plain-English explanation.** Measures whether answer claims are supported by context.
 
@@ -4382,9 +3849,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{AnswerRelevance}=\frac{1}{m}\sum_{i=1}^{m}\cos(e_{q},e_{q_i'})
-$$
+$$\mathrm{AnswerRelevance}=\frac{1}{m}\sum_{i=1}^{m}\cos(e_{q},e_{q_i'})$$
 
 **Plain-English explanation.** Measures whether generated answer addresses the original question via generated reverse questions.
 
@@ -4398,9 +3863,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{AttrPrecision}=\frac{|\{\text{cited claims supported}\}|}{|\{\text{cited claims}\}|}
-$$
+$$\mathrm{AttrPrecision}=\frac{|\{\text{cited claims supported}\}|}{|\{\text{cited claims}\}|}$$
 
 **Plain-English explanation.** Measures correctness of citations/attributions.
 
@@ -4416,9 +3879,7 @@ $$
 
 **Equation**
 
-$$
-q'=\alpha q+\frac{\beta}{|D_r|}\sum_{d\in D_r}d-\frac{\gamma}{|D_{\mathrm{nr}}|}\sum_{d\in D_{\mathrm{nr}}}d
-$$
+$$q'=\alpha q+\frac{\beta}{|D_r|}\sum_{d\in D_r}d-\frac{\gamma}{|D_{\mathrm{nr}}|}\sum_{d\in D_{\mathrm{nr}}}d$$
 
 **Plain-English explanation.** Moves query vector toward relevant docs and away from non-relevant docs.
 
@@ -4432,9 +3893,7 @@ $$
 
 **Equation**
 
-$$
-P(w\mid R)=\sum_{d\in D_{\mathrm{PRF}}}P(w\mid d)P(d\mid q)
-$$
+$$P(w\mid R)=\sum_{d\in D_{\mathrm{PRF}}}P(w\mid d)P(d\mid q)$$
 
 **Plain-English explanation.** Builds expansion term distribution from pseudo-relevant docs.
 
@@ -4448,9 +3907,7 @@ $$
 
 **Equation**
 
-$$
-P'(w\mid q)=\lambda P(w\mid q)+(1-\lambda)P(w\mid R)
-$$
+$$P'(w\mid q)=\lambda P(w\mid q)+(1-\lambda)P(w\mid R)$$
 
 **Plain-English explanation.** Combines original query model with feedback model.
 
@@ -4464,9 +3921,7 @@ $$
 
 **Equation**
 
-$$
-d^*=\mathrm{argmax}_{d\in D}\cos(f(h_\theta(q)),g(d))
-$$
+$$d^*=\mathrm{argmax}_{d\in D}\cos(f(h_\theta(q)),g(d))$$
 
 **Plain-English explanation.** Generates a hypothetical answer/document and retrieves similar real documents.
 
@@ -4482,9 +3937,7 @@ $$
 
 **Equation**
 
-$$
-A_{\mathrm{ij}}=w(e_i,e_j)
-$$
+$$A_{\mathrm{ij}}=w(e_i,e_j)$$
 
 **Plain-English explanation.** Represents weighted relationships between extracted entities.
 
@@ -4498,9 +3951,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{PR}(v)=\frac{1-d}{N}+d\sum_{u\in \mathrm{In}(v)}\frac{\mathrm{PR}(u)}{\mathrm{out}(u)}
-$$
+$$\mathrm{PR}(v)=\frac{1-d}{N}+d\sum_{u\in \mathrm{In}(v)}\frac{\mathrm{PR}(u)}{\mathrm{out}(u)}$$
 
 **Plain-English explanation.** Scores graph nodes by incoming importance.
 
@@ -4514,9 +3965,7 @@ $$
 
 **Equation**
 
-$$
-p=(1-\alpha)v+\alpha P^\top p
-$$
+$$p=(1-\alpha)v+\alpha P^\top p$$
 
 **Plain-English explanation.** PageRank biased toward a personalization/query vector.
 
@@ -4530,9 +3979,7 @@ $$
 
 **Equation**
 
-$$
-Q=\frac{1}{2m}\sum_{\mathrm{ij}}\left(A_{\mathrm{ij}}-\frac{k_ik_j}{2m}\right)\mathbf{1}[c_i=c_j]
-$$
+$$Q=\frac{1}{2m}\sum_{\mathrm{ij}}\left(A_{\mathrm{ij}}-\frac{k_ik_j}{2m}\right)\mathbf{1}[c_i=c_j]$$
 
 **Plain-English explanation.** Measures quality of graph community partition.
 
@@ -4546,9 +3993,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{score}(\mathrm{path})=\prod_{(i,j)\in \mathrm{path}}w_{\mathrm{ij}}
-$$
+$$\mathrm{score}(\mathrm{path})=\prod_{(i,j)\in \mathrm{path}}w_{\mathrm{ij}}$$
 
 **Plain-English explanation.** Scores multi-hop graph paths by edge weights.
 
@@ -4562,9 +4007,7 @@ $$
 
 **Equation**
 
-$$
-h_v^{(l+1)}=\sigma\left(W_{\mathrm{self}} h_v^{(l)}+\sum_{u\in N(v)}\alpha_{\mathrm{uv}}W_{\mathrm{neigh}} h_u^{(l)}\right)
-$$
+$$h_v^{(l+1)}=\sigma\left(W_{\mathrm{self}} h_v^{(l)}+\sum_{u\in N(v)}\alpha_{\mathrm{uv}}W_{\mathrm{neigh}} h_u^{(l)}\right)$$
 
 **Plain-English explanation.** Aggregates neighboring node representations.
 
@@ -4582,9 +4025,7 @@ $$
 
 **Equation**
 
-$$
-\mathcal{M}=(\mathcal{S},\mathcal{A},P,R,\gamma)
-$$
+$$\mathcal{M}=(\mathcal{S},\mathcal{A},P,R,\gamma)$$
 
 **Plain-English explanation.** Defines states, actions, transition dynamics, rewards, and discount.
 
@@ -4598,9 +4039,7 @@ $$
 
 **Equation**
 
-$$
-P(s'\mid s,a)=\Pr(S_{t+1}=s'\mid S_t=s,A_t=a)
-$$
+$$P(s'\mid s,a)=\Pr(S_{t+1}=s'\mid S_t=s,A_t=a)$$
 
 **Plain-English explanation.** Probability of next state given current state and action.
 
@@ -4614,9 +4053,7 @@ $$
 
 **Equation**
 
-$$
-G_t=\sum_{k=0}^{\infty}\gamma^k r_{t+k+1}
-$$
+$$G_t=\sum_{k=0}^{\infty}\gamma^k r_{t+k+1}$$
 
 **Plain-English explanation.** Discounted sum of future rewards.
 
@@ -4630,9 +4067,7 @@ $$
 
 **Equation**
 
-$$
-V^\pi(s)=\mathbb{E}_\pi[G_t\mid S_t=s]
-$$
+$$V^\pi(s)=\mathbb{E}_\pi[G_t\mid S_t=s]$$
 
 **Plain-English explanation.** Expected return starting from state under policy.
 
@@ -4646,9 +4081,7 @@ $$
 
 **Equation**
 
-$$
-Q^\pi(s,a)=\mathbb{E}_\pi[G_t\mid S_t=s,A_t=a]
-$$
+$$Q^\pi(s,a)=\mathbb{E}_\pi[G_t\mid S_t=s,A_t=a]$$
 
 **Plain-English explanation.** Expected return after taking action then following policy.
 
@@ -4662,9 +4095,7 @@ $$
 
 **Equation**
 
-$$
-V^\pi(s)=\sum_a\pi(a\mid s)\sum_{s'}P(s'\mid s,a)[R(s,a,s')+\gamma V^\pi(s')]
-$$
+$$V^\pi(s)=\sum_a\pi(a\mid s)\sum_{s'}P(s'\mid s,a)[R(s,a,s')+\gamma V^\pi(s')]$$
 
 **Plain-English explanation.** Recursive value equation under a fixed policy.
 
@@ -4678,9 +4109,7 @@ $$
 
 **Equation**
 
-$$
-V^*(s)=\max_a\sum_{s'}P(s'\mid s,a)[R(s,a,s')+\gamma V^*(s')]
-$$
+$$V^*(s)=\max_a\sum_{s'}P(s'\mid s,a)[R(s,a,s')+\gamma V^*(s')]$$
 
 **Plain-English explanation.** Optimal value equals best expected one-step reward plus future value.
 
@@ -4694,9 +4123,7 @@ $$
 
 **Equation**
 
-$$
-Q^*(s,a)=\sum_{s'}P(s'\mid s,a)[R(s,a,s')+\gamma\max_{a'}Q^*(s',a')]
-$$
+$$Q^*(s,a)=\sum_{s'}P(s'\mid s,a)[R(s,a,s')+\gamma\max_{a'}Q^*(s',a')]$$
 
 **Plain-English explanation.** Optimal action value recursively uses the best next action.
 
@@ -4710,9 +4137,7 @@ $$
 
 **Equation**
 
-$$
-\mathcal{P}=(\mathcal{S},\mathcal{A},T,R,\Omega,O,\gamma)
-$$
+$$\mathcal{P}=(\mathcal{S},\mathcal{A},T,R,\Omega,O,\gamma)$$
 
 **Plain-English explanation.** Extends MDP with hidden state and observations.
 
@@ -4726,9 +4151,7 @@ $$
 
 **Equation**
 
-$$
-b'(s')=\eta O(o'\mid s',a)\sum_s T(s'\mid s,a)b(s)
-$$
+$$b'(s')=\eta O(o'\mid s',a)\sum_s T(s'\mid s,a)b(s)$$
 
 **Plain-English explanation.** Updates probability over hidden states after action and observation.
 
@@ -4744,9 +4167,7 @@ $$
 
 **Equation**
 
-$$
-\delta_t=r_{t+1}+\gamma V(s_{t+1})-V(s_t)
-$$
+$$\delta_t=r_{t+1}+\gamma V(s_{t+1})-V(s_t)$$
 
 **Plain-English explanation.** One-step prediction error for value estimates.
 
@@ -4760,9 +4181,7 @@ $$
 
 **Equation**
 
-$$
-V(s_t)\leftarrow V(s_t)+\alpha\delta_t
-$$
+$$V(s_t)\leftarrow V(s_t)+\alpha\delta_t$$
 
 **Plain-English explanation.** Updates value toward one-step bootstrapped target.
 
@@ -4776,9 +4195,7 @@ $$
 
 **Equation**
 
-$$
-Q(s_t,a_t)\leftarrow Q(s_t,a_t)+\alpha[r_{t+1}+\gamma\max_aQ(s_{t+1},a)-Q(s_t,a_t)]
-$$
+$$Q(s_t,a_t)\leftarrow Q(s_t,a_t)+\alpha[r_{t+1}+\gamma\max_aQ(s_{t+1},a)-Q(s_t,a_t)]$$
 
 **Plain-English explanation.** Off-policy TD control using greedy next action.
 
@@ -4792,9 +4209,7 @@ $$
 
 **Equation**
 
-$$
-Q(s_t,a_t)\leftarrow Q(s_t,a_t)+\alpha[r_{t+1}+\gamma Q(s_{t+1},a_{t+1})-Q(s_t,a_t)]
-$$
+$$Q(s_t,a_t)\leftarrow Q(s_t,a_t)+\alpha[r_{t+1}+\gamma Q(s_{t+1},a_{t+1})-Q(s_t,a_t)]$$
 
 **Plain-English explanation.** On-policy TD control using actually selected next action.
 
@@ -4808,9 +4223,7 @@ $$
 
 **Equation**
 
-$$
-Q(s_t,a_t)\leftarrow Q(s_t,a_t)+\alpha[r_{t+1}+\gamma\sum_a\pi(a\mid s_{t+1})Q(s_{t+1},a)-Q(s_t,a_t)]
-$$
+$$Q(s_t,a_t)\leftarrow Q(s_t,a_t)+\alpha[r_{t+1}+\gamma\sum_a\pi(a\mid s_{t+1})Q(s_{t+1},a)-Q(s_t,a_t)]$$
 
 **Plain-English explanation.** Uses expected next value under policy.
 
@@ -4824,9 +4237,7 @@ $$
 
 **Equation**
 
-$$
-Y=r+\gamma Q_{\theta^-}(s',\mathrm{argmax}_{a} Q_\theta(s',a))
-$$
+$$Y=r+\gamma Q_{\theta^-}(s',\mathrm{argmax}_{a} Q_\theta(s',a))$$
 
 **Plain-English explanation.** Uses online network for action selection and target network for evaluation.
 
@@ -4840,9 +4251,7 @@ $$
 
 **Equation**
 
-$$
-\mathcal{L}(\theta)=\mathbb{E}_{(s,a,r,s')}[(r+\gamma\max_{a'}Q_{\theta^-}(s',a')-Q_\theta(s,a))^2]
-$$
+$$\mathcal{L}(\theta)=\mathbb{E}_{(s,a,r,s')}[(r+\gamma\max_{a'}Q_{\theta^-}(s',a')-Q_\theta(s,a))^2]$$
 
 **Plain-English explanation.** Trains neural Q-function against bootstrapped targets.
 
@@ -4856,9 +4265,7 @@ $$
 
 **Equation**
 
-$$
-Q(s,a)=V(s)+A(s,a)-\frac{1}{|\mathcal{A}|}\sum_{a'}A(s,a')
-$$
+$$Q(s,a)=V(s)+A(s,a)-\frac{1}{|\mathcal{A}|}\sum_{a'}A(s,a')$$
 
 **Plain-English explanation.** Decomposes Q into state value and action advantage.
 
@@ -4874,9 +4281,7 @@ $$
 
 **Equation**
 
-$$
-\nabla_\theta J(\theta)=\mathbb{E}_{\pi_\theta}[\nabla_\theta\log\pi_\theta(a\mid s)Q^{\pi}(s,a)]
-$$
+$$\nabla_\theta J(\theta)=\mathbb{E}_{\pi_\theta}[\nabla_\theta\log\pi_\theta(a\mid s)Q^{\pi}(s,a)]$$
 
 **Plain-English explanation.** Gradient of expected return can be estimated from action log-prob gradients.
 
@@ -4890,9 +4295,7 @@ $$
 
 **Equation**
 
-$$
-\nabla_\theta J(\theta)=\mathbb{E}\left[\sum_t\nabla_\theta\log\pi_\theta(a_t\mid s_t)G_t\right]
-$$
+$$\nabla_\theta J(\theta)=\mathbb{E}\left[\sum_t\nabla_\theta\log\pi_\theta(a_t\mid s_t)G_t\right]$$
 
 **Plain-English explanation.** Monte Carlo policy gradient estimator.
 
@@ -4906,9 +4309,7 @@ $$
 
 **Equation**
 
-$$
-\nabla_\theta J=\mathbb{E}[\nabla_\theta\log\pi_\theta(a\mid s)(Q(s,a)-b(s))]
-$$
+$$\nabla_\theta J=\mathbb{E}[\nabla_\theta\log\pi_\theta(a\mid s)(Q(s,a)-b(s))]$$
 
 **Plain-English explanation.** Subtracts baseline without biasing gradient.
 
@@ -4922,9 +4323,7 @@ $$
 
 **Equation**
 
-$$
-\nabla_\theta J\approx \nabla_\theta\log\pi_\theta(a_t\mid s_t)\hat{A}_t
-$$
+$$\nabla_\theta J\approx \nabla_\theta\log\pi_\theta(a_t\mid s_t)\hat{A}_t$$
 
 **Plain-English explanation.** Policy gradient weighted by estimated advantage.
 
@@ -4938,9 +4337,7 @@ $$
 
 **Equation**
 
-$$
-R_t=\sum_{i=0}^{n-1}\gamma^ir_{t+i}+\gamma^nV(s_{t+n})
-$$
+$$R_t=\sum_{i=0}^{n-1}\gamma^ir_{t+i}+\gamma^nV(s_{t+n})$$
 
 **Plain-English explanation.** Uses n-step bootstrapped return.
 
@@ -4954,9 +4351,7 @@ $$
 
 **Equation**
 
-$$
-\max_\theta\mathbb{E}\left[\frac{\pi_\theta(a\mid s)}{\pi_{\mathrm{old}}(a\mid s)}A_{\mathrm{old}}(s,a)\right]\quad\mathrm{s.t.}\quad \mathbb{E}[D_{\mathrm{KL}}(\pi_{\mathrm{old}}\Vert\pi_\theta)]\le\delta
-$$
+$$\max_\theta\mathbb{E}\left[\frac{\pi_\theta(a\mid s)}{\pi_{\mathrm{old}}(a\mid s)}A_{\mathrm{old}}(s,a)\right]\quad\mathrm{s.t.}\quad \mathbb{E}[D_{\mathrm{KL}}(\pi_{\mathrm{old}}\Vert\pi_\theta)]\le\delta$$
 
 **Plain-English explanation.** Maximizes surrogate objective under KL trust region.
 
@@ -4970,9 +4365,7 @@ $$
 
 **Equation**
 
-$$
-\mathcal{L}=\mathbb{E}[(Q_\phi(s,a)-(r+\gamma Q_{\phi'}(s',\mu_{\theta'}(s'))))^2]
-$$
+$$\mathcal{L}=\mathbb{E}[(Q_\phi(s,a)-(r+\gamma Q_{\phi'}(s',\mu_{\theta'}(s'))))^2]$$
 
 **Plain-English explanation.** Learns Q-function for deterministic continuous-control actor.
 
@@ -4986,9 +4379,7 @@ $$
 
 **Equation**
 
-$$
-\nabla_\theta J\approx \mathbb{E}[\nabla_a Q_\phi(s,a)|_{a=\mu_\theta(s)}\nabla_\theta\mu_\theta(s)]
-$$
+$$\nabla_\theta J\approx \mathbb{E}[\nabla_a Q_\phi(s,a)|_{a=\mu_\theta(s)}\nabla_\theta\mu_\theta(s)]$$
 
 **Plain-English explanation.** Updates deterministic actor through critic gradient.
 
@@ -5002,9 +4393,7 @@ $$
 
 **Equation**
 
-$$
-y=r+\gamma\min_{i=1,2}Q_{\phi_i'}(s',\mu_{\theta'}(s')+\epsilon)
-$$
+$$y=r+\gamma\min_{i=1,2}Q_{\phi_i'}(s',\mu_{\theta'}(s')+\epsilon)$$
 
 **Plain-English explanation.** Uses clipped double critics and target policy smoothing.
 
@@ -5018,9 +4407,7 @@ $$
 
 **Equation**
 
-$$
-J(\pi)=\mathbb{E}\left[\sum_t\gamma^t(r(s_t,a_t)+\alpha\mathcal{H}(\pi(\cdot\mid s_t)))\right]
-$$
+$$J(\pi)=\mathbb{E}\left[\sum_t\gamma^t(r(s_t,a_t)+\alpha\mathcal{H}(\pi(\cdot\mid s_t)))\right]$$
 
 **Plain-English explanation.** Maximizes reward plus entropy.
 
@@ -5034,9 +4421,7 @@ $$
 
 **Equation**
 
-$$
-V(s)=\mathbb{E}_{a\sim\pi}[Q(s,a)-\alpha\log\pi(a\mid s)]
-$$
+$$V(s)=\mathbb{E}_{a\sim\pi}[Q(s,a)-\alpha\log\pi(a\mid s)]$$
 
 **Plain-English explanation.** State value includes entropy bonus.
 
@@ -5050,9 +4435,7 @@ $$
 
 **Equation**
 
-$$
-v_s=V(x_s)+\sum_{t=s}^{s+n-1}\gamma^{t-s}\left(\prod_{i=s}^{t-1}c_i\right)\delta_tV
-$$
+$$v_s=V(x_s)+\sum_{t=s}^{s+n-1}\gamma^{t-s}\left(\prod_{i=s}^{t-1}c_i\right)\delta_tV$$
 
 **Plain-English explanation.** Corrects off-policy trajectories with truncated importance sampling.
 
@@ -5068,9 +4451,7 @@ $$
 
 **Equation**
 
-$$
-A^\pi(s,a)=Q^\pi(s,a)-V^\pi(s)
-$$
+$$A^\pi(s,a)=Q^\pi(s,a)-V^\pi(s)$$
 
 **Plain-English explanation.** Measures how much better an action is than average at a state.
 
@@ -5084,9 +4465,7 @@ $$
 
 **Equation**
 
-$$
-G_t=\sum_{k=t}^{T}\gamma^{k-t}r_k
-$$
+$$G_t=\sum_{k=t}^{T}\gamma^{k-t}r_k$$
 
 **Plain-English explanation.** Actual discounted return from a trajectory.
 
@@ -5100,9 +4479,7 @@ $$
 
 **Equation**
 
-$$
-G_t^{(n)}=\sum_{i=0}^{n-1}\gamma^ir_{t+i+1}+\gamma^nV(s_{t+n})
-$$
+$$G_t^{(n)}=\sum_{i=0}^{n-1}\gamma^ir_{t+i+1}+\gamma^nV(s_{t+n})$$
 
 **Plain-English explanation.** Combines sampled rewards with bootstrapped value.
 
@@ -5116,9 +4493,7 @@ $$
 
 **Equation**
 
-$$
-G_t^\lambda=(1-\lambda)\sum_{n=1}^{\infty}\lambda^{n-1}G_t^{(n)}
-$$
+$$G_t^\lambda=(1-\lambda)\sum_{n=1}^{\infty}\lambda^{n-1}G_t^{(n)}$$
 
 **Plain-English explanation.** Weighted mixture of n-step returns.
 
@@ -5134,9 +4509,7 @@ $$
 
 **Equation**
 
-$$
-a=\begin{cases}\mathrm{argmax}_{a} Q(s,a),&1-\epsilon\\\text{random action},&\epsilon\end{cases}
-$$
+$$a=\begin{cases}\mathrm{argmax}_{a} Q(s,a),&1-\epsilon\\\text{random action},&\epsilon\end{cases}$$
 
 **Plain-English explanation.** Usually exploits best action, sometimes explores randomly.
 
@@ -5150,9 +4523,7 @@ $$
 
 **Equation**
 
-$$
-P(a\mid s)=\frac{\exp(Q(s,a)/\tau)}{\sum_b\exp(Q(s,b)/\tau)}
-$$
+$$P(a\mid s)=\frac{\exp(Q(s,a)/\tau)}{\sum_b\exp(Q(s,b)/\tau)}$$
 
 **Plain-English explanation.** Samples actions according to softmax Q-values.
 
@@ -5166,9 +4537,7 @@ $$
 
 **Equation**
 
-$$
-a_t=\mathrm{argmax}_{a}\left[\hat{\mu}_a+c\sqrt{\frac{\ln t}{N_a}}\right]
-$$
+$$a_t=\mathrm{argmax}_{a}\left[\hat{\mu}_a+c\sqrt{\frac{\ln t}{N_a}}\right]$$
 
 **Plain-English explanation.** Chooses action by reward estimate plus uncertainty bonus.
 
@@ -5182,9 +4551,7 @@ $$
 
 **Equation**
 
-$$
-R_T=T\mu^*-\sum_{t=1}^{T}\mu_{a_t}
-$$
+$$R_T=T\mu^*-\sum_{t=1}^{T}\mu_{a_t}$$
 
 **Plain-English explanation.** Measures reward lost relative to optimal action.
 
@@ -5198,9 +4565,7 @@ $$
 
 **Equation**
 
-$$
-a_t=\mathrm{argmax}_{a} \tilde{\mu}_a,\quad \tilde{\mu}_a\sim P(\mu_a\mid D_t)
-$$
+$$a_t=\mathrm{argmax}_{a} \tilde{\mu}_a,\quad \tilde{\mu}_a\sim P(\mu_a\mid D_t)$$
 
 **Plain-English explanation.** Samples beliefs about action value and acts greedily under the sample.
 
@@ -5214,9 +4579,7 @@ $$
 
 **Equation**
 
-$$
-a_t=\mathrm{argmax}_{a}\left[x_{t,a}^\top\hat{\theta}_a+\alpha\sqrt{x_{t,a}^\top A_a^{-1}x_{t,a}}\right]
-$$
+$$a_t=\mathrm{argmax}_{a}\left[x_{t,a}^\top\hat{\theta}_a+\alpha\sqrt{x_{t,a}^\top A_a^{-1}x_{t,a}}\right]$$
 
 **Plain-English explanation.** Contextual UCB for linear reward models.
 
@@ -5230,9 +4593,7 @@ $$
 
 **Equation**
 
-$$
-p_{t,i}=(1-\gamma)\frac{w_{t,i}}{\sum_jw_{t,j}}+\frac{\gamma}{K}
-$$
+$$p_{t,i}=(1-\gamma)\frac{w_{t,i}}{\sum_jw_{t,j}}+\frac{\gamma}{K}$$
 
 **Plain-English explanation.** Adversarial bandit action distribution.
 
@@ -5246,9 +4607,7 @@ $$
 
 **Equation**
 
-$$
-r_t^{\mathrm{int}}=\|f_\theta(s_t)-f_{\mathrm{target}}(s_t)\|_2^2
-$$
+$$r_t^{\mathrm{int}}=\|f_\theta(s_t)-f_{\mathrm{target}}(s_t)\|_2^2$$
 
 **Plain-English explanation.** Rewards states where predictor poorly matches fixed random target.
 
@@ -5262,9 +4621,7 @@ $$
 
 **Equation**
 
-$$
-r_t^{\mathrm{int}}=\|\hat{\phi}(s_{t+1})-\phi(s_{t+1})\|_2^2
-$$
+$$r_t^{\mathrm{int}}=\|\hat{\phi}(s_{t+1})-\phi(s_{t+1})\|_2^2$$
 
 **Plain-English explanation.** Rewards prediction error in learned feature space.
 
@@ -5280,9 +4637,7 @@ $$
 
 **Equation**
 
-$$
-V_{k+1}(s)=\max_a\sum_{s'}P(s'\mid s,a)[R(s,a,s')+\gamma V_k(s')]
-$$
+$$V_{k+1}(s)=\max_a\sum_{s'}P(s'\mid s,a)[R(s,a,s')+\gamma V_k(s')]$$
 
 **Plain-English explanation.** Repeated Bellman optimality backups.
 
@@ -5296,9 +4651,7 @@ $$
 
 **Equation**
 
-$$
-V^{\pi}_{k+1}(s)=\sum_a\pi(a\mid s)\sum_{s'}P(s'\mid s,a)[R+\gamma V_k^{\pi}(s')]
-$$
+$$V^{\pi}_{k+1}(s)=\sum_a\pi(a\mid s)\sum_{s'}P(s'\mid s,a)[R+\gamma V_k^{\pi}(s')]$$
 
 **Plain-English explanation.** Computes value for a fixed policy.
 
@@ -5312,9 +4665,7 @@ $$
 
 **Equation**
 
-$$
-\pi_{\mathrm{new}}(s)=\mathrm{argmax}_{a}\sum_{s'}P(s'\mid s,a)[R+\gamma V^\pi(s')]
-$$
+$$\pi_{\mathrm{new}}(s)=\mathrm{argmax}_{a}\sum_{s'}P(s'\mid s,a)[R+\gamma V^\pi(s')]$$
 
 **Plain-English explanation.** Updates policy greedily with respect to current value.
 
@@ -5328,9 +4679,7 @@ $$
 
 **Equation**
 
-$$
-a=\mathrm{argmax}_{a}\left[Q(s,a)+c\sqrt{\frac{\ln N(s)}{N(s,a)}}\right]
-$$
+$$a=\mathrm{argmax}_{a}\left[Q(s,a)+c\sqrt{\frac{\ln N(s)}{N(s,a)}}\right]$$
 
 **Plain-English explanation.** Balances exploitation and exploration in tree search.
 
@@ -5344,9 +4693,7 @@ $$
 
 **Equation**
 
-$$
-a=\mathrm{argmax}_{a}\left[Q(s,a)+c_{\mathrm{puct}}P(s,a)\frac{\sqrt{N(s)}}{1+N(s,a)}\right]
-$$
+$$a=\mathrm{argmax}_{a}\left[Q(s,a)+c_{\mathrm{puct}}P(s,a)\frac{\sqrt{N(s)}}{1+N(s,a)}\right]$$
 
 **Plain-English explanation.** Uses policy prior to guide MCTS exploration.
 
@@ -5360,9 +4707,7 @@ $$
 
 **Equation**
 
-$$
-a_t=\mathrm{argmax}_{a_{t:t+H}}\mathbb{E}\left[\sum_{k=0}^{H}\gamma^kr_{t+k}\right]
-$$
+$$a_t=\mathrm{argmax}_{a_{t:t+H}}\mathbb{E}\left[\sum_{k=0}^{H}\gamma^kr_{t+k}\right]$$
 
 **Plain-English explanation.** Chooses first action from best finite-horizon plan.
 
@@ -5378,9 +4723,7 @@ $$
 
 **Equation**
 
-$$
-\mathcal{L}_{\mathrm{BC}}=-\mathbb{E}_{(s,a)\sim D}\log\pi_\theta(a\mid s)
-$$
+$$\mathcal{L}_{\mathrm{BC}}=-\mathbb{E}_{(s,a)\sim D}\log\pi_\theta(a\mid s)$$
 
 **Plain-English explanation.** Imitates actions from logged demonstrations.
 
@@ -5394,9 +4737,7 @@ $$
 
 **Equation**
 
-$$
-V^{\pi}=\mathbb{E}_{\tau\sim\mu}\left[\prod_t\frac{\pi(a_t\mid s_t)}{\mu(a_t\mid s_t)}G(\tau)\right]
-$$
+$$V^{\pi}=\mathbb{E}_{\tau\sim\mu}\left[\prod_t\frac{\pi(a_t\mid s_t)}{\mu(a_t\mid s_t)}G(\tau)\right]$$
 
 **Plain-English explanation.** Evaluates target policy using data from behavior policy.
 
@@ -5410,9 +4751,7 @@ $$
 
 **Equation**
 
-$$
-\hat{V}_{\mathrm{WIS}}=\frac{\sum_i\rho_iG_i}{\sum_i\rho_i}
-$$
+$$\hat{V}_{\mathrm{WIS}}=\frac{\sum_i\rho_iG_i}{\sum_i\rho_i}$$
 
 **Plain-English explanation.** Normalizes importance weights to reduce variance.
 
@@ -5426,9 +4765,7 @@ $$
 
 **Equation**
 
-$$
-\mathcal{L}_{\mathrm{CQL}}=\alpha\left(\mathbb{E}_{s}\log\sum_a e^{Q(s,a)}-\mathbb{E}_{(s,a)\sim D}Q(s,a)\right)+\mathcal{L}_{\mathrm{Bellman}}
-$$
+$$\mathcal{L}_{\mathrm{CQL}}=\alpha\left(\mathbb{E}_{s}\log\sum_a e^{Q(s,a)}-\mathbb{E}_{(s,a)\sim D}Q(s,a)\right)+\mathcal{L}_{\mathrm{Bellman}}$$
 
 **Plain-English explanation.** Penalizes high Q-values for unseen actions.
 
@@ -5442,9 +4779,7 @@ $$
 
 **Equation**
 
-$$
-\mathcal{L}_V=\mathbb{E}_{(s,a)\sim D}[L_2^\tau(Q(s,a)-V(s))]
-$$
+$$\mathcal{L}_V=\mathbb{E}_{(s,a)\sim D}[L_2^\tau(Q(s,a)-V(s))]$$
 
 **Plain-English explanation.** Fits value to an expectile of Q-values.
 
@@ -5458,9 +4793,7 @@ $$
 
 **Equation**
 
-$$
-\mathcal{L}_{\mathrm{AWR}}=-\mathbb{E}_{(s,a)\sim D}\left[\exp\left(\frac{A(s,a)}{\beta}\right)\log\pi_\theta(a\mid s)\right]
-$$
+$$\mathcal{L}_{\mathrm{AWR}}=-\mathbb{E}_{(s,a)\sim D}\left[\exp\left(\frac{A(s,a)}{\beta}\right)\log\pi_\theta(a\mid s)\right]$$
 
 **Plain-English explanation.** Weights imitation by estimated advantage.
 
@@ -5476,9 +4809,7 @@ $$
 
 **Equation**
 
-$$
-\pi_i^*\in\mathrm{argmax}_{\pi_i}J_i(\pi_i,\pi_{-i}^*)
-$$
+$$\pi_i^*\in\mathrm{argmax}_{\pi_i}J_i(\pi_i,\pi_{-i}^*)$$
 
 **Plain-English explanation.** No agent can improve by unilaterally changing policy.
 
@@ -5492,9 +4823,7 @@ $$
 
 **Equation**
 
-$$
-V^*(s)=\max_a\min_b Q(s,a,b)
-$$
+$$V^*(s)=\max_a\min_b Q(s,a,b)$$
 
 **Plain-English explanation.** Chooses action maximizing worst-case outcome against opponent.
 
@@ -5508,9 +4837,7 @@ $$
 
 **Equation**
 
-$$
-Q_{\mathrm{tot}}(\tau,a)=\sum_{i=1}^{n}Q_i(\tau_i,a_i)
-$$
+$$Q_{\mathrm{tot}}(\tau,a)=\sum_{i=1}^{n}Q_i(\tau_i,a_i)$$
 
 **Plain-English explanation.** Factorizes team Q-value as sum of agent Q-values.
 
@@ -5524,9 +4851,7 @@ $$
 
 **Equation**
 
-$$
-\frac{\partial Q_{\mathrm{tot}}}{\partial Q_i}\ge0
-$$
+$$\frac{\partial Q_{\mathrm{tot}}}{\partial Q_i}\ge0$$
 
 **Plain-English explanation.** Constrains mixing network so local argmax actions align with global argmax.
 
@@ -5540,9 +4865,7 @@ $$
 
 **Equation**
 
-$$
-\nabla_{\theta_i}J\approx\mathbb{E}[\nabla_{\theta_i}\mu_i(o_i)\nabla_{a_i}Q_i(x,a_1,\dots,a_N)]
-$$
+$$\nabla_{\theta_i}J\approx\mathbb{E}[\nabla_{\theta_i}\mu_i(o_i)\nabla_{a_i}Q_i(x,a_1,\dots,a_N)]$$
 
 **Plain-English explanation.** Centralized critic trains decentralized actors.
 
@@ -5556,9 +4879,7 @@ $$
 
 **Equation**
 
-$$
-F(s,a,s')=\gamma\Phi(s')-\Phi(s)
-$$
+$$F(s,a,s')=\gamma\Phi(s')-\Phi(s)$$
 
 **Plain-English explanation.** Adds shaping reward without changing optimal policy.
 
@@ -5574,9 +4895,7 @@ $$
 
 **Equation**
 
-$$
-\pi_\theta(\mathrm{tool}\mid \mathrm{context})=\mathrm{softmax}(f_\theta(\mathrm{context}))
-$$
+$$\pi_\theta(\mathrm{tool}\mid \mathrm{context})=\mathrm{softmax}(f_\theta(\mathrm{context}))$$
 
 **Plain-English explanation.** Chooses a tool/action from context.
 
@@ -5590,9 +4909,7 @@ $$
 
 **Equation**
 
-$$
-p_\theta(\mathrm{args}\mid \mathrm{tool},\mathrm{context})=\prod_t p_\theta(a_t\mid \mathrm{tool},\mathrm{context},a_{1:t-1})
-$$
+$$p_\theta(\mathrm{args}\mid \mathrm{tool},\mathrm{context})=\prod_t p_\theta(a_t\mid \mathrm{tool},\mathrm{context},a_{1:t-1})$$
 
 **Plain-English explanation.** Generates structured arguments token by token.
 
@@ -5606,9 +4923,7 @@ $$
 
 **Equation**
 
-$$
-U(\mathrm{tool})=\mathbb{E}[R\mid \mathrm{tool},\mathrm{context}]-\lambda \mathrm{Cost}(\mathrm{tool})
-$$
+$$U(\mathrm{tool})=\mathbb{E}[R\mid \mathrm{tool},\mathrm{context}]-\lambda \mathrm{Cost}(\mathrm{tool})$$
 
 **Plain-English explanation.** Selects tools by value minus cost.
 
@@ -5622,9 +4937,7 @@ $$
 
 **Equation**
 
-$$
-p(\tau\mid x)=\prod_t p_\theta(\mathrm{thought}_t,\mathrm{action}_t\mid x,\mathrm{obs}_{1:t-1},\mathrm{action}_{1:t-1})p(\mathrm{obs}_t\mid \mathrm{action}_t)
-$$
+$$p(\tau\mid x)=\prod_t p_\theta(\mathrm{thought}_t,\mathrm{action}_t\mid x,\mathrm{obs}_{1:t-1},\mathrm{action}_{1:t-1})p(\mathrm{obs}_t\mid \mathrm{action}_t)$$
 
 **Plain-English explanation.** Models reasoning/action/observation loop as a trajectory.
 
@@ -5638,9 +4951,7 @@ $$
 
 **Equation**
 
-$$
-S(\mathrm{path})=\sum_{t=1}^{T}v_\theta(\mathrm{thought}_t\mid x,\mathrm{thought}_{1:t-1})
-$$
+$$S(\mathrm{path})=\sum_{t=1}^{T}v_\theta(\mathrm{thought}_t\mid x,\mathrm{thought}_{1:t-1})$$
 
 **Plain-English explanation.** Scores a reasoning path by evaluator values.
 
@@ -5654,9 +4965,7 @@ $$
 
 **Equation**
 
-$$
-\hat{y}=\mathrm{argmax}_{y}\sum_{i=1}^{N}\mathbf{1}[y_i=y]
-$$
+$$\hat{y}=\mathrm{argmax}_{y}\sum_{i=1}^{N}\mathbf{1}[y_i=y]$$
 
 **Plain-English explanation.** Samples multiple reasoning paths and chooses majority answer.
 
@@ -5670,9 +4979,7 @@ $$
 
 **Equation**
 
-$$
-\hat{y}=\mathrm{argmax}_{y}\sum_i w_i\mathbf{1}[y_i=y]
-$$
+$$\hat{y}=\mathrm{argmax}_{y}\sum_i w_i\mathbf{1}[y_i=y]$$
 
 **Plain-English explanation.** Majority vote weighted by confidence or verifier score.
 
@@ -5686,9 +4993,7 @@ $$
 
 **Equation**
 
-$$
-y^*=\mathrm{argmax}_{y\in\mathcal{Y}}[\log p_\theta(y\mid x)+\lambda v_\phi(x,y)]
-$$
+$$y^*=\mathrm{argmax}_{y\in\mathcal{Y}}[\log p_\theta(y\mid x)+\lambda v_\phi(x,y)]$$
 
 **Plain-English explanation.** Combines generator likelihood with verifier score.
 
@@ -5702,9 +5007,7 @@ $$
 
 **Equation**
 
-$$
-M_{t+1}=M_t\cup\{\rho_t\},\quad \rho_t=f_\theta(\mathrm{trajectory}_t,\mathrm{feedback}_t)
-$$
+$$M_{t+1}=M_t\cup\{\rho_t\},\quad \rho_t=f_\theta(\mathrm{trajectory}_t,\mathrm{feedback}_t)$$
 
 **Plain-English explanation.** Adds reflection to memory after feedback.
 
@@ -5718,9 +5021,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{Retry}=\mathbf{1}[P(\mathrm{success}\mid \mathrm{retry})\cdot V-C_{\mathrm{retry}}> 0]
-$$
+$$\mathrm{Retry}=\mathbf{1}[P(\mathrm{success}\mid \mathrm{retry})\cdot V-C_{\mathrm{retry}}> 0]$$
 
 **Plain-English explanation.** Retries only when expected value exceeds cost.
 
@@ -5734,9 +5035,7 @@ $$
 
 **Equation**
 
-$$
-P(\mathrm{fail}\mid \mathrm{context},\mathrm{tool})=\sigma(w^\top\phi(\mathrm{context},\mathrm{tool}))
-$$
+$$P(\mathrm{fail}\mid \mathrm{context},\mathrm{tool})=\sigma(w^\top\phi(\mathrm{context},\mathrm{tool}))$$
 
 **Plain-English explanation.** Predicts probability of tool/action failure.
 
@@ -5752,9 +5051,7 @@ $$
 
 **Equation**
 
-$$
-P(\pi)=\prod_{i=1}^{n}\frac{e^{s_{\pi_i}}}{\sum_{j=i}^{n}e^{s_{\pi_j}}}
-$$
+$$P(\pi)=\prod_{i=1}^{n}\frac{e^{s_{\pi_i}}}{\sum_{j=i}^{n}e^{s_{\pi_j}}}$$
 
 **Plain-English explanation.** Models probability of a full ranking from item scores.
 
@@ -5768,9 +5065,7 @@ $$
 
 **Equation**
 
-$$
-\mathcal{L}=\max(0,m-r(x,y_w)+r(x,y_l))
-$$
+$$\mathcal{L}=\max(0,m-r(x,y_w)+r(x,y_l))$$
 
 **Plain-English explanation.** Enforces winner reward above loser reward by margin.
 
@@ -5784,9 +5079,7 @@ $$
 
 **Equation**
 
-$$
-\mathcal{L}_{\mathrm{PRM}}=-\sum_t[y_t\log p_t+(1-y_t)\log(1-p_t)]
-$$
+$$\mathcal{L}_{\mathrm{PRM}}=-\sum_t[y_t\log p_t+(1-y_t)\log(1-p_t)]$$
 
 **Plain-English explanation.** Classifies each reasoning step as good or bad.
 
@@ -5800,9 +5093,7 @@ $$
 
 **Equation**
 
-$$
-\mathcal{L}_{\mathrm{ORM}}=-(y\log p+(1-y)\log(1-p))
-$$
+$$\mathcal{L}_{\mathrm{ORM}}=-(y\log p+(1-y)\log(1-p))$$
 
 **Plain-English explanation.** Scores final answer correctness.
 
@@ -5818,9 +5109,7 @@ $$
 
 **Equation**
 
-$$
-c_t=\sum_i\alpha_{\mathrm{ti}}m_i,\quad \alpha_{\mathrm{ti}}=\mathrm{softmax}(q_t^\top k_i)
-$$
+$$c_t=\sum_i\alpha_{\mathrm{ti}}m_i,\quad \alpha_{\mathrm{ti}}=\mathrm{softmax}(q_t^\top k_i)$$
 
 **Plain-English explanation.** Retrieves memory items by attention weights.
 
@@ -5834,9 +5123,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{score}(m_i)=\lambda_r \mathrm{rel}(q,m_i)+\lambda_t \mathrm{recency}(m_i)+\lambda_s \mathrm{salience}(m_i)
-$$
+$$\mathrm{score}(m_i)=\lambda_r \mathrm{rel}(q,m_i)+\lambda_t \mathrm{recency}(m_i)+\lambda_s \mathrm{salience}(m_i)$$
 
 **Plain-English explanation.** Combines relevance, recency, and salience.
 
@@ -5850,9 +5137,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{decay}(m_i)=e^{-\lambda(t-t_i)}
-$$
+$$\mathrm{decay}(m_i)=e^{-\lambda(t-t_i)}$$
 
 **Plain-English explanation.** Older memories decay exponentially.
 
@@ -5866,9 +5151,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{write}=\mathbf{1}[\mathrm{novelty}(m)>\tau_n \land \mathrm{importance}(m)>\tau_i]
-$$
+$$\mathrm{write}=\mathbf{1}[\mathrm{novelty}(m)>\tau_n \land \mathrm{importance}(m)>\tau_i]$$
 
 **Plain-English explanation.** Stores memory only if novel and important enough.
 
@@ -5882,9 +5165,7 @@ $$
 
 **Equation**
 
-$$
-\pi(a\mid s,M)=\pi(a\mid s,\mathrm{Retrieve}(M,s))
-$$
+$$\pi(a\mid s,M)=\pi(a\mid s,\mathrm{Retrieve}(M,s))$$
 
 **Plain-English explanation.** Agent action depends on retrieved memories.
 
@@ -5900,9 +5181,7 @@ $$
 
 **Equation**
 
-$$
-\max_\pi J_R(\pi)\quad\mathrm{s.t.}\quad J_C(\pi)\leq d
-$$
+$$\max_\pi J_R(\pi)\quad\mathrm{s.t.}\quad J_C(\pi)\leq d$$
 
 **Plain-English explanation.** Maximizes reward under cost/safety constraint.
 
@@ -5916,9 +5195,7 @@ $$
 
 **Equation**
 
-$$
-\mathcal{L}(\pi,\lambda)=J_R(\pi)-\lambda(J_C(\pi)-d)
-$$
+$$\mathcal{L}(\pi,\lambda)=J_R(\pi)-\lambda(J_C(\pi)-d)$$
 
 **Plain-English explanation.** Turns constrained problem into penalized optimization.
 
@@ -5932,9 +5209,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{CVaR}_\alpha(X)=\mathbb{E}[X\mid X\leq \mathrm{VaR}_\alpha(X)]
-$$
+$$\mathrm{CVaR}_\alpha(X)=\mathbb{E}[X\mid X\leq \mathrm{VaR}_\alpha(X)]$$
 
 **Plain-English explanation.** Expected outcome in the worst alpha-tail.
 
@@ -5948,9 +5223,7 @@ $$
 
 **Equation**
 
-$$
-\mathrm{handoff}=\mathbf{1}[P(\mathrm{error}\mid x)> \tau_e\lor \mathrm{Risk}(x)>\tau_r]
-$$
+$$\mathrm{handoff}=\mathbf{1}[P(\mathrm{error}\mid x)> \tau_e\lor \mathrm{Risk}(x)>\tau_r]$$
 
 **Plain-English explanation.** Escalates when predicted error or risk is too high.
 
@@ -5964,9 +5237,7 @@ $$
 
 **Equation**
 
-$$
-P(\mathrm{unsafe}\mid x)=\sigma(w^\top h_x)
-$$
+$$P(\mathrm{unsafe}\mid x)=\sigma(w^\top h_x)$$
 
 **Plain-English explanation.** Predicts unsafe content or action probability.
 
