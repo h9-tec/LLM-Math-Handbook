@@ -3930,14 +3930,15 @@ $$d^*=\mathrm{argmax}_{d\in D}\cos(f(h_\theta(q)),g(d))$$
 **Practical use case.** Zero-shot dense retrieval improvement.
 
 **Source.** Gao et al. (2023).
-
 ## 31. GraphRAG
 
 #### Graph adjacency
 
 **Equation**
 
-$$A_{\mathrm{ij}}=w(e_i,e_j)$$
+$$
+A_{ij}=w(e_i,e_j)
+$$
 
 **Plain-English explanation.** Represents weighted relationships between extracted entities.
 
@@ -3951,7 +3952,9 @@ $$A_{\mathrm{ij}}=w(e_i,e_j)$$
 
 **Equation**
 
-$$\mathrm{PR}(v)=\frac{1-d}{N}+d\sum_{u\in \mathrm{In}(v)}\frac{\mathrm{PR}(u)}{\mathrm{out}(u)}$$
+$$
+\mathrm{PR}(v)=\frac{1-d}{N}+d\sum_{u\in \mathrm{In}(v)}\frac{\mathrm{PR}(u)}{\mathrm{out}(u)}
+$$
 
 **Plain-English explanation.** Scores graph nodes by incoming importance.
 
@@ -3965,7 +3968,9 @@ $$\mathrm{PR}(v)=\frac{1-d}{N}+d\sum_{u\in \mathrm{In}(v)}\frac{\mathrm{PR}(u)}{
 
 **Equation**
 
-$$p=(1-\alpha)v+\alpha P^\top p$$
+$$
+p=(1-\alpha)v+\alpha P^\top p
+$$
 
 **Plain-English explanation.** PageRank biased toward a personalization/query vector.
 
@@ -3979,7 +3984,9 @@ $$p=(1-\alpha)v+\alpha P^\top p$$
 
 **Equation**
 
-$$Q=\frac{1}{2m}\sum_{\mathrm{ij}}\left(A_{\mathrm{ij}}-\frac{k_ik_j}{2m}\right)\mathbf{1}[c_i=c_j]$$
+$$
+Q=\frac{1}{2m}\sum_{ij}\left(A_{ij}-\frac{k_ik_j}{2m}\right)\mathbf{1}[c_i=c_j]
+$$
 
 **Plain-English explanation.** Measures quality of graph community partition.
 
@@ -3993,7 +4000,9 @@ $$Q=\frac{1}{2m}\sum_{\mathrm{ij}}\left(A_{\mathrm{ij}}-\frac{k_ik_j}{2m}\right)
 
 **Equation**
 
-$$\mathrm{score}(\mathrm{path})=\prod_{(i,j)\in \mathrm{path}}w_{\mathrm{ij}}$$
+$$
+\mathrm{score}(\mathrm{path})=\prod_{(i,j)\in \mathrm{path}}w_{ij}
+$$
 
 **Plain-English explanation.** Scores multi-hop graph paths by edge weights.
 
@@ -4007,7 +4016,9 @@ $$\mathrm{score}(\mathrm{path})=\prod_{(i,j)\in \mathrm{path}}w_{\mathrm{ij}}$$
 
 **Equation**
 
-$$h_v^{(l+1)}=\sigma\left(W_{\mathrm{self}} h_v^{(l)}+\sum_{u\in N(v)}\alpha_{\mathrm{uv}}W_{\mathrm{neigh}} h_u^{(l)}\right)$$
+$$
+h_v^{(l+1)}=\sigma\left(W_{\mathrm{self}} h_v^{(l)}+\sum_{u\in N(v)}\alpha_{uv}W_{\mathrm{neigh}} h_u^{(l)}\right)
+$$
 
 **Plain-English explanation.** Aggregates neighboring node representations.
 
@@ -4025,7 +4036,9 @@ $$h_v^{(l+1)}=\sigma\left(W_{\mathrm{self}} h_v^{(l)}+\sum_{u\in N(v)}\alpha_{\m
 
 **Equation**
 
-$$\mathcal{M}=(\mathcal{S},\mathcal{A},P,R,\gamma)$$
+$$
+\mathcal{M}=(\mathcal{S},\mathcal{A},P,R,\gamma)
+$$
 
 **Plain-English explanation.** Defines states, actions, transition dynamics, rewards, and discount.
 
@@ -4039,7 +4052,9 @@ $$\mathcal{M}=(\mathcal{S},\mathcal{A},P,R,\gamma)$$
 
 **Equation**
 
-$$P(s'\mid s,a)=\Pr(S_{t+1}=s'\mid S_t=s,A_t=a)$$
+$$
+P(s'\mid s,a)=\Pr(S_{t+1}=s'\mid S_t=s,A_t=a)
+$$
 
 **Plain-English explanation.** Probability of next state given current state and action.
 
@@ -4053,7 +4068,9 @@ $$P(s'\mid s,a)=\Pr(S_{t+1}=s'\mid S_t=s,A_t=a)$$
 
 **Equation**
 
-$$G_t=\sum_{k=0}^{\infty}\gamma^k r_{t+k+1}$$
+$$
+G_t=\sum_{k=0}^{\infty}\gamma^k r_{t+k+1}
+$$
 
 **Plain-English explanation.** Discounted sum of future rewards.
 
@@ -4067,7 +4084,9 @@ $$G_t=\sum_{k=0}^{\infty}\gamma^k r_{t+k+1}$$
 
 **Equation**
 
-$$V^\pi(s)=\mathbb{E}_\pi[G_t\mid S_t=s]$$
+$$
+V^\pi(s)=\mathbb{E}_\pi[G_t\mid S_t=s]
+$$
 
 **Plain-English explanation.** Expected return starting from state under policy.
 
@@ -4081,7 +4100,9 @@ $$V^\pi(s)=\mathbb{E}_\pi[G_t\mid S_t=s]$$
 
 **Equation**
 
-$$Q^\pi(s,a)=\mathbb{E}_\pi[G_t\mid S_t=s,A_t=a]$$
+$$
+Q^\pi(s,a)=\mathbb{E}_\pi[G_t\mid S_t=s,A_t=a]
+$$
 
 **Plain-English explanation.** Expected return after taking action then following policy.
 
@@ -4095,7 +4116,9 @@ $$Q^\pi(s,a)=\mathbb{E}_\pi[G_t\mid S_t=s,A_t=a]$$
 
 **Equation**
 
-$$V^\pi(s)=\sum_a\pi(a\mid s)\sum_{s'}P(s'\mid s,a)[R(s,a,s')+\gamma V^\pi(s')]$$
+$$
+V^\pi(s)=\sum_a\pi(a\mid s)\sum_{s'}P(s'\mid s,a)[R(s,a,s')+\gamma V^\pi(s')]
+$$
 
 **Plain-English explanation.** Recursive value equation under a fixed policy.
 
@@ -4109,11 +4132,13 @@ $$V^\pi(s)=\sum_a\pi(a\mid s)\sum_{s'}P(s'\mid s,a)[R(s,a,s')+\gamma V^\pi(s')]$
 
 **Equation**
 
-$$V^*(s)=\max_a\sum_{s'}P(s'\mid s,a)[R(s,a,s')+\gamma V^*(s')]$$
+$$
+V^{*}(s)=\max_a\sum_{s'}P(s'\mid s,a)[R(s,a,s')+\gamma V^{*}(s')]
+$$
 
 **Plain-English explanation.** Optimal value equals best expected one-step reward plus future value.
 
-**Symbols.** $V^*$ optimal value.
+**Symbols.** $V^{*}$ optimal value.
 
 **Practical use case.** Planning and value iteration.
 
@@ -4123,11 +4148,13 @@ $$V^*(s)=\max_a\sum_{s'}P(s'\mid s,a)[R(s,a,s')+\gamma V^*(s')]$$
 
 **Equation**
 
-$$Q^*(s,a)=\sum_{s'}P(s'\mid s,a)[R(s,a,s')+\gamma\max_{a'}Q^*(s',a')]$$
+$$
+Q^{*}(s,a)=\sum_{s'}P(s'\mid s,a)[R(s,a,s')+\gamma\max_{a'}Q^{*}(s',a')]
+$$
 
 **Plain-English explanation.** Optimal action value recursively uses the best next action.
 
-**Symbols.** $Q^*$ optimal action-value function.
+**Symbols.** $Q^{*}$ optimal action-value function.
 
 **Practical use case.** Q-learning and planning.
 
@@ -4137,7 +4164,9 @@ $$Q^*(s,a)=\sum_{s'}P(s'\mid s,a)[R(s,a,s')+\gamma\max_{a'}Q^*(s',a')]$$
 
 **Equation**
 
-$$\mathcal{P}=(\mathcal{S},\mathcal{A},T,R,\Omega,O,\gamma)$$
+$$
+\mathcal{P}=(\mathcal{S},\mathcal{A},T,R,\Omega,O,\gamma)
+$$
 
 **Plain-English explanation.** Extends MDP with hidden state and observations.
 
@@ -4151,7 +4180,9 @@ $$\mathcal{P}=(\mathcal{S},\mathcal{A},T,R,\Omega,O,\gamma)$$
 
 **Equation**
 
-$$b'(s')=\eta O(o'\mid s',a)\sum_s T(s'\mid s,a)b(s)$$
+$$
+b'(s')=\eta O(o'\mid s',a)\sum_s T(s'\mid s,a)b(s)
+$$
 
 **Plain-English explanation.** Updates probability over hidden states after action and observation.
 
@@ -4167,7 +4198,9 @@ $$b'(s')=\eta O(o'\mid s',a)\sum_s T(s'\mid s,a)b(s)$$
 
 **Equation**
 
-$$\delta_t=r_{t+1}+\gamma V(s_{t+1})-V(s_t)$$
+$$
+\delta_t=r_{t+1}+\gamma V(s_{t+1})-V(s_t)
+$$
 
 **Plain-English explanation.** One-step prediction error for value estimates.
 
@@ -4181,7 +4214,9 @@ $$\delta_t=r_{t+1}+\gamma V(s_{t+1})-V(s_t)$$
 
 **Equation**
 
-$$V(s_t)\leftarrow V(s_t)+\alpha\delta_t$$
+$$
+V(s_t)\leftarrow V(s_t)+\alpha\delta_t
+$$
 
 **Plain-English explanation.** Updates value toward one-step bootstrapped target.
 
@@ -4195,7 +4230,9 @@ $$V(s_t)\leftarrow V(s_t)+\alpha\delta_t$$
 
 **Equation**
 
-$$Q(s_t,a_t)\leftarrow Q(s_t,a_t)+\alpha[r_{t+1}+\gamma\max_aQ(s_{t+1},a)-Q(s_t,a_t)]$$
+$$
+Q(s_t,a_t)\leftarrow Q(s_t,a_t)+\alpha[r_{t+1}+\gamma\max_aQ(s_{t+1},a)-Q(s_t,a_t)]
+$$
 
 **Plain-English explanation.** Off-policy TD control using greedy next action.
 
@@ -4209,7 +4246,9 @@ $$Q(s_t,a_t)\leftarrow Q(s_t,a_t)+\alpha[r_{t+1}+\gamma\max_aQ(s_{t+1},a)-Q(s_t,
 
 **Equation**
 
-$$Q(s_t,a_t)\leftarrow Q(s_t,a_t)+\alpha[r_{t+1}+\gamma Q(s_{t+1},a_{t+1})-Q(s_t,a_t)]$$
+$$
+Q(s_t,a_t)\leftarrow Q(s_t,a_t)+\alpha[r_{t+1}+\gamma Q(s_{t+1},a_{t+1})-Q(s_t,a_t)]
+$$
 
 **Plain-English explanation.** On-policy TD control using actually selected next action.
 
@@ -4223,7 +4262,9 @@ $$Q(s_t,a_t)\leftarrow Q(s_t,a_t)+\alpha[r_{t+1}+\gamma Q(s_{t+1},a_{t+1})-Q(s_t
 
 **Equation**
 
-$$Q(s_t,a_t)\leftarrow Q(s_t,a_t)+\alpha[r_{t+1}+\gamma\sum_a\pi(a\mid s_{t+1})Q(s_{t+1},a)-Q(s_t,a_t)]$$
+$$
+Q(s_t,a_t)\leftarrow Q(s_t,a_t)+\alpha[r_{t+1}+\gamma\sum_a\pi(a\mid s_{t+1})Q(s_{t+1},a)-Q(s_t,a_t)]
+$$
 
 **Plain-English explanation.** Uses expected next value under policy.
 
@@ -4237,7 +4278,9 @@ $$Q(s_t,a_t)\leftarrow Q(s_t,a_t)+\alpha[r_{t+1}+\gamma\sum_a\pi(a\mid s_{t+1})Q
 
 **Equation**
 
-$$Y=r+\gamma Q_{\theta^-}(s',\mathrm{argmax}_{a} Q_\theta(s',a))$$
+$$
+Y=r+\gamma Q_{\theta^-}(s',\mathrm{argmax}_{a} Q_\theta(s',a))
+$$
 
 **Plain-English explanation.** Uses online network for action selection and target network for evaluation.
 
@@ -4251,7 +4294,9 @@ $$Y=r+\gamma Q_{\theta^-}(s',\mathrm{argmax}_{a} Q_\theta(s',a))$$
 
 **Equation**
 
-$$\mathcal{L}(\theta)=\mathbb{E}_{(s,a,r,s')}[(r+\gamma\max_{a'}Q_{\theta^-}(s',a')-Q_\theta(s,a))^2]$$
+$$
+\mathcal{L}(\theta)=\mathbb{E}_{(s,a,r,s')}[(r+\gamma\max_{a'}Q_{\theta^-}(s',a')-Q_\theta(s,a))^2]
+$$
 
 **Plain-English explanation.** Trains neural Q-function against bootstrapped targets.
 
@@ -4265,7 +4310,9 @@ $$\mathcal{L}(\theta)=\mathbb{E}_{(s,a,r,s')}[(r+\gamma\max_{a'}Q_{\theta^-}(s',
 
 **Equation**
 
-$$Q(s,a)=V(s)+A(s,a)-\frac{1}{|\mathcal{A}|}\sum_{a'}A(s,a')$$
+$$
+Q(s,a)=V(s)+A(s,a)-\frac{1}{|\mathcal{A}|}\sum_{a'}A(s,a')
+$$
 
 **Plain-English explanation.** Decomposes Q into state value and action advantage.
 
@@ -4281,7 +4328,9 @@ $$Q(s,a)=V(s)+A(s,a)-\frac{1}{|\mathcal{A}|}\sum_{a'}A(s,a')$$
 
 **Equation**
 
-$$\nabla_\theta J(\theta)=\mathbb{E}_{\pi_\theta}[\nabla_\theta\log\pi_\theta(a\mid s)Q^{\pi}(s,a)]$$
+$$
+\nabla_\theta J(\theta)=\mathbb{E}_{\pi_\theta}[\nabla_\theta\log\pi_\theta(a\mid s)Q^{\pi}(s,a)]
+$$
 
 **Plain-English explanation.** Gradient of expected return can be estimated from action log-prob gradients.
 
@@ -4295,7 +4344,9 @@ $$\nabla_\theta J(\theta)=\mathbb{E}_{\pi_\theta}[\nabla_\theta\log\pi_\theta(a\
 
 **Equation**
 
-$$\nabla_\theta J(\theta)=\mathbb{E}\left[\sum_t\nabla_\theta\log\pi_\theta(a_t\mid s_t)G_t\right]$$
+$$
+\nabla_\theta J(\theta)=\mathbb{E}\left[\sum_t\nabla_\theta\log\pi_\theta(a_t\mid s_t)G_t\right]
+$$
 
 **Plain-English explanation.** Monte Carlo policy gradient estimator.
 
@@ -4309,7 +4360,9 @@ $$\nabla_\theta J(\theta)=\mathbb{E}\left[\sum_t\nabla_\theta\log\pi_\theta(a_t\
 
 **Equation**
 
-$$\nabla_\theta J=\mathbb{E}[\nabla_\theta\log\pi_\theta(a\mid s)(Q(s,a)-b(s))]$$
+$$
+\nabla_\theta J=\mathbb{E}[\nabla_\theta\log\pi_\theta(a\mid s)(Q(s,a)-b(s))]
+$$
 
 **Plain-English explanation.** Subtracts baseline without biasing gradient.
 
@@ -4323,7 +4376,9 @@ $$\nabla_\theta J=\mathbb{E}[\nabla_\theta\log\pi_\theta(a\mid s)(Q(s,a)-b(s))]$
 
 **Equation**
 
-$$\nabla_\theta J\approx \nabla_\theta\log\pi_\theta(a_t\mid s_t)\hat{A}_t$$
+$$
+\nabla_\theta J\approx \nabla_\theta\log\pi_\theta(a_t\mid s_t)\hat{A}_t
+$$
 
 **Plain-English explanation.** Policy gradient weighted by estimated advantage.
 
@@ -4337,7 +4392,9 @@ $$\nabla_\theta J\approx \nabla_\theta\log\pi_\theta(a_t\mid s_t)\hat{A}_t$$
 
 **Equation**
 
-$$R_t=\sum_{i=0}^{n-1}\gamma^ir_{t+i}+\gamma^nV(s_{t+n})$$
+$$
+R_t=\sum_{i=0}^{n-1}\gamma^ir_{t+i}+\gamma^nV(s_{t+n})
+$$
 
 **Plain-English explanation.** Uses n-step bootstrapped return.
 
@@ -4351,7 +4408,9 @@ $$R_t=\sum_{i=0}^{n-1}\gamma^ir_{t+i}+\gamma^nV(s_{t+n})$$
 
 **Equation**
 
-$$\max_\theta\mathbb{E}\left[\frac{\pi_\theta(a\mid s)}{\pi_{\mathrm{old}}(a\mid s)}A_{\mathrm{old}}(s,a)\right]\quad\mathrm{s.t.}\quad \mathbb{E}[D_{\mathrm{KL}}(\pi_{\mathrm{old}}\Vert\pi_\theta)]\le\delta$$
+$$
+\max_\theta\mathbb{E}\left[\frac{\pi_\theta(a\mid s)}{\pi_{\mathrm{old}}(a\mid s)}A_{\mathrm{old}}(s,a)\right]\quad\mathrm{s.t.}\quad \mathbb{E}[D_{\mathrm{KL}}(\pi_{\mathrm{old}}\Vert\pi_\theta)]\le\delta
+$$
 
 **Plain-English explanation.** Maximizes surrogate objective under KL trust region.
 
@@ -4365,7 +4424,9 @@ $$\max_\theta\mathbb{E}\left[\frac{\pi_\theta(a\mid s)}{\pi_{\mathrm{old}}(a\mid
 
 **Equation**
 
-$$\mathcal{L}=\mathbb{E}[(Q_\phi(s,a)-(r+\gamma Q_{\phi'}(s',\mu_{\theta'}(s'))))^2]$$
+$$
+\mathcal{L}=\mathbb{E}[(Q_\phi(s,a)-(r+\gamma Q_{\phi'}(s',\mu_{\theta'}(s'))))^2]
+$$
 
 **Plain-English explanation.** Learns Q-function for deterministic continuous-control actor.
 
@@ -4379,7 +4440,9 @@ $$\mathcal{L}=\mathbb{E}[(Q_\phi(s,a)-(r+\gamma Q_{\phi'}(s',\mu_{\theta'}(s')))
 
 **Equation**
 
-$$\nabla_\theta J\approx \mathbb{E}[\nabla_a Q_\phi(s,a)|_{a=\mu_\theta(s)}\nabla_\theta\mu_\theta(s)]$$
+$$
+\nabla_\theta J\approx \mathbb{E}[\nabla_a Q_\phi(s,a)|_{a=\mu_\theta(s)}\nabla_\theta\mu_\theta(s)]
+$$
 
 **Plain-English explanation.** Updates deterministic actor through critic gradient.
 
@@ -4393,7 +4456,9 @@ $$\nabla_\theta J\approx \mathbb{E}[\nabla_a Q_\phi(s,a)|_{a=\mu_\theta(s)}\nabl
 
 **Equation**
 
-$$y=r+\gamma\min_{i=1,2}Q_{\phi_i'}(s',\mu_{\theta'}(s')+\epsilon)$$
+$$
+y=r+\gamma\min_{i=1,2}Q_{\phi_i'}(s',\mu_{\theta'}(s')+\epsilon)
+$$
 
 **Plain-English explanation.** Uses clipped double critics and target policy smoothing.
 
@@ -4407,7 +4472,9 @@ $$y=r+\gamma\min_{i=1,2}Q_{\phi_i'}(s',\mu_{\theta'}(s')+\epsilon)$$
 
 **Equation**
 
-$$J(\pi)=\mathbb{E}\left[\sum_t\gamma^t(r(s_t,a_t)+\alpha\mathcal{H}(\pi(\cdot\mid s_t)))\right]$$
+$$
+J(\pi)=\mathbb{E}\left[\sum_t\gamma^t(r(s_t,a_t)+\alpha\mathcal{H}(\pi(\cdot\mid s_t)))\right]
+$$
 
 **Plain-English explanation.** Maximizes reward plus entropy.
 
@@ -4421,7 +4488,9 @@ $$J(\pi)=\mathbb{E}\left[\sum_t\gamma^t(r(s_t,a_t)+\alpha\mathcal{H}(\pi(\cdot\m
 
 **Equation**
 
-$$V(s)=\mathbb{E}_{a\sim\pi}[Q(s,a)-\alpha\log\pi(a\mid s)]$$
+$$
+V(s)=\mathbb{E}_{a\sim\pi}[Q(s,a)-\alpha\log\pi(a\mid s)]
+$$
 
 **Plain-English explanation.** State value includes entropy bonus.
 
@@ -4435,7 +4504,9 @@ $$V(s)=\mathbb{E}_{a\sim\pi}[Q(s,a)-\alpha\log\pi(a\mid s)]$$
 
 **Equation**
 
-$$v_s=V(x_s)+\sum_{t=s}^{s+n-1}\gamma^{t-s}\left(\prod_{i=s}^{t-1}c_i\right)\delta_tV$$
+$$
+v_s=V(x_s)+\sum_{t=s}^{s+n-1}\gamma^{t-s}\left(\prod_{i=s}^{t-1}c_i\right)\delta_tV
+$$
 
 **Plain-English explanation.** Corrects off-policy trajectories with truncated importance sampling.
 
@@ -4451,7 +4522,9 @@ $$v_s=V(x_s)+\sum_{t=s}^{s+n-1}\gamma^{t-s}\left(\prod_{i=s}^{t-1}c_i\right)\del
 
 **Equation**
 
-$$A^\pi(s,a)=Q^\pi(s,a)-V^\pi(s)$$
+$$
+A^\pi(s,a)=Q^\pi(s,a)-V^\pi(s)
+$$
 
 **Plain-English explanation.** Measures how much better an action is than average at a state.
 
@@ -4465,7 +4538,9 @@ $$A^\pi(s,a)=Q^\pi(s,a)-V^\pi(s)$$
 
 **Equation**
 
-$$G_t=\sum_{k=t}^{T}\gamma^{k-t}r_k$$
+$$
+G_t=\sum_{k=t}^{T}\gamma^{k-t}r_k
+$$
 
 **Plain-English explanation.** Actual discounted return from a trajectory.
 
@@ -4479,7 +4554,9 @@ $$G_t=\sum_{k=t}^{T}\gamma^{k-t}r_k$$
 
 **Equation**
 
-$$G_t^{(n)}=\sum_{i=0}^{n-1}\gamma^ir_{t+i+1}+\gamma^nV(s_{t+n})$$
+$$
+G_t^{(n)}=\sum_{i=0}^{n-1}\gamma^ir_{t+i+1}+\gamma^nV(s_{t+n})
+$$
 
 **Plain-English explanation.** Combines sampled rewards with bootstrapped value.
 
@@ -4493,7 +4570,9 @@ $$G_t^{(n)}=\sum_{i=0}^{n-1}\gamma^ir_{t+i+1}+\gamma^nV(s_{t+n})$$
 
 **Equation**
 
-$$G_t^\lambda=(1-\lambda)\sum_{n=1}^{\infty}\lambda^{n-1}G_t^{(n)}$$
+$$
+G_t^\lambda=(1-\lambda)\sum_{n=1}^{\infty}\lambda^{n-1}G_t^{(n)}
+$$
 
 **Plain-English explanation.** Weighted mixture of n-step returns.
 
@@ -4509,7 +4588,9 @@ $$G_t^\lambda=(1-\lambda)\sum_{n=1}^{\infty}\lambda^{n-1}G_t^{(n)}$$
 
 **Equation**
 
-$$a=\begin{cases}\mathrm{argmax}_{a} Q(s,a),&1-\epsilon\\\text{random action},&\epsilon\end{cases}$$
+$$
+a=\begin{cases}\mathrm{argmax}_{a} Q(s,a),&1-\epsilon\\\text{random action},&\epsilon\end{cases}
+$$
 
 **Plain-English explanation.** Usually exploits best action, sometimes explores randomly.
 
@@ -4523,7 +4604,9 @@ $$a=\begin{cases}\mathrm{argmax}_{a} Q(s,a),&1-\epsilon\\\text{random action},&\
 
 **Equation**
 
-$$P(a\mid s)=\frac{\exp(Q(s,a)/\tau)}{\sum_b\exp(Q(s,b)/\tau)}$$
+$$
+P(a\mid s)=\frac{\exp(Q(s,a)/\tau)}{\sum_b\exp(Q(s,b)/\tau)}
+$$
 
 **Plain-English explanation.** Samples actions according to softmax Q-values.
 
@@ -4537,7 +4620,9 @@ $$P(a\mid s)=\frac{\exp(Q(s,a)/\tau)}{\sum_b\exp(Q(s,b)/\tau)}$$
 
 **Equation**
 
-$$a_t=\mathrm{argmax}_{a}\left[\hat{\mu}_a+c\sqrt{\frac{\ln t}{N_a}}\right]$$
+$$
+a_t=\mathrm{argmax}_{a}\left[\hat{\mu}_a+c\sqrt{\frac{\ln t}{N_a}}\right]
+$$
 
 **Plain-English explanation.** Chooses action by reward estimate plus uncertainty bonus.
 
@@ -4551,11 +4636,13 @@ $$a_t=\mathrm{argmax}_{a}\left[\hat{\mu}_a+c\sqrt{\frac{\ln t}{N_a}}\right]$$
 
 **Equation**
 
-$$R_T=T\mu^*-\sum_{t=1}^{T}\mu_{a_t}$$
+$$
+R_T=T\mu^{*}-\sum_{t=1}^{T}\mu_{a_t}
+$$
 
 **Plain-English explanation.** Measures reward lost relative to optimal action.
 
-**Symbols.** $\mu^*$ best expected reward.
+**Symbols.** $\mu^{*}$ best expected reward.
 
 **Practical use case.** Bandit and RL evaluation.
 
@@ -4565,7 +4652,9 @@ $$R_T=T\mu^*-\sum_{t=1}^{T}\mu_{a_t}$$
 
 **Equation**
 
-$$a_t=\mathrm{argmax}_{a} \tilde{\mu}_a,\quad \tilde{\mu}_a\sim P(\mu_a\mid D_t)$$
+$$
+a_t=\mathrm{argmax}_{a} \tilde{\mu}_a,\quad \tilde{\mu}_a\sim P(\mu_a\mid D_t)
+$$
 
 **Plain-English explanation.** Samples beliefs about action value and acts greedily under the sample.
 
@@ -4579,7 +4668,9 @@ $$a_t=\mathrm{argmax}_{a} \tilde{\mu}_a,\quad \tilde{\mu}_a\sim P(\mu_a\mid D_t)
 
 **Equation**
 
-$$a_t=\mathrm{argmax}_{a}\left[x_{t,a}^\top\hat{\theta}_a+\alpha\sqrt{x_{t,a}^\top A_a^{-1}x_{t,a}}\right]$$
+$$
+a_t=\mathrm{argmax}_{a}\left[x_{t,a}^\top\hat{\theta}_a+\alpha\sqrt{x_{t,a}^\top A_a^{-1}x_{t,a}}\right]
+$$
 
 **Plain-English explanation.** Contextual UCB for linear reward models.
 
@@ -4593,7 +4684,9 @@ $$a_t=\mathrm{argmax}_{a}\left[x_{t,a}^\top\hat{\theta}_a+\alpha\sqrt{x_{t,a}^\t
 
 **Equation**
 
-$$p_{t,i}=(1-\gamma)\frac{w_{t,i}}{\sum_jw_{t,j}}+\frac{\gamma}{K}$$
+$$
+p_{t,i}=(1-\gamma)\frac{w_{t,i}}{\sum_jw_{t,j}}+\frac{\gamma}{K}
+$$
 
 **Plain-English explanation.** Adversarial bandit action distribution.
 
@@ -4607,7 +4700,9 @@ $$p_{t,i}=(1-\gamma)\frac{w_{t,i}}{\sum_jw_{t,j}}+\frac{\gamma}{K}$$
 
 **Equation**
 
-$$r_t^{\mathrm{int}}=\|f_\theta(s_t)-f_{\mathrm{target}}(s_t)\|_2^2$$
+$$
+r_t^{\mathrm{int}}=\|f_\theta(s_t)-f_{\mathrm{target}}(s_t)\|_2^2
+$$
 
 **Plain-English explanation.** Rewards states where predictor poorly matches fixed random target.
 
@@ -4621,7 +4716,9 @@ $$r_t^{\mathrm{int}}=\|f_\theta(s_t)-f_{\mathrm{target}}(s_t)\|_2^2$$
 
 **Equation**
 
-$$r_t^{\mathrm{int}}=\|\hat{\phi}(s_{t+1})-\phi(s_{t+1})\|_2^2$$
+$$
+r_t^{\mathrm{int}}=\|\hat{\phi}(s_{t+1})-\phi(s_{t+1})\|_2^2
+$$
 
 **Plain-English explanation.** Rewards prediction error in learned feature space.
 
@@ -4637,7 +4734,9 @@ $$r_t^{\mathrm{int}}=\|\hat{\phi}(s_{t+1})-\phi(s_{t+1})\|_2^2$$
 
 **Equation**
 
-$$V_{k+1}(s)=\max_a\sum_{s'}P(s'\mid s,a)[R(s,a,s')+\gamma V_k(s')]$$
+$$
+V_{k+1}(s)=\max_a\sum_{s'}P(s'\mid s,a)[R(s,a,s')+\gamma V_k(s')]
+$$
 
 **Plain-English explanation.** Repeated Bellman optimality backups.
 
@@ -4651,7 +4750,9 @@ $$V_{k+1}(s)=\max_a\sum_{s'}P(s'\mid s,a)[R(s,a,s')+\gamma V_k(s')]$$
 
 **Equation**
 
-$$V^{\pi}_{k+1}(s)=\sum_a\pi(a\mid s)\sum_{s'}P(s'\mid s,a)[R+\gamma V_k^{\pi}(s')]$$
+$$
+V^{\pi}_{k+1}(s)=\sum_a\pi(a\mid s)\sum_{s'}P(s'\mid s,a)[R+\gamma V_k^{\pi}(s')]
+$$
 
 **Plain-English explanation.** Computes value for a fixed policy.
 
@@ -4665,7 +4766,9 @@ $$V^{\pi}_{k+1}(s)=\sum_a\pi(a\mid s)\sum_{s'}P(s'\mid s,a)[R+\gamma V_k^{\pi}(s
 
 **Equation**
 
-$$\pi_{\mathrm{new}}(s)=\mathrm{argmax}_{a}\sum_{s'}P(s'\mid s,a)[R+\gamma V^\pi(s')]$$
+$$
+\pi_{\mathrm{new}}(s)=\mathrm{argmax}_{a}\sum_{s'}P(s'\mid s,a)[R+\gamma V^\pi(s')]
+$$
 
 **Plain-English explanation.** Updates policy greedily with respect to current value.
 
@@ -4679,7 +4782,9 @@ $$\pi_{\mathrm{new}}(s)=\mathrm{argmax}_{a}\sum_{s'}P(s'\mid s,a)[R+\gamma V^\pi
 
 **Equation**
 
-$$a=\mathrm{argmax}_{a}\left[Q(s,a)+c\sqrt{\frac{\ln N(s)}{N(s,a)}}\right]$$
+$$
+a=\mathrm{argmax}_{a}\left[Q(s,a)+c\sqrt{\frac{\ln N(s)}{N(s,a)}}\right]
+$$
 
 **Plain-English explanation.** Balances exploitation and exploration in tree search.
 
@@ -4693,7 +4798,9 @@ $$a=\mathrm{argmax}_{a}\left[Q(s,a)+c\sqrt{\frac{\ln N(s)}{N(s,a)}}\right]$$
 
 **Equation**
 
-$$a=\mathrm{argmax}_{a}\left[Q(s,a)+c_{\mathrm{puct}}P(s,a)\frac{\sqrt{N(s)}}{1+N(s,a)}\right]$$
+$$
+a=\mathrm{argmax}_{a}\left[Q(s,a)+c_{\mathrm{puct}}P(s,a)\frac{\sqrt{N(s)}}{1+N(s,a)}\right]
+$$
 
 **Plain-English explanation.** Uses policy prior to guide MCTS exploration.
 
@@ -4707,7 +4814,9 @@ $$a=\mathrm{argmax}_{a}\left[Q(s,a)+c_{\mathrm{puct}}P(s,a)\frac{\sqrt{N(s)}}{1+
 
 **Equation**
 
-$$a_t=\mathrm{argmax}_{a_{t:t+H}}\mathbb{E}\left[\sum_{k=0}^{H}\gamma^kr_{t+k}\right]$$
+$$
+a_t=\mathrm{argmax}_{a_{t:t+H}}\mathbb{E}\left[\sum_{k=0}^{H}\gamma^kr_{t+k}\right]
+$$
 
 **Plain-English explanation.** Chooses first action from best finite-horizon plan.
 
@@ -4723,7 +4832,9 @@ $$a_t=\mathrm{argmax}_{a_{t:t+H}}\mathbb{E}\left[\sum_{k=0}^{H}\gamma^kr_{t+k}\r
 
 **Equation**
 
-$$\mathcal{L}_{\mathrm{BC}}=-\mathbb{E}_{(s,a)\sim D}\log\pi_\theta(a\mid s)$$
+$$
+\mathcal{L}_{\mathrm{BC}}=-\mathbb{E}_{(s,a)\sim D}\log\pi_\theta(a\mid s)
+$$
 
 **Plain-English explanation.** Imitates actions from logged demonstrations.
 
@@ -4737,7 +4848,9 @@ $$\mathcal{L}_{\mathrm{BC}}=-\mathbb{E}_{(s,a)\sim D}\log\pi_\theta(a\mid s)$$
 
 **Equation**
 
-$$V^{\pi}=\mathbb{E}_{\tau\sim\mu}\left[\prod_t\frac{\pi(a_t\mid s_t)}{\mu(a_t\mid s_t)}G(\tau)\right]$$
+$$
+V^{\pi}=\mathbb{E}_{\tau\sim\mu}\left[\prod_t\frac{\pi(a_t\mid s_t)}{\mu(a_t\mid s_t)}G(\tau)\right]
+$$
 
 **Plain-English explanation.** Evaluates target policy using data from behavior policy.
 
@@ -4751,7 +4864,9 @@ $$V^{\pi}=\mathbb{E}_{\tau\sim\mu}\left[\prod_t\frac{\pi(a_t\mid s_t)}{\mu(a_t\m
 
 **Equation**
 
-$$\hat{V}_{\mathrm{WIS}}=\frac{\sum_i\rho_iG_i}{\sum_i\rho_i}$$
+$$
+\hat{V}_{\mathrm{WIS}}=\frac{\sum_i\rho_iG_i}{\sum_i\rho_i}
+$$
 
 **Plain-English explanation.** Normalizes importance weights to reduce variance.
 
@@ -4765,7 +4880,9 @@ $$\hat{V}_{\mathrm{WIS}}=\frac{\sum_i\rho_iG_i}{\sum_i\rho_i}$$
 
 **Equation**
 
-$$\mathcal{L}_{\mathrm{CQL}}=\alpha\left(\mathbb{E}_{s}\log\sum_a e^{Q(s,a)}-\mathbb{E}_{(s,a)\sim D}Q(s,a)\right)+\mathcal{L}_{\mathrm{Bellman}}$$
+$$
+\mathcal{L}_{\mathrm{CQL}}=\alpha\left(\mathbb{E}_{s}\log\sum_a e^{Q(s,a)}-\mathbb{E}_{(s,a)\sim D}Q(s,a)\right)+\mathcal{L}_{\mathrm{Bellman}}
+$$
 
 **Plain-English explanation.** Penalizes high Q-values for unseen actions.
 
@@ -4779,7 +4896,9 @@ $$\mathcal{L}_{\mathrm{CQL}}=\alpha\left(\mathbb{E}_{s}\log\sum_a e^{Q(s,a)}-\ma
 
 **Equation**
 
-$$\mathcal{L}_V=\mathbb{E}_{(s,a)\sim D}[L_2^\tau(Q(s,a)-V(s))]$$
+$$
+\mathcal{L}_V=\mathbb{E}_{(s,a)\sim D}[L_2^\tau(Q(s,a)-V(s))]
+$$
 
 **Plain-English explanation.** Fits value to an expectile of Q-values.
 
@@ -4793,7 +4912,9 @@ $$\mathcal{L}_V=\mathbb{E}_{(s,a)\sim D}[L_2^\tau(Q(s,a)-V(s))]$$
 
 **Equation**
 
-$$\mathcal{L}_{\mathrm{AWR}}=-\mathbb{E}_{(s,a)\sim D}\left[\exp\left(\frac{A(s,a)}{\beta}\right)\log\pi_\theta(a\mid s)\right]$$
+$$
+\mathcal{L}_{\mathrm{AWR}}=-\mathbb{E}_{(s,a)\sim D}\left[\exp\left(\frac{A(s,a)}{\beta}\right)\log\pi_\theta(a\mid s)\right]
+$$
 
 **Plain-English explanation.** Weights imitation by estimated advantage.
 
@@ -4809,7 +4930,9 @@ $$\mathcal{L}_{\mathrm{AWR}}=-\mathbb{E}_{(s,a)\sim D}\left[\exp\left(\frac{A(s,
 
 **Equation**
 
-$$\pi_i^*\in\mathrm{argmax}_{\pi_i}J_i(\pi_i,\pi_{-i}^*)$$
+$$
+\pi_i^{*}\in\mathrm{argmax}_{\pi_i}J_i(\pi_i,\pi_{-i}^{*})
+$$
 
 **Plain-English explanation.** No agent can improve by unilaterally changing policy.
 
@@ -4823,7 +4946,9 @@ $$\pi_i^*\in\mathrm{argmax}_{\pi_i}J_i(\pi_i,\pi_{-i}^*)$$
 
 **Equation**
 
-$$V^*(s)=\max_a\min_b Q(s,a,b)$$
+$$
+V^{*}(s)=\max_a\min_b Q(s,a,b)
+$$
 
 **Plain-English explanation.** Chooses action maximizing worst-case outcome against opponent.
 
@@ -4837,7 +4962,9 @@ $$V^*(s)=\max_a\min_b Q(s,a,b)$$
 
 **Equation**
 
-$$Q_{\mathrm{tot}}(\tau,a)=\sum_{i=1}^{n}Q_i(\tau_i,a_i)$$
+$$
+Q_{\mathrm{tot}}(\tau,a)=\sum_{i=1}^{n}Q_i(\tau_i,a_i)
+$$
 
 **Plain-English explanation.** Factorizes team Q-value as sum of agent Q-values.
 
@@ -4851,7 +4978,9 @@ $$Q_{\mathrm{tot}}(\tau,a)=\sum_{i=1}^{n}Q_i(\tau_i,a_i)$$
 
 **Equation**
 
-$$\frac{\partial Q_{\mathrm{tot}}}{\partial Q_i}\ge0$$
+$$
+\frac{\partial Q_{\mathrm{tot}}}{\partial Q_i}\ge0
+$$
 
 **Plain-English explanation.** Constrains mixing network so local argmax actions align with global argmax.
 
@@ -4865,7 +4994,9 @@ $$\frac{\partial Q_{\mathrm{tot}}}{\partial Q_i}\ge0$$
 
 **Equation**
 
-$$\nabla_{\theta_i}J\approx\mathbb{E}[\nabla_{\theta_i}\mu_i(o_i)\nabla_{a_i}Q_i(x,a_1,\dots,a_N)]$$
+$$
+\nabla_{\theta_i}J\approx\mathbb{E}[\nabla_{\theta_i}\mu_i(o_i)\nabla_{a_i}Q_i(x,a_1,\dots,a_N)]
+$$
 
 **Plain-English explanation.** Centralized critic trains decentralized actors.
 
@@ -4879,7 +5010,9 @@ $$\nabla_{\theta_i}J\approx\mathbb{E}[\nabla_{\theta_i}\mu_i(o_i)\nabla_{a_i}Q_i
 
 **Equation**
 
-$$F(s,a,s')=\gamma\Phi(s')-\Phi(s)$$
+$$
+F(s,a,s')=\gamma\Phi(s')-\Phi(s)
+$$
 
 **Plain-English explanation.** Adds shaping reward without changing optimal policy.
 
@@ -4895,7 +5028,9 @@ $$F(s,a,s')=\gamma\Phi(s')-\Phi(s)$$
 
 **Equation**
 
-$$\pi_\theta(\mathrm{tool}\mid \mathrm{context})=\mathrm{softmax}(f_\theta(\mathrm{context}))$$
+$$
+\pi_\theta(\mathrm{tool}\mid \mathrm{context})=\mathrm{softmax}(f_\theta(\mathrm{context}))
+$$
 
 **Plain-English explanation.** Chooses a tool/action from context.
 
@@ -4909,7 +5044,9 @@ $$\pi_\theta(\mathrm{tool}\mid \mathrm{context})=\mathrm{softmax}(f_\theta(\math
 
 **Equation**
 
-$$p_\theta(\mathrm{args}\mid \mathrm{tool},\mathrm{context})=\prod_t p_\theta(a_t\mid \mathrm{tool},\mathrm{context},a_{1:t-1})$$
+$$
+p_\theta(\mathrm{args}\mid \mathrm{tool},\mathrm{context})=\prod_t p_\theta(a_t\mid \mathrm{tool},\mathrm{context},a_{1:t-1})
+$$
 
 **Plain-English explanation.** Generates structured arguments token by token.
 
@@ -4923,7 +5060,9 @@ $$p_\theta(\mathrm{args}\mid \mathrm{tool},\mathrm{context})=\prod_t p_\theta(a_
 
 **Equation**
 
-$$U(\mathrm{tool})=\mathbb{E}[R\mid \mathrm{tool},\mathrm{context}]-\lambda \mathrm{Cost}(\mathrm{tool})$$
+$$
+U(\mathrm{tool})=\mathbb{E}[R\mid \mathrm{tool},\mathrm{context}]-\lambda \mathrm{Cost}(\mathrm{tool})
+$$
 
 **Plain-English explanation.** Selects tools by value minus cost.
 
@@ -4937,7 +5076,9 @@ $$U(\mathrm{tool})=\mathbb{E}[R\mid \mathrm{tool},\mathrm{context}]-\lambda \mat
 
 **Equation**
 
-$$p(\tau\mid x)=\prod_t p_\theta(\mathrm{thought}_t,\mathrm{action}_t\mid x,\mathrm{obs}_{1:t-1},\mathrm{action}_{1:t-1})p(\mathrm{obs}_t\mid \mathrm{action}_t)$$
+$$
+p(\tau\mid x)=\prod_t p_\theta(\mathrm{thought}_t,\mathrm{action}_t\mid x,\mathrm{obs}_{1:t-1},\mathrm{action}_{1:t-1})p(\mathrm{obs}_t\mid \mathrm{action}_t)
+$$
 
 **Plain-English explanation.** Models reasoning/action/observation loop as a trajectory.
 
@@ -4951,7 +5092,9 @@ $$p(\tau\mid x)=\prod_t p_\theta(\mathrm{thought}_t,\mathrm{action}_t\mid x,\mat
 
 **Equation**
 
-$$S(\mathrm{path})=\sum_{t=1}^{T}v_\theta(\mathrm{thought}_t\mid x,\mathrm{thought}_{1:t-1})$$
+$$
+S(\mathrm{path})=\sum_{t=1}^{T}v_\theta(\mathrm{thought}_t\mid x,\mathrm{thought}_{1:t-1})
+$$
 
 **Plain-English explanation.** Scores a reasoning path by evaluator values.
 
@@ -4965,7 +5108,9 @@ $$S(\mathrm{path})=\sum_{t=1}^{T}v_\theta(\mathrm{thought}_t\mid x,\mathrm{thoug
 
 **Equation**
 
-$$\hat{y}=\mathrm{argmax}_{y}\sum_{i=1}^{N}\mathbf{1}[y_i=y]$$
+$$
+\hat{y}=\mathrm{argmax}_{y}\sum_{i=1}^{N}\mathbf{1}[y_i=y]
+$$
 
 **Plain-English explanation.** Samples multiple reasoning paths and chooses majority answer.
 
@@ -4979,7 +5124,9 @@ $$\hat{y}=\mathrm{argmax}_{y}\sum_{i=1}^{N}\mathbf{1}[y_i=y]$$
 
 **Equation**
 
-$$\hat{y}=\mathrm{argmax}_{y}\sum_i w_i\mathbf{1}[y_i=y]$$
+$$
+\hat{y}=\mathrm{argmax}_{y}\sum_i w_i\mathbf{1}[y_i=y]
+$$
 
 **Plain-English explanation.** Majority vote weighted by confidence or verifier score.
 
@@ -4993,7 +5140,9 @@ $$\hat{y}=\mathrm{argmax}_{y}\sum_i w_i\mathbf{1}[y_i=y]$$
 
 **Equation**
 
-$$y^*=\mathrm{argmax}_{y\in\mathcal{Y}}[\log p_\theta(y\mid x)+\lambda v_\phi(x,y)]$$
+$$
+y^{*}=\mathrm{argmax}_{y\in\mathcal{Y}}[\log p_\theta(y\mid x)+\lambda v_\phi(x,y)]
+$$
 
 **Plain-English explanation.** Combines generator likelihood with verifier score.
 
@@ -5007,7 +5156,9 @@ $$y^*=\mathrm{argmax}_{y\in\mathcal{Y}}[\log p_\theta(y\mid x)+\lambda v_\phi(x,
 
 **Equation**
 
-$$M_{t+1}=M_t\cup\{\rho_t\},\quad \rho_t=f_\theta(\mathrm{trajectory}_t,\mathrm{feedback}_t)$$
+$$
+M_{t+1}=M_t\cup\{\rho_t\},\quad \rho_t=f_\theta(\mathrm{trajectory}_t,\mathrm{feedback}_t)
+$$
 
 **Plain-English explanation.** Adds reflection to memory after feedback.
 
@@ -5021,7 +5172,9 @@ $$M_{t+1}=M_t\cup\{\rho_t\},\quad \rho_t=f_\theta(\mathrm{trajectory}_t,\mathrm{
 
 **Equation**
 
-$$\mathrm{Retry}=\mathbf{1}[P(\mathrm{success}\mid \mathrm{retry})\cdot V-C_{\mathrm{retry}}> 0]$$
+$$
+\mathrm{Retry}=\mathbf{1}[P(\mathrm{success}\mid \mathrm{retry})\cdot V-C_{\mathrm{retry}}> 0]
+$$
 
 **Plain-English explanation.** Retries only when expected value exceeds cost.
 
@@ -5035,7 +5188,9 @@ $$\mathrm{Retry}=\mathbf{1}[P(\mathrm{success}\mid \mathrm{retry})\cdot V-C_{\ma
 
 **Equation**
 
-$$P(\mathrm{fail}\mid \mathrm{context},\mathrm{tool})=\sigma(w^\top\phi(\mathrm{context},\mathrm{tool}))$$
+$$
+P(\mathrm{fail}\mid \mathrm{context},\mathrm{tool})=\sigma(w^\top\phi(\mathrm{context},\mathrm{tool}))
+$$
 
 **Plain-English explanation.** Predicts probability of tool/action failure.
 
@@ -5051,7 +5206,9 @@ $$P(\mathrm{fail}\mid \mathrm{context},\mathrm{tool})=\sigma(w^\top\phi(\mathrm{
 
 **Equation**
 
-$$P(\pi)=\prod_{i=1}^{n}\frac{e^{s_{\pi_i}}}{\sum_{j=i}^{n}e^{s_{\pi_j}}}$$
+$$
+P(\pi)=\prod_{i=1}^{n}\frac{e^{s_{\pi_i}}}{\sum_{j=i}^{n}e^{s_{\pi_j}}}
+$$
 
 **Plain-English explanation.** Models probability of a full ranking from item scores.
 
@@ -5065,7 +5222,9 @@ $$P(\pi)=\prod_{i=1}^{n}\frac{e^{s_{\pi_i}}}{\sum_{j=i}^{n}e^{s_{\pi_j}}}$$
 
 **Equation**
 
-$$\mathcal{L}=\max(0,m-r(x,y_w)+r(x,y_l))$$
+$$
+\mathcal{L}=\max(0,m-r(x,y_w)+r(x,y_l))
+$$
 
 **Plain-English explanation.** Enforces winner reward above loser reward by margin.
 
@@ -5079,7 +5238,9 @@ $$\mathcal{L}=\max(0,m-r(x,y_w)+r(x,y_l))$$
 
 **Equation**
 
-$$\mathcal{L}_{\mathrm{PRM}}=-\sum_t[y_t\log p_t+(1-y_t)\log(1-p_t)]$$
+$$
+\mathcal{L}_{\mathrm{PRM}}=-\sum_t[y_t\log p_t+(1-y_t)\log(1-p_t)]
+$$
 
 **Plain-English explanation.** Classifies each reasoning step as good or bad.
 
@@ -5093,7 +5254,9 @@ $$\mathcal{L}_{\mathrm{PRM}}=-\sum_t[y_t\log p_t+(1-y_t)\log(1-p_t)]$$
 
 **Equation**
 
-$$\mathcal{L}_{\mathrm{ORM}}=-(y\log p+(1-y)\log(1-p))$$
+$$
+\mathcal{L}_{\mathrm{ORM}}=-(y\log p+(1-y)\log(1-p))
+$$
 
 **Plain-English explanation.** Scores final answer correctness.
 
@@ -5109,7 +5272,9 @@ $$\mathcal{L}_{\mathrm{ORM}}=-(y\log p+(1-y)\log(1-p))$$
 
 **Equation**
 
-$$c_t=\sum_i\alpha_{\mathrm{ti}}m_i,\quad \alpha_{\mathrm{ti}}=\mathrm{softmax}(q_t^\top k_i)$$
+$$
+c_t=\sum_i\alpha_{ti}m_i,\quad \alpha_{ti}=\mathrm{softmax}(q_t^\top k_i)
+$$
 
 **Plain-English explanation.** Retrieves memory items by attention weights.
 
@@ -5123,7 +5288,9 @@ $$c_t=\sum_i\alpha_{\mathrm{ti}}m_i,\quad \alpha_{\mathrm{ti}}=\mathrm{softmax}(
 
 **Equation**
 
-$$\mathrm{score}(m_i)=\lambda_r \mathrm{rel}(q,m_i)+\lambda_t \mathrm{recency}(m_i)+\lambda_s \mathrm{salience}(m_i)$$
+$$
+\mathrm{score}(m_i)=\lambda_r \mathrm{rel}(q,m_i)+\lambda_t \mathrm{recency}(m_i)+\lambda_s \mathrm{salience}(m_i)
+$$
 
 **Plain-English explanation.** Combines relevance, recency, and salience.
 
@@ -5137,7 +5304,9 @@ $$\mathrm{score}(m_i)=\lambda_r \mathrm{rel}(q,m_i)+\lambda_t \mathrm{recency}(m
 
 **Equation**
 
-$$\mathrm{decay}(m_i)=e^{-\lambda(t-t_i)}$$
+$$
+\mathrm{decay}(m_i)=e^{-\lambda(t-t_i)}
+$$
 
 **Plain-English explanation.** Older memories decay exponentially.
 
@@ -5151,7 +5320,9 @@ $$\mathrm{decay}(m_i)=e^{-\lambda(t-t_i)}$$
 
 **Equation**
 
-$$\mathrm{write}=\mathbf{1}[\mathrm{novelty}(m)>\tau_n \land \mathrm{importance}(m)>\tau_i]$$
+$$
+\mathrm{write}=\mathbf{1}[\mathrm{novelty}(m)>\tau_n \land \mathrm{importance}(m)>\tau_i]
+$$
 
 **Plain-English explanation.** Stores memory only if novel and important enough.
 
@@ -5165,7 +5336,9 @@ $$\mathrm{write}=\mathbf{1}[\mathrm{novelty}(m)>\tau_n \land \mathrm{importance}
 
 **Equation**
 
-$$\pi(a\mid s,M)=\pi(a\mid s,\mathrm{Retrieve}(M,s))$$
+$$
+\pi(a\mid s,M)=\pi(a\mid s,\mathrm{Retrieve}(M,s))
+$$
 
 **Plain-English explanation.** Agent action depends on retrieved memories.
 
@@ -5181,7 +5354,9 @@ $$\pi(a\mid s,M)=\pi(a\mid s,\mathrm{Retrieve}(M,s))$$
 
 **Equation**
 
-$$\max_\pi J_R(\pi)\quad\mathrm{s.t.}\quad J_C(\pi)\leq d$$
+$$
+\max_\pi J_R(\pi)\quad\mathrm{s.t.}\quad J_C(\pi)\leq d
+$$
 
 **Plain-English explanation.** Maximizes reward under cost/safety constraint.
 
@@ -5195,7 +5370,9 @@ $$\max_\pi J_R(\pi)\quad\mathrm{s.t.}\quad J_C(\pi)\leq d$$
 
 **Equation**
 
-$$\mathcal{L}(\pi,\lambda)=J_R(\pi)-\lambda(J_C(\pi)-d)$$
+$$
+\mathcal{L}(\pi,\lambda)=J_R(\pi)-\lambda(J_C(\pi)-d)
+$$
 
 **Plain-English explanation.** Turns constrained problem into penalized optimization.
 
@@ -5209,7 +5386,9 @@ $$\mathcal{L}(\pi,\lambda)=J_R(\pi)-\lambda(J_C(\pi)-d)$$
 
 **Equation**
 
-$$\mathrm{CVaR}_\alpha(X)=\mathbb{E}[X\mid X\leq \mathrm{VaR}_\alpha(X)]$$
+$$
+\mathrm{CVaR}_\alpha(X)=\mathbb{E}[X\mid X\leq \mathrm{VaR}_\alpha(X)]
+$$
 
 **Plain-English explanation.** Expected outcome in the worst alpha-tail.
 
@@ -5223,7 +5402,9 @@ $$\mathrm{CVaR}_\alpha(X)=\mathbb{E}[X\mid X\leq \mathrm{VaR}_\alpha(X)]$$
 
 **Equation**
 
-$$\mathrm{handoff}=\mathbf{1}[P(\mathrm{error}\mid x)> \tau_e\lor \mathrm{Risk}(x)>\tau_r]$$
+$$
+\mathrm{handoff}=\mathbf{1}[P(\mathrm{error}\mid x)> \tau_e\lor \mathrm{Risk}(x)>\tau_r]
+$$
 
 **Plain-English explanation.** Escalates when predicted error or risk is too high.
 
@@ -5237,7 +5418,9 @@ $$\mathrm{handoff}=\mathbf{1}[P(\mathrm{error}\mid x)> \tau_e\lor \mathrm{Risk}(
 
 **Equation**
 
-$$P(\mathrm{unsafe}\mid x)=\sigma(w^\top h_x)$$
+$$
+P(\mathrm{unsafe}\mid x)=\sigma(w^\top h_x)
+$$
 
 **Plain-English explanation.** Predicts unsafe content or action probability.
 
@@ -5246,6 +5429,7 @@ $$P(\mathrm{unsafe}\mid x)=\sigma(w^\top h_x)$$
 **Practical use case.** Guardrails and action filtering.
 
 **Source.** Binary classification standard.
+
 
 # Important Python/PyTorch Snippets
 
