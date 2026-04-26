@@ -64,8 +64,8 @@
 - $H$: number of attention heads.
 - $L$: number of Transformer layers.
 - $Q,K,V$: query, key, value matrices.
-- $	heta$: model parameters.
-- $\pi_	heta$: policy induced by an LLM or RL agent.
+- $\theta$: model parameters.
+- $\pi_\theta$: policy induced by an LLM or RL agent.
 - $D$: document corpus.
 - $q$: query.
 - $d_i$: document or chunk.
@@ -82,12 +82,12 @@
 **Equation**
 
 $$
-p_\theta(x_{1:T}) = \prod_{t=1}^{T} p_\theta(x_t \mid x_{<t})
+p_\theta(x_{1:T}) = \prod_{t=1}^{T} p_\theta(x_t \mid x_{\lt t})
 $$
 
 **Plain-English explanation.** A language model assigns probability to a full sequence by multiplying conditional next-token probabilities.
 
-**Symbols.** $x_t$ is token $t$; $x_{<t}$ are earlier tokens; $	heta$ are model parameters.
+**Symbols.** $x_t$ is token $t$; $x_{\lt t}$ are earlier tokens; $\theta$ are model parameters.
 
 **Practical use case.** Defines causal language modeling, pretraining, scoring, perplexity, and decoding.
 
@@ -98,7 +98,7 @@ $$
 **Equation**
 
 $$
-p_\theta(y_{1:T}\mid x)=\prod_{t=1}^{T}p_\theta(y_t\mid x,y_{<t})
+p_\theta(y_{1:T}\mid x)=\prod_{t=1}^{T}p_\theta(y_t\mid x,y_{\lt t})
 $$
 
 **Plain-English explanation.** The model generates an output sequence conditioned on an input prompt or source sequence.
@@ -114,7 +114,7 @@ $$
 **Equation**
 
 $$
-p_i = \operatorname{softmax}(z)_i = \frac{e^{z_i}}{\sum_{j=1}^{V}e^{z_j}}
+p_i = \mathrm{softmax}(z)_i = \frac{e^{z_i}}{\sum_{j=1}^{V}e^{z_j}}
 $$
 
 **Plain-English explanation.** Converts raw logits into a probability distribution over vocabulary tokens.
@@ -162,12 +162,12 @@ $$
 **Equation**
 
 $$
-\mathcal{L}_{\text{NLL}}(\theta)=-\sum_{t=1}^{T}\log p_\theta(x_t\mid x_{<t})
+\mathcal{L}_{\text{NLL}}(\theta)=-\sum_{t=1}^{T}\log p_\theta(x_t\mid x_{\lt t})
 $$
 
 **Plain-English explanation.** Penalizes the model when it assigns low probability to the correct next token.
 
-**Symbols.** $T$ is sequence length; $p_	heta$ is the predicted token probability.
+**Symbols.** $T$ is sequence length; $p_\theta$ is the predicted token probability.
 
 **Practical use case.** Standard causal LM training objective.
 
@@ -258,7 +258,7 @@ $$
 **Equation**
 
 $$
-\log p_\theta(x_{1:T})=\sum_{t=1}^{T}\log p_\theta(x_t\mid x_{<t})
+\log p_\theta(x_{1:T})=\sum_{t=1}^{T}\log p_\theta(x_t\mid x_{\lt t})
 $$
 
 **Plain-English explanation.** Turns a product of probabilities into a sum of token log-probabilities.
@@ -274,12 +274,12 @@ $$
 **Equation**
 
 $$
-S(x_{1:T})=\frac{1}{T^\alpha}\sum_{t=1}^{T}\log p_\theta(x_t\mid x_{<t})
+S(x_{1:T})=\frac{1}{T^\alpha}\sum_{t=1}^{T}\log p_\theta(x_t\mid x_{\lt t})
 $$
 
 **Plain-English explanation.** Normalizes sequence likelihood to reduce short-sequence bias.
 
-**Symbols.** $lpha$ controls strength of length penalty.
+**Symbols.** $\alpha$ controls strength of length penalty.
 
 **Practical use case.** Beam search, response reranking, translation decoding.
 
@@ -290,12 +290,12 @@ $$
 **Equation**
 
 $$
-\mathcal{L}_{\text{TF}}=-\sum_t \log p_\theta(y_t\mid y_{<t}^{\star},x)
+\mathcal{L}_{\text{TF}}=-\sum_t \log p_\theta(y_t\mid y_{\lt t}^{\star},x)
 $$
 
 **Plain-English explanation.** The model predicts each next target token using gold previous tokens during training.
 
-**Symbols.** $y_{<t}^{\star}$ are ground-truth previous tokens.
+**Symbols.** $y_{\lt t}^{\star}$ are ground-truth previous tokens.
 
 **Practical use case.** Seq2seq training and instruction tuning.
 
@@ -306,7 +306,7 @@ $$
 **Equation**
 
 $$
-\operatorname{PPL}=\exp\left(-\frac{1}{T}\sum_{t=1}^{T}\log p_\theta(x_t\mid x_{<t})\right)
+\mathrm{PPL}=\exp\left(-\frac{1}{T}\sum_{t=1}^{T}\log p_\theta(x_t\mid x_{\lt t})\right)
 $$
 
 **Plain-English explanation.** Exponentiated average negative log-likelihood; lower is better.
@@ -322,7 +322,7 @@ $$
 **Equation**
 
 $$
-\operatorname{BPB}= -\frac{1}{B\log 2}\sum_{t=1}^{T}\log p_\theta(x_t\mid x_{<t})
+\mathrm{BPB}= -\frac{1}{B\log 2}\sum_{t=1}^{T}\log p_\theta(x_t\mid x_{\lt t})
 $$
 
 **Plain-English explanation.** Measures compression quality normalized by byte count.
@@ -404,7 +404,7 @@ $$
 **Equation**
 
 $$
-\tilde{h}^{(\ell)}=h^{(\ell)}+\operatorname{Attn}(\operatorname{LN}(h^{(\ell)})),\quad h^{(\ell+1)}=\tilde{h}^{(\ell)}+\operatorname{MLP}(\operatorname{LN}(\tilde{h}^{(\ell)}))
+\tilde{h}^{(\ell)}=h^{(\ell)}+\mathrm{Attn}(\mathrm{LN}(h^{(\ell)})),\quad h^{(\ell+1)}=\tilde{h}^{(\ell)}+\mathrm{MLP}(\mathrm{LN}(\tilde{h}^{(\ell)}))
 $$
 
 **Plain-English explanation.** Applies normalization before each sublayer and adds residual connections.
@@ -420,7 +420,7 @@ $$
 **Equation**
 
 $$
-\tilde{h}^{(\ell)}=\operatorname{LN}(h^{(\ell)}+\operatorname{Attn}(h^{(\ell)})),\quad h^{(\ell+1)}=\operatorname{LN}(\tilde{h}^{(\ell)}+\operatorname{MLP}(\tilde{h}^{(\ell)}))
+\tilde{h}^{(\ell)}=\mathrm{LN}(h^{(\ell)}+\mathrm{Attn}(h^{(\ell)})),\quad h^{(\ell+1)}=\mathrm{LN}(\tilde{h}^{(\ell)}+\mathrm{MLP}(\tilde{h}^{(\ell)}))
 $$
 
 **Plain-English explanation.** Applies normalization after the residual addition.
@@ -436,7 +436,7 @@ $$
 **Equation**
 
 $$
-\operatorname{FFN}(x)=\phi(xW_1+b_1)W_2+b_2
+\mathrm{FFN}(x)=\phi(xW_1+b_1)W_2+b_2
 $$
 
 **Plain-English explanation.** Applies a position-wise nonlinear transformation after attention.
@@ -452,7 +452,7 @@ $$
 **Equation**
 
 $$
-\operatorname{Dropout}(x)=\frac{m\odot x}{1-p},\quad m_i\sim\operatorname{Bernoulli}(1-p)
+\mathrm{Dropout}(x)=\frac{m\odot x}{1-p},\quad m_i\sim\mathrm{Bernoulli}(1-p)
 $$
 
 **Plain-English explanation.** Randomly zeroes activations during training and rescales survivors.
@@ -468,7 +468,7 @@ $$
 **Equation**
 
 $$
-h^{(\ell+1)}=h^{(\ell)}+b_\ell f_\ell(h^{(\ell)}),\quad b_\ell\sim\operatorname{Bernoulli}(p_\ell)
+h^{(\ell+1)}=h^{(\ell)}+b_\ell f_\ell(h^{(\ell)}),\quad b_\ell\sim\mathrm{Bernoulli}(p_\ell)
 $$
 
 **Plain-English explanation.** Randomly skips residual branches during training.
@@ -489,7 +489,7 @@ $$
 
 **Plain-English explanation.** Initializes weights so variance is controlled across layers.
 
-**Symbols.** $n_{	ext{in}},n_{	ext{out}}$ are fan-in and fan-out.
+**Symbols.** $n_{\text{in}},n_{\text{out}}$ are fan-in and fan-out.
 
 **Practical use case.** Stable model initialization.
 
@@ -505,7 +505,7 @@ $$
 
 **Plain-English explanation.** Initialization designed for ReLU-like activations.
 
-**Symbols.** $n_{	ext{in}}$ is fan-in.
+**Symbols.** $n_{\text{in}}$ is fan-in.
 
 **Practical use case.** Training deep networks with ReLU-family activations.
 
@@ -518,7 +518,7 @@ $$
 **Equation**
 
 $$
-\operatorname{Attention}(Q,K,V)=\operatorname{softmax}\left(\frac{QK^\top}{\sqrt{d_k}}\right)V
+\mathrm{Attention}(Q,K,V)=\mathrm{softmax}\left(\frac{QK^\top}{\sqrt{d_k}}\right)V
 $$
 
 **Plain-English explanation.** Computes a weighted average of values using query-key similarity.
@@ -534,7 +534,7 @@ $$
 **Equation**
 
 $$
-A=\operatorname{softmax}\left(\frac{QK^\top}{\sqrt{d_k}}+M\right),\quad M_{ij}=\begin{cases}0,&j\le i\\-\infty,&j>i\end{cases}
+A=\mathrm{softmax}\left(\frac{QK^\top}{\sqrt{d_k}}+M\right),\quad M_{ij}=\begin{cases}0,&j\le i\\-\infty,&j\gt i\end{cases}
 $$
 
 **Plain-English explanation.** Prevents a token from attending to future tokens.
@@ -550,7 +550,7 @@ $$
 **Equation**
 
 $$
-\operatorname{MHA}(X)=\operatorname{Concat}(head_1,\dots,head_H)W^O,\quad head_h=\operatorname{Attention}(XW_h^Q,XW_h^K,XW_h^V)
+\mathrm{MHA}(X)=\mathrm{Concat}(head_1,\dots,head_H)W^O,\quad head_h=\mathrm{Attention}(XW_h^Q,XW_h^K,XW_h^V)
 $$
 
 **Plain-English explanation.** Runs attention in multiple learned subspaces then combines the results.
@@ -566,7 +566,7 @@ $$
 **Equation**
 
 $$
-\operatorname{CrossAttn}(Q_x,K_y,V_y)=\operatorname{softmax}\left(\frac{Q_xK_y^\top}{\sqrt{d_k}}\right)V_y
+\mathrm{CrossAttn}(Q_x,K_y,V_y)=\mathrm{softmax}\left(\frac{Q_xK_y^\top}{\sqrt{d_k}}\right)V_y
 $$
 
 **Plain-English explanation.** Queries from one sequence attend to keys/values from another sequence.
@@ -582,7 +582,7 @@ $$
 **Equation**
 
 $$
-head_h=\operatorname{Attention}(XW_h^Q,XW^K,XW^V)
+head_h=\mathrm{Attention}(XW_h^Q,XW^K,XW^V)
 $$
 
 **Plain-English explanation.** Each query head has its own query projection but all heads share keys and values.
@@ -598,7 +598,7 @@ $$
 **Equation**
 
 $$
-head_h=\operatorname{Attention}(XW_h^Q,XW_{g(h)}^K,XW_{g(h)}^V)
+head_h=\mathrm{Attention}(XW_h^Q,XW_{g(h)}^K,XW_{g(h)}^V)
 $$
 
 **Plain-English explanation.** Groups query heads so multiple query heads share a key/value head.
@@ -614,7 +614,7 @@ $$
 **Equation**
 
 $$
-A_{ij}=0\quad\text{if}\quad |i-j|>w
+A_{ij}=0\quad\text{if}\quad |i-j|\gt w
 $$
 
 **Plain-English explanation.** Restricts attention to a local window.
@@ -630,7 +630,7 @@ $$
 **Equation**
 
 $$
-\operatorname{SparseAttn}(Q,K,V)=\operatorname{softmax}\left(\frac{QK^\top}{\sqrt{d_k}}+M_S\right)V
+\mathrm{SparseAttn}(Q,K,V)=\mathrm{softmax}\left(\frac{QK^\top}{\sqrt{d_k}}+M_S\right)V
 $$
 
 **Plain-English explanation.** Uses a sparsity mask so only selected query-key pairs interact.
@@ -646,7 +646,7 @@ $$
 **Equation**
 
 $$
-\operatorname{Attn}(Q,K,V)_i=\frac{\phi(q_i)^\top\sum_j\phi(k_j)v_j^\top}{\phi(q_i)^\top\sum_j\phi(k_j)}
+\mathrm{Attn}(Q,K,V)_i=\frac{\phi(q_i)^\top\sum_j\phi(k_j)v_j^\top}{\phi(q_i)^\top\sum_j\phi(k_j)}
 $$
 
 **Plain-English explanation.** Rewrites attention using kernel features to avoid explicit quadratic attention matrix.
@@ -678,12 +678,12 @@ $$
 **Equation**
 
 $$
-\operatorname{Attn}(Q,K,V)=\operatorname{softmax}\left(\frac{Q(EK)^\top}{\sqrt{d_k}}\right)FV
+\mathrm{Attn}(Q,K,V)=\mathrm{softmax}\left(\frac{Q(EK)^\top}{\sqrt{d_k}}\right)FV
 $$
 
 **Plain-English explanation.** Projects sequence-length dimension of keys and values to lower rank.
 
-**Symbols.** $E,F\in\mathbb{R}^{k	imes n}$ are learned projections.
+**Symbols.** $E,F\in\mathbb{R}^{k\times n}$ are learned projections.
 
 **Practical use case.** Low-rank approximation of attention.
 
@@ -781,7 +781,7 @@ $$
 
 **Plain-English explanation.** Rotates query/key vector pairs by position-dependent angles.
 
-**Symbols.** $i$ is position; $	heta$ is frequency.
+**Symbols.** $i$ is position; $\theta$ is frequency.
 
 **Practical use case.** Relative-position-aware attention without additive embeddings.
 
@@ -813,7 +813,7 @@ $$
 
 **Plain-English explanation.** Applies RoPE as complex multiplication.
 
-**Symbols.** $m$ is position; $	heta_j$ frequency for pair $j$.
+**Symbols.** $m$ is position; $\theta_j$ frequency for pair $j$.
 
 **Practical use case.** Efficient implementation and derivation of RoPE.
 
@@ -824,7 +824,7 @@ $$
 **Equation**
 
 $$
-\operatorname{score}_{ij}=\frac{q_i^\top k_j}{\sqrt{d_k}}-m_h(i-j)
+\mathrm{score}_{ij}=\frac{q_i^\top k_j}{\sqrt{d_k}}-m_h(i-j)
 $$
 
 **Plain-English explanation.** Adds head-specific linear distance penalty to attention scores.
@@ -840,7 +840,7 @@ $$
 **Equation**
 
 $$
-\operatorname{score}_{ij}=\frac{q_i^\top k_j}{\sqrt{d_k}}+b_{\operatorname{bucket}(i-j)}
+\mathrm{score}_{ij}=\frac{q_i^\top k_j}{\sqrt{d_k}}+b_{\mathrm{bucket}(i-j)}
 $$
 
 **Plain-English explanation.** Adds a learned bias based on bucketed relative distance.
@@ -909,7 +909,7 @@ $$
 
 **Plain-English explanation.** Changes RoPE frequencies to support longer context.
 
-**Symbols.** $lpha$ is scale factor; $j$ frequency index.
+**Symbols.** $\alpha$ is scale factor; $j$ frequency index.
 
 **Practical use case.** Long-context LLaMA-style inference and fine-tuning.
 
@@ -941,7 +941,7 @@ $$
 
 **Plain-English explanation.** Certain early tokens can receive persistent attention mass and act as sinks.
 
-**Symbols.** $lpha_{ij}$ is attention probability.
+**Symbols.** $\alpha_{ij}$ is attention probability.
 
 **Practical use case.** Streaming LLM and long-context stability analysis.
 
@@ -954,12 +954,12 @@ $$
 **Equation**
 
 $$
-\operatorname{LN}(x)=\gamma\odot\frac{x-\mu}{\sqrt{\sigma^2+\epsilon}}+\beta,\quad \mu=\frac{1}{d}\sum_i x_i,\quad \sigma^2=\frac{1}{d}\sum_i(x_i-\mu)^2
+\mathrm{LN}(x)=\gamma\odot\frac{x-\mu}{\sqrt{\sigma^2+\epsilon}}+\beta,\quad \mu=\frac{1}{d}\sum_i x_i,\quad \sigma^2=\frac{1}{d}\sum_i(x_i-\mu)^2
 $$
 
 **Plain-English explanation.** Normalizes features within one token representation.
 
-**Symbols.** $\gamma,eta$ are learned scale and bias.
+**Symbols.** $\gamma,\beta$ are learned scale and bias.
 
 **Practical use case.** Standard Transformer normalization.
 
@@ -970,7 +970,7 @@ $$
 **Equation**
 
 $$
-\operatorname{RMSNorm}(x)=\gamma\odot\frac{x}{\sqrt{\frac{1}{d}\sum_i x_i^2+\epsilon}}
+\mathrm{RMSNorm}(x)=\gamma\odot\frac{x}{\sqrt{\frac{1}{d}\sum_i x_i^2+\epsilon}}
 $$
 
 **Plain-English explanation.** Normalizes by root mean square without subtracting mean.
@@ -986,7 +986,7 @@ $$
 **Equation**
 
 $$
-\operatorname{BN}(x)=\gamma\frac{x-\mu_B}{\sqrt{\sigma_B^2+\epsilon}}+\beta
+\mathrm{BN}(x)=\gamma\frac{x-\mu_B}{\sqrt{\sigma_B^2+\epsilon}}+\beta
 $$
 
 **Plain-English explanation.** Normalizes using mini-batch statistics.
@@ -1002,7 +1002,7 @@ $$
 **Equation**
 
 $$
-\operatorname{GN}(x)=\gamma\frac{x-\mu_G}{\sqrt{\sigma_G^2+\epsilon}}+\beta
+\mathrm{GN}(x)=\gamma\frac{x-\mu_G}{\sqrt{\sigma_G^2+\epsilon}}+\beta
 $$
 
 **Plain-English explanation.** Normalizes groups of channels independently.
@@ -1018,12 +1018,12 @@ $$
 **Equation**
 
 $$
-x_{l+1}=\operatorname{LN}(\alpha x_l+G_l(x_l))
+x_{l+1}=\mathrm{LN}(\alpha x_l+G_l(x_l))
 $$
 
 **Plain-English explanation.** Scales residual paths to stabilize very deep Transformers.
 
-**Symbols.** $lpha$ is residual scaling coefficient; $G_l$ sublayer.
+**Symbols.** $\alpha$ is residual scaling coefficient; $G_l$ sublayer.
 
 **Practical use case.** Training extremely deep Transformers.
 
@@ -1036,7 +1036,7 @@ $$
 **Equation**
 
 $$
-\operatorname{ReLU}(x)=\max(0,x)
+\mathrm{ReLU}(x)=\max(0,x)
 $$
 
 **Plain-English explanation.** Keeps positive values and zeroes negative values.
@@ -1052,7 +1052,7 @@ $$
 **Equation**
 
 $$
-\operatorname{GELU}(x)=x\Phi(x)
+\mathrm{GELU}(x)=x\Phi(x)
 $$
 
 **Plain-English explanation.** Weights input by the Gaussian CDF.
@@ -1068,7 +1068,7 @@ $$
 **Equation**
 
 $$
-\operatorname{GELU}(x)\approx 0.5x\left(1+\tanh\left(\sqrt{2/\pi}(x+0.044715x^3)\right)\right)
+\mathrm{GELU}(x)\approx 0.5x\left(1+\tanh\left(\sqrt{2/\pi}(x+0.044715x^3)\right)\right)
 $$
 
 **Plain-English explanation.** Fast approximation of GELU.
@@ -1084,7 +1084,7 @@ $$
 **Equation**
 
 $$
-\operatorname{SiLU}(x)=x\sigma(x)=\frac{x}{1+e^{-x}}
+\mathrm{SiLU}(x)=x\sigma(x)=\frac{x}{1+e^{-x}}
 $$
 
 **Plain-English explanation.** Smooth gated activation.
@@ -1100,7 +1100,7 @@ $$
 **Equation**
 
 $$
-\operatorname{Mish}(x)=x\tanh(\log(1+e^x))
+\mathrm{Mish}(x)=x\tanh(\log(1+e^x))
 $$
 
 **Plain-English explanation.** Smooth non-monotonic activation.
@@ -1116,7 +1116,7 @@ $$
 **Equation**
 
 $$
-\operatorname{GLU}(x)= (xW_a+b_a)\odot\sigma(xW_b+b_b)
+\mathrm{GLU}(x)= (xW_a+b_a)\odot\sigma(xW_b+b_b)
 $$
 
 **Plain-English explanation.** One projection gates another projection.
@@ -1132,7 +1132,7 @@ $$
 **Equation**
 
 $$
-\operatorname{ReGLU}(x)= (xW_a)\odot\operatorname{ReLU}(xW_b)
+\mathrm{ReGLU}(x)= (xW_a)\odot\mathrm{ReLU}(xW_b)
 $$
 
 **Plain-English explanation.** Uses a ReLU gate in a GLU-style block.
@@ -1148,7 +1148,7 @@ $$
 **Equation**
 
 $$
-\operatorname{GeGLU}(x)= (xW_a)\odot\operatorname{GELU}(xW_b)
+\mathrm{GeGLU}(x)= (xW_a)\odot\mathrm{GELU}(xW_b)
 $$
 
 **Plain-English explanation.** Uses GELU as the gate.
@@ -1164,7 +1164,7 @@ $$
 **Equation**
 
 $$
-\operatorname{SwiGLU}(x)= (xW_a)\odot\operatorname{SiLU}(xW_b)
+\mathrm{SwiGLU}(x)= (xW_a)\odot\mathrm{SiLU}(xW_b)
 $$
 
 **Plain-English explanation.** Uses SiLU as the multiplicative gate.
@@ -1219,7 +1219,7 @@ $$
 
 **Plain-English explanation.** Contrasts a positive pair against negatives.
 
-**Symbols.** $s$ similarity; $	au$ temperature; $k^+$ positive; $k^-$ negatives.
+**Symbols.** $s$ similarity; $\tau$ temperature; $k^+$ positive; $k^-$ negatives.
 
 **Practical use case.** Contrastive sentence embeddings, DPR, CLIP-style training.
 
@@ -1230,7 +1230,7 @@ $$
 **Equation**
 
 $$
-\ell_{i,j}=-\log\frac{\exp(\operatorname{sim}(z_i,z_j)/\tau)}{\sum_{k\ne i}\exp(\operatorname{sim}(z_i,z_k)/\tau)}
+\ell_{i,j}=-\log\frac{\exp(\mathrm{sim}(z_i,z_j)/\tau)}{\sum_{k\ne i}\exp(\mathrm{sim}(z_i,z_k)/\tau)}
 $$
 
 **Plain-English explanation.** Normalized temperature-scaled contrastive loss.
@@ -1278,12 +1278,12 @@ $$
 **Equation**
 
 $$
-\mathcal{L}_{\text{CLM}}=-\sum_{t}\log p_\theta(x_t\mid x_{<t})
+\mathcal{L}_{\text{CLM}}=-\sum_{t}\log p_\theta(x_t\mid x_{\lt t})
 $$
 
 **Plain-English explanation.** Predicts each token from previous tokens only.
 
-**Symbols.** $x_{<t}$ past context.
+**Symbols.** $x_{\lt t}$ past context.
 
 **Practical use case.** GPT-style pretraining.
 
@@ -1294,12 +1294,12 @@ $$
 **Equation**
 
 $$
-\mathcal{L}_{\text{span}}=-\sum_{t}\log p_\theta(y_t\mid y_{<t},\tilde{x})
+\mathcal{L}_{\text{span}}=-\sum_{t}\log p_\theta(y_t\mid y_{\lt t},\tilde{x})
 $$
 
 **Plain-English explanation.** Reconstructs masked spans from corrupted input.
 
-**Symbols.** $	ilde{x}$ corrupted input; $y$ target spans.
+**Symbols.** $\tilde{x}$ corrupted input; $y$ target spans.
 
 **Practical use case.** T5-style denoising pretraining.
 
@@ -1310,7 +1310,7 @@ $$
 **Equation**
 
 $$
-\mathcal{L}_{KD}=T^2D_{KL}\left(\operatorname{softmax}(z_T/T)\Vert\operatorname{softmax}(z_S/T)\right)
+\mathcal{L}_{KD}=T^2D_{KL}\left(\mathrm{softmax}(z_T/T)\Vert\mathrm{softmax}(z_S/T)\right)
 $$
 
 **Plain-English explanation.** Trains a student to match teacher soft logits.
@@ -1397,7 +1397,7 @@ $$
 
 **Plain-English explanation.** Bias-corrects moments and applies adaptive step size.
 
-**Symbols.** $eta_1,eta_2$ decay rates.
+**Symbols.** $\beta_1,\beta_2$ decay rates.
 
 **Practical use case.** Pretraining and fine-tuning.
 
@@ -1424,7 +1424,7 @@ $$
 **Equation**
 
 $$
-m_t=\beta_1m_{t-1}+(1-\beta_1)g_t,\quad \theta_{t+1}=\theta_t-\eta\operatorname{sign}(m_t)
+m_t=\beta_1m_{t-1}+(1-\beta_1)g_t,\quad \theta_{t+1}=\theta_t-\eta\mathrm{sign}(m_t)
 $$
 
 **Plain-English explanation.** Uses sign of momentum-like update.
@@ -1522,7 +1522,7 @@ $$
 **Equation**
 
 $$
-x_t=\arg\max_i p_\theta(i\mid x_{<t})
+x_t=\arg\max_i p_\theta(i\mid x_{\lt t})
 $$
 
 **Plain-English explanation.** Selects the most likely next token.
@@ -1543,7 +1543,7 @@ $$
 
 **Plain-English explanation.** Controls sharpness of the output distribution.
 
-**Symbols.** $	au$ temperature; lower is more deterministic.
+**Symbols.** $\tau$ temperature; lower is more deterministic.
 
 **Practical use case.** Creative vs precise generation control.
 
@@ -1554,7 +1554,7 @@ $$
 **Equation**
 
 $$
-S_k=\operatorname{TopK}(p,k),\quad p_i'=\frac{p_i\mathbf{1}[i\in S_k]}{\sum_{j\in S_k}p_j}
+S_k=\mathrm{TopK}(p,k),\quad p_i'=\frac{p_i\mathbf{1}[i\in S_k]}{\sum_{j\in S_k}p_j}
 $$
 
 **Plain-English explanation.** Keeps only the k most likely tokens and renormalizes.
@@ -1591,7 +1591,7 @@ $$
 
 **Plain-English explanation.** Keeps tokens whose surprise is close to distribution entropy.
 
-**Symbols.** $H(p)$ entropy; $	au$ typicality threshold.
+**Symbols.** $H(p)$ entropy; $\tau$ typicality threshold.
 
 **Practical use case.** Avoids both dull and unlikely tokens.
 
@@ -1607,7 +1607,7 @@ $$
 
 **Plain-English explanation.** Keeps tokens whose probability is at least a fraction of the top token.
 
-**Symbols.** $lpha$ min-p threshold.
+**Symbols.** $\alpha$ min-p threshold.
 
 **Practical use case.** Sharper adaptive sampling for LLM inference.
 
@@ -1618,7 +1618,7 @@ $$
 **Equation**
 
 $$
-B_t=\operatorname{TopB}\_{y_{1:t}}\left[\log p_\theta(y_{1:t}\mid x)\right]
+B_t=\mathrm{TopB}\_{y_{1:t}}\left[\log p_\theta(y_{1:t}\mid x)\right]
 $$
 
 **Plain-English explanation.** Maintains the top B partial sequences by log-probability.
@@ -1639,7 +1639,7 @@ $$
 
 **Plain-English explanation.** Penalizes or normalizes beam scores by sequence length.
 
-**Symbols.** $|y|$ output length; $lpha$ penalty strength.
+**Symbols.** $|y|$ output length; $\alpha$ penalty strength.
 
 **Practical use case.** Reduces short-output bias.
 
@@ -1655,7 +1655,7 @@ $$
 
 **Plain-English explanation.** Selects tokens preferred by a strong model over a weaker model.
 
-**Symbols.** $lpha$ controls amateur penalty.
+**Symbols.** $\alpha$ controls amateur penalty.
 
 **Practical use case.** Reducing degeneration and improving factuality.
 
@@ -1666,7 +1666,7 @@ $$
 **Equation**
 
 $$
-a_t=\min\left(1,\frac{p(x_t\mid x_{<t})}{q(x_t\mid x_{<t})}\right)
+a_t=\min\left(1,\frac{p(x_t\mid x_{\lt t})}{q(x_t\mid x_{\lt t})}\right)
 $$
 
 **Plain-English explanation.** Accepts draft-model tokens with probability based on target/draft likelihood ratio.
@@ -1687,7 +1687,7 @@ $$
 
 **Plain-English explanation.** Adjusts sampling to maintain target surprise/perplexity.
 
-**Symbols.** $s_t$ observed surprise; $	au$ target; $\eta$ update rate.
+**Symbols.** $s_t$ observed surprise; $\tau$ target; $\eta$ update rate.
 
 **Practical use case.** Diversity control in text generation.
 
@@ -1700,7 +1700,7 @@ $$
 **Equation**
 
 $$
-\mathcal{L}_{SFT}(\theta)=-\mathbb{E}_{(x,y)\sim D}\sum_t\log\pi_\theta(y_t\mid x,y_{<t})
+\mathcal{L}_{SFT}(\theta)=-\mathbb{E}_{(x,y)\sim D}\sum_t\log\pi_\theta(y_t\mid x,y_{\lt t})
 $$
 
 **Plain-English explanation.** Trains the model on demonstration responses.
@@ -1753,7 +1753,7 @@ $$
 
 **Plain-English explanation.** Optimizes reward while preventing policy from drifting too far from reference model.
 
-**Symbols.** $eta$ KL penalty; $\pi_{ref}$ reference policy.
+**Symbols.** $\beta$ KL penalty; $\pi_{ref}$ reference policy.
 
 **Practical use case.** RLHF policy training.
 
@@ -1764,12 +1764,12 @@ $$
 **Equation**
 
 $$
-\mathcal{L}^{CLIP}(\theta)=\mathbb{E}_t\left[\min(r_t(\theta)A_t,\operatorname{clip}(r_t(\theta),1-\epsilon,1+\epsilon)A_t)\right]
+\mathcal{L}^{CLIP}(\theta)=\mathbb{E}_t\left[\min(r_t(\theta)A_t,\mathrm{clip}(r_t(\theta),1-\epsilon,1+\epsilon)A_t)\right]
 $$
 
 **Plain-English explanation.** Limits how much a policy update can change action probabilities.
 
-**Symbols.** $r_t=\pi_	heta(a_t\mid s_t)/\pi_{old}(a_t\mid s_t)$; $A_t$ advantage.
+**Symbols.** $r_t=\pi_\theta(a_t\mid s_t)/\pi_{old}(a_t\mid s_t)$; $A_t$ advantage.
 
 **Practical use case.** RLHF fine-tuning.
 
@@ -1817,7 +1817,7 @@ $$
 
 **Plain-English explanation.** Defines an implicit reward from policy/reference log-ratio.
 
-**Symbols.** $eta$ temperature; $C(x)$ prompt-only constant.
+**Symbols.** $\beta$ temperature; $C(x)$ prompt-only constant.
 
 **Practical use case.** Direct preference optimization.
 
@@ -1849,7 +1849,7 @@ $$
 
 **Plain-English explanation.** Uses a squared loss on preference log-ratio margins.
 
-**Symbols.** $eta$ controls target margin.
+**Symbols.** $\beta$ controls target margin.
 
 **Practical use case.** Stable preference optimization alternative to DPO.
 
@@ -1908,7 +1908,7 @@ $$
 **Equation**
 
 $$
-\hat{A}_{i}=\frac{r_i-\operatorname{mean}(r_{1:G})}{\operatorname{std}(r_{1:G})}
+\hat{A}_{i}=\frac{r_i-\mathrm{mean}(r_{1:G})}{\mathrm{std}(r_{1:G})}
 $$
 
 **Plain-English explanation.** Computes advantage relative to other sampled responses for the same prompt.
@@ -1924,12 +1924,12 @@ $$
 **Equation**
 
 $$
-\mathcal{J}_{GRPO}=\mathbb{E}\left[\frac{1}{G}\sum_{i=1}^{G}\min(\rho_i\hat{A}_i,\operatorname{clip}(\rho_i,1-\epsilon,1+\epsilon)\hat{A}_i)-\beta D_{KL}(\pi_\theta\Vert\pi_{ref})\right]
+\mathcal{J}_{GRPO}=\mathbb{E}\left[\frac{1}{G}\sum_{i=1}^{G}\min(\rho_i\hat{A}_i,\mathrm{clip}(\rho_i,1-\epsilon,1+\epsilon)\hat{A}_i)-\beta D_{KL}(\pi_\theta\Vert\pi_{ref})\right]
 $$
 
 **Plain-English explanation.** PPO-style clipped objective with group-relative advantages.
 
-**Symbols.** $ho_i=\pi_	heta(o_i\mid q)/\pi_{old}(o_i\mid q)$.
+**Symbols.** $\rho_i=\pi_\theta(o_i\mid q)/\pi_{old}(o_i\mid q)$.
 
 **Practical use case.** RLVR training for math/reasoning models.
 
@@ -1961,7 +1961,7 @@ $$
 
 **Plain-English explanation.** Filters generated samples by reward then trains on accepted samples.
 
-**Symbols.** $	au$ reward threshold.
+**Symbols.** $\tau$ reward threshold.
 
 **Practical use case.** Improving instruction models without online RL.
 
@@ -1979,7 +1979,7 @@ $$
 
 **Plain-English explanation.** Adds a trainable low-rank update to frozen weights.
 
-**Symbols.** $A\in\mathbb{R}^{r	imes d_{in}}$, $B\in\mathbb{R}^{d_{out}	imes r}$; $r$ rank.
+**Symbols.** $A\in\mathbb{R}^{r\times d_{in}}$, $B\in\mathbb{R}^{d_{out}\times r}$; $r$ rank.
 
 **Practical use case.** Memory-efficient fine-tuning.
 
@@ -1990,7 +1990,7 @@ $$
 **Equation**
 
 $$
-y=x\operatorname{dequant}(W_q)+x\frac{\alpha}{r}BA
+y=x\mathrm{dequant}(W_q)+x\frac{\alpha}{r}BA
 $$
 
 **Plain-English explanation.** Combines quantized frozen weights with trainable LoRA adapters.
@@ -2120,7 +2120,7 @@ $$
 **Equation**
 
 $$
-q=\operatorname{clip}\left(\operatorname{round}\left(\frac{x}{s}\right)+z,q_{min},q_{max}\right),\quad \hat{x}=s(q-z)
+q=\mathrm{clip}\left(\mathrm{round}\left(\frac{x}{s}\right)+z,q_{min},q_{max}\right),\quad \hat{x}=s(q-z)
 $$
 
 **Plain-English explanation.** Maps floating-point values to integers using scale and zero-point.
@@ -2136,7 +2136,7 @@ $$
 **Equation**
 
 $$
-s=\frac{\max(|x|)}{2^{b-1}-1},\quad q=\operatorname{round}(x/s)
+s=\frac{\max(|x|)}{2^{b-1}-1},\quad q=\mathrm{round}(x/s)
 $$
 
 **Plain-English explanation.** Uses zero-centered integer range.
@@ -2152,7 +2152,7 @@ $$
 **Equation**
 
 $$
-s=\frac{x_{max}-x_{min}}{q_{max}-q_{min}},\quad z=\operatorname{round}\left(q_{min}-\frac{x_{min}}{s}\right)
+s=\frac{x_{max}-x_{min}}{q_{max}-q_{min}},\quad z=\mathrm{round}\left(q_{min}-\frac{x_{min}}{s}\right)
 $$
 
 **Plain-English explanation.** Uses non-zero zero-point to cover arbitrary ranges.
@@ -2200,7 +2200,7 @@ $$
 **Equation**
 
 $$
-\min_s\left\|Q(W\operatorname{diag}(s))\operatorname{diag}(s)^{-1}X-WX\right\|_2^2
+\min_s\left\|Q(W\mathrm{diag}(s))\mathrm{diag}(s)^{-1}X-WX\right\|_2^2
 $$
 
 **Plain-English explanation.** Scales channels before quantization to protect important weights.
@@ -2216,7 +2216,7 @@ $$
 **Equation**
 
 $$
-\hat{X}=X\operatorname{diag}(s)^{-1},\quad \hat{W}=\operatorname{diag}(s)W
+\hat{X}=X\mathrm{diag}(s)^{-1},\quad \hat{W}=\mathrm{diag}(s)W
 $$
 
 **Plain-English explanation.** Migrates activation outlier difficulty into weights.
@@ -2264,7 +2264,7 @@ $$
 **Equation**
 
 $$
-q_s=Q(s),\quad \hat{x}=\operatorname{dequant}(q_x,\operatorname{dequant}(q_s))
+q_s=Q(s),\quad \hat{x}=\mathrm{dequant}(q_x,\mathrm{dequant}(q_s))
 $$
 
 **Plain-English explanation.** Quantizes the quantization scales themselves.
@@ -2301,7 +2301,7 @@ $$
 
 **Plain-English explanation.** Trains while simulating quantized weights/activations.
 
-**Symbols.** $Q(	heta)$ fake-quantized parameters.
+**Symbols.** $Q(\theta)$ fake-quantized parameters.
 
 **Practical use case.** Maintaining accuracy after deployment quantization.
 
@@ -2367,7 +2367,7 @@ $$
 
 **Plain-English explanation.** Represents loss decreasing as a power law with compute.
 
-**Symbols.** $A,lpha$ fitted constants.
+**Symbols.** $A,\alpha$ fitted constants.
 
 **Practical use case.** Forecasting model improvements.
 
@@ -2396,7 +2396,7 @@ $$
 **Equation**
 
 $$
-g(x)=\operatorname{softmax}(W_gx)
+g(x)=\mathrm{softmax}(W_gx)
 $$
 
 **Plain-English explanation.** Computes expert-selection probabilities.
@@ -2412,7 +2412,7 @@ $$
 **Equation**
 
 $$
-S(x)=\operatorname{TopK}(g(x),k)
+S(x)=\mathrm{TopK}(g(x),k)
 $$
 
 **Plain-English explanation.** Selects the highest-scoring experts for a token.
@@ -2510,7 +2510,7 @@ $$
 **Equation**
 
 $$
-(a^*,b^*)=\arg\max_{(a,b)}\operatorname{count}(a,b)
+(a^*,b^*)=\arg\max_{(a,b)}\mathrm{count}(a,b)
 $$
 
 **Plain-English explanation.** Merges the most frequent adjacent symbol pair.
@@ -2526,7 +2526,7 @@ $$
 **Equation**
 
 $$
-score(a,b)=\frac{\operatorname{count}(ab)}{\operatorname{count}(a)\operatorname{count}(b)}
+score(a,b)=\frac{\mathrm{count}(ab)}{\mathrm{count}(a)\mathrm{count}(b)}
 $$
 
 **Plain-English explanation.** Chooses merges using likelihood-inspired association score.
@@ -2542,7 +2542,7 @@ $$
 **Equation**
 
 $$
-P(x)=\prod_{t\in\operatorname{seg}(x)}p(t)
+P(x)=\prod_{t\in\mathrm{seg}(x)}p(t)
 $$
 
 **Plain-English explanation.** Assigns probability to a segmentation as product of token probabilities.
@@ -2558,7 +2558,7 @@ $$
 **Equation**
 
 $$
-\operatorname{seg}^*(x)=\arg\max_{s\in\mathcal{S}(x)}\sum_{t\in s}\log p(t)
+\mathrm{seg}^*(x)=\arg\max_{s\in\mathcal{S}(x)}\sum_{t\in s}\log p(t)
 $$
 
 **Plain-English explanation.** Finds most likely subword segmentation.
@@ -2590,7 +2590,7 @@ $$
 **Equation**
 
 $$
-p(w_t\mid context)=\operatorname{softmax}\left(W\frac{1}{2m}\sum_{-m\le j\le m,j\ne0}v_{w_{t+j}}\right)
+p(w_t\mid context)=\mathrm{softmax}\left(W\frac{1}{2m}\sum_{-m\le j\le m,j\ne0}v_{w_{t+j}}\right)
 $$
 
 **Plain-English explanation.** Predicts a word from averaged context embeddings.
@@ -2656,7 +2656,7 @@ $$
 **Equation**
 
 $$
-BP=\begin{cases}1,&c>r\\e^{1-r/c},&c\le r\end{cases}
+BP=\begin{cases}1,&c\gt r\e^{1-r/c},&c\le r\end{cases}
 $$
 
 **Plain-English explanation.** Penalizes translations shorter than reference.
@@ -2736,7 +2736,7 @@ $$
 **Equation**
 
 $$
-EM=\mathbf{1}[\operatorname{normalize}(\hat{y})=\operatorname{normalize}(y)]
+EM=\mathbf{1}[\mathrm{normalize}(\hat{y})=\mathrm{normalize}(y)]
 $$
 
 **Plain-English explanation.** Checks whether normalized prediction exactly equals answer.
@@ -2784,7 +2784,7 @@ $$
 **Equation**
 
 $$
-MAUVE=\operatorname{Area}\left(\{(e^{-D_{KL}(P\Vert Q_\lambda)},e^{-D_{KL}(Q\Vert P_\lambda)})\}_{\lambda}\right)
+MAUVE=\mathrm{Area}\left(\{(e^{-D_{KL}(P\Vert Q_\lambda)},e^{-D_{KL}(Q\Vert P_\lambda)})\}_{\lambda}\right)
 $$
 
 **Plain-English explanation.** Compares generated and real text distributions using divergence frontier.
@@ -2802,7 +2802,7 @@ $$
 **Equation**
 
 $$
-\operatorname{FLOPs}_{attn}=O(n^2d)
+\mathrm{FLOPs}_{attn}=O(n^2d)
 $$
 
 **Plain-English explanation.** Attention cost grows quadratically with sequence length.
@@ -2818,7 +2818,7 @@ $$
 **Equation**
 
 $$
-\operatorname{FLOPs}_{MLP}\approx 2ndd_{ff}
+\mathrm{FLOPs}_{MLP}\approx 2ndd_{ff}
 $$
 
 **Plain-English explanation.** Feed-forward layers cost proportional to sequence length and intermediate dimension.
@@ -2866,7 +2866,7 @@ $$
 **Equation**
 
 $$
-T_{prefill}\approx\frac{\operatorname{FLOPs}_{prefill}}{\operatorname{FLOPs/s}_{GPU}}+T_{overhead}
+T_{prefill}\approx\frac{\mathrm{FLOPs}_{prefill}}{\mathrm{FLOPs/s}_{GPU}}+T_{overhead}
 $$
 
 **Plain-English explanation.** Estimates time to process prompt tokens.
@@ -2882,7 +2882,7 @@ $$
 **Equation**
 
 $$
-T_{decode}\approx\frac{\operatorname{FLOPs}_{decode}}{\operatorname{FLOPs/s}_{GPU}}+\frac{M_{read}}{BW}+T_{overhead}
+T_{decode}\approx\frac{\mathrm{FLOPs}_{decode}}{\mathrm{FLOPs/s}_{GPU}}+\frac{M_{read}}{BW}+T_{overhead}
 $$
 
 **Plain-English explanation.** Decode is often limited by memory reads and bandwidth.
@@ -2930,7 +2930,7 @@ $$
 **Equation**
 
 $$
-\operatorname{throughput}=\frac{N_{tokens}}{T_{wall}}
+\mathrm{throughput}=\frac{N_{tokens}}{T_{wall}}
 $$
 
 **Plain-English explanation.** Tokens processed per unit time.
@@ -2946,7 +2946,7 @@ $$
 **Equation**
 
 $$
-AI=\frac{\operatorname{FLOPs}}{\operatorname{Bytes\ moved}}
+AI=\frac{\mathrm{FLOPs}}{\mathrm{Bytes\ moved}}
 $$
 
 **Plain-English explanation.** Measures compute per byte of memory traffic.
@@ -3065,7 +3065,7 @@ $$
 
 **Plain-English explanation.** Makes SSM parameters input-dependent.
 
-**Symbols.** $ar{A}_t,ar{B}_t,C_t$ depend on token $x_t$.
+**Symbols.** $\bar{A}_t,\bar{B}_t,C_t$ depend on token $x_t$.
 
 **Practical use case.** Linear-time sequence modeling with content-based selection.
 
@@ -3092,7 +3092,7 @@ $$
 **Equation**
 
 $$
-\operatorname{Retention}(Q,K,V)= (QK^\top\odot D)V
+\mathrm{Retention}(Q,K,V)= (QK^\top\odot D)V
 $$
 
 **Plain-English explanation.** Uses decay matrix for causal retention.
@@ -3113,7 +3113,7 @@ $$
 
 **Plain-English explanation.** Applies long convolution with an implicit filter.
 
-**Symbols.** $*$ convolution; $h_	heta$ learned implicit filter.
+**Symbols.** $*$ convolution; $h_\theta$ learned implicit filter.
 
 **Practical use case.** Subquadratic long-context sequence modeling.
 
@@ -3174,7 +3174,7 @@ $$
 **Equation**
 
 $$
-p_i=\operatorname{softmax}(z_i/T)
+p_i=\mathrm{softmax}(z_i/T)
 $$
 
 **Plain-English explanation.** Calibrates confidence by rescaling logits.
@@ -3211,7 +3211,7 @@ $$
 
 **Plain-English explanation.** Returns a set of labels with finite-sample coverage.
 
-**Symbols.** $s$ nonconformity score; $q_{1-lpha}$ calibration quantile.
+**Symbols.** $s$ nonconformity score; $q_{1-\alpha}$ calibration quantile.
 
 **Practical use case.** Uncertainty-aware prediction.
 
@@ -3393,7 +3393,7 @@ $$
 
 **Plain-English explanation.** Dampens the effect of repeated terms.
 
-**Symbols.** $count(t,d)>0$.
+**Symbols.** $count(t,d)\gt 0$.
 
 **Practical use case.** TF-IDF variants.
 
@@ -3564,7 +3564,7 @@ $$
 **Equation**
 
 $$
-d_i \succ d_j \iff P(R=1\mid d_i,q)>P(R=1\mid d_j,q)
+d_i \succ d_j \iff P(R=1\mid d_i,q)\gt P(R=1\mid d_j,q)
 $$
 
 **Plain-English explanation.** Rank by probability of relevance.
@@ -3662,7 +3662,7 @@ $$
 **Equation**
 
 $$
-w_j=\max_i \log(1+\operatorname{ReLU}(z_{ij}))
+w_j=\max_i \log(1+\mathrm{ReLU}(z_{ij}))
 $$
 
 **Plain-English explanation.** Builds sparse vocabulary weights from MLM logits.
@@ -3897,7 +3897,7 @@ $$
 
 **Plain-English explanation.** Scores relevance as probability of generating token true.
 
-**Symbols.** $	heta$ seq2seq model parameters.
+**Symbols.** $\theta$ seq2seq model parameters.
 
 **Practical use case.** T5-based reranking.
 
@@ -4038,7 +4038,7 @@ $$
 **Equation**
 
 $$
-HR@k=\mathbf{1}\left[\sum_{i=1}^{k}rel_i>0\right]
+HR@k=\mathbf{1}\left[\sum_{i=1}^{k}rel_i\gt 0\right]
 $$
 
 **Plain-English explanation.** Checks whether at least one relevant document appears in top k.
@@ -4173,7 +4173,7 @@ $$
 
 **Plain-English explanation.** Defines repeated tokens between adjacent chunks.
 
-**Symbols.** $S<L$ creates overlap.
+**Symbols.** $S\lt L$ creates overlap.
 
 **Practical use case.** Avoiding boundary information loss.
 
@@ -4184,12 +4184,12 @@ $$
 **Equation**
 
 $$
-b_i=\mathbf{1}[1-\cos(e_i,e_{i+1})>\tau]
+b_i=\mathbf{1}[1-\cos(e_i,e_{i+1})\gt \tau]
 $$
 
 **Plain-English explanation.** Creates a boundary when adjacent sentence embeddings differ enough.
 
-**Symbols.** $e_i$ sentence embedding; $	au$ threshold.
+**Symbols.** $e_i$ sentence embedding; $\tau$ threshold.
 
 **Practical use case.** Semantic chunking.
 
@@ -4305,7 +4305,7 @@ $$
 
 **Plain-English explanation.** Marginalizes answer likelihood over retrieved documents.
 
-**Symbols.** $z$ retrieved passage; $p_\eta$ retriever; $p_	heta$ generator.
+**Symbols.** $z$ retrieved passage; $p_\eta$ retriever; $p_\theta$ generator.
 
 **Practical use case.** End-to-end RAG training.
 
@@ -4316,7 +4316,7 @@ $$
 **Equation**
 
 $$
-p(y\mid x)=\prod_{i=1}^{N}\sum_z p_\eta(z\mid x,y_{<i})p_\theta(y_i\mid x,z,y_{<i})
+p(y\mid x)=\prod_{i=1}^{N}\sum_z p_\eta(z\mid x,y_{\lt i})p_\theta(y_i\mid x,z,y_{\lt i})
 $$
 
 **Plain-English explanation.** Allows retrieval distribution to vary per generated token.
@@ -4467,7 +4467,7 @@ $$
 
 **Plain-English explanation.** Generates a hypothetical answer/document and retrieves similar real documents.
 
-**Symbols.** $h_	heta(q)$ hypothetical document generated from query.
+**Symbols.** $h_\theta(q)$ hypothetical document generated from query.
 
 **Practical use case.** Zero-shot dense retrieval improvement.
 
@@ -4565,7 +4565,7 @@ $$
 
 **Plain-English explanation.** Aggregates neighboring node representations.
 
-**Symbols.** $N(v)$ neighbors; $lpha_{uv}$ edge attention/weight.
+**Symbols.** $N(v)$ neighbors; $\alpha_{uv}$ edge attention/weight.
 
 **Practical use case.** Graph neural retrieval and GraphRAG ranking.
 
@@ -4763,7 +4763,7 @@ $$
 
 **Plain-English explanation.** Updates value toward one-step bootstrapped target.
 
-**Symbols.** $lpha$ learning rate.
+**Symbols.** $\alpha$ learning rate.
 
 **Practical use case.** Policy evaluation.
 
@@ -4779,7 +4779,7 @@ $$
 
 **Plain-English explanation.** Off-policy TD control using greedy next action.
 
-**Symbols.** $lpha$ learning rate.
+**Symbols.** $\alpha$ learning rate.
 
 **Practical use case.** Learning optimal action values.
 
@@ -4827,7 +4827,7 @@ $$
 
 **Plain-English explanation.** Uses online network for action selection and target network for evaluation.
 
-**Symbols.** $	heta^-$ target network parameters.
+**Symbols.** $\theta^-$ target network parameters.
 
 **Practical use case.** Reduces overestimation bias.
 
@@ -4843,7 +4843,7 @@ $$
 
 **Plain-English explanation.** Trains neural Q-function against bootstrapped targets.
 
-**Symbols.** $	heta^-$ target network.
+**Symbols.** $\theta^-$ target network.
 
 **Practical use case.** Deep reinforcement learning.
 
@@ -4989,7 +4989,7 @@ $$
 
 **Plain-English explanation.** Updates deterministic actor through critic gradient.
 
-**Symbols.** $\mu_	heta$ actor.
+**Symbols.** $\mu_\theta$ actor.
 
 **Practical use case.** DDPG/TD3.
 
@@ -5021,7 +5021,7 @@ $$
 
 **Plain-English explanation.** Maximizes reward plus entropy.
 
-**Symbols.** $lpha$ entropy temperature.
+**Symbols.** $\alpha$ entropy temperature.
 
 **Practical use case.** Robust stochastic control.
 
@@ -5037,7 +5037,7 @@ $$
 
 **Plain-English explanation.** State value includes entropy bonus.
 
-**Symbols.** $lpha$ entropy coefficient.
+**Symbols.** $\alpha$ entropy coefficient.
 
 **Practical use case.** Soft actor-critic.
 
@@ -5153,7 +5153,7 @@ $$
 
 **Plain-English explanation.** Samples actions according to softmax Q-values.
 
-**Symbols.** $	au$ temperature.
+**Symbols.** $\tau$ temperature.
 
 **Practical use case.** Smooth exploration.
 
@@ -5249,7 +5249,7 @@ $$
 
 **Plain-English explanation.** Rewards states where predictor poorly matches fixed random target.
 
-**Symbols.** $f_	heta$ predictor; $f_{target}$ fixed random network.
+**Symbols.** $f_\theta$ predictor; $f_{target}$ fixed random network.
 
 **Practical use case.** Exploration in sparse reward environments.
 
@@ -5413,7 +5413,7 @@ $$
 
 **Plain-English explanation.** Normalizes importance weights to reduce variance.
 
-**Symbols.** $ho_i$ trajectory likelihood ratio.
+**Symbols.** $\rho_i$ trajectory likelihood ratio.
 
 **Practical use case.** Offline RL evaluation.
 
@@ -5445,7 +5445,7 @@ $$
 
 **Plain-English explanation.** Fits value to an expectile of Q-values.
 
-**Symbols.** $L_2^	au(u)=|	au-\mathbf{1}[u<0]|u^2$.
+**Symbols.** $L_2^\tau(u)=|\tau-\mathbf{1}[u\lt 0]|u^2$.
 
 **Practical use case.** Implicit Q-learning from offline data.
 
@@ -5461,7 +5461,7 @@ $$
 
 **Plain-English explanation.** Weights imitation by estimated advantage.
 
-**Symbols.** $eta$ temperature.
+**Symbols.** $\beta$ temperature.
 
 **Practical use case.** Offline RL and preference-weighted imitation.
 
@@ -5511,7 +5511,7 @@ $$
 
 **Plain-English explanation.** Factorizes team Q-value as sum of agent Q-values.
 
-**Symbols.** $	au_i$ local history.
+**Symbols.** $\tau_i$ local history.
 
 **Practical use case.** Cooperative multi-agent RL.
 
@@ -5572,7 +5572,7 @@ $$
 **Equation**
 
 $$
-\pi_\theta(tool\mid context)=\operatorname{softmax}(f_\theta(context))
+\pi_\theta(tool\mid context)=\mathrm{softmax}(f_\theta(context))
 $$
 
 **Plain-English explanation.** Chooses a tool/action from context.
@@ -5588,7 +5588,7 @@ $$
 **Equation**
 
 $$
-p_\theta(args\mid tool,context)=\prod_t p_\theta(a_t\mid tool,context,a_{<t})
+p_\theta(args\mid tool,context)=\prod_t p_\theta(a_t\mid tool,context,a_{\lt t})
 $$
 
 **Plain-English explanation.** Generates structured arguments token by token.
@@ -5620,12 +5620,12 @@ $$
 **Equation**
 
 $$
-p(\tau\mid x)=\prod_t p_\theta(thought_t,action_t\mid x,obs_{<t},action_{<t})p(obs_t\mid action_t)
+p(\tau\mid x)=\prod_t p_\theta(thought_t,action_t\mid x,obs_{\lt t},action_{\lt t})p(obs_t\mid action_t)
 $$
 
 **Plain-English explanation.** Models reasoning/action/observation loop as a trajectory.
 
-**Symbols.** $	au$ trajectory.
+**Symbols.** $\tau$ trajectory.
 
 **Practical use case.** ReAct-style agents.
 
@@ -5636,12 +5636,12 @@ $$
 **Equation**
 
 $$
-S(path)=\sum_{t=1}^{T}v_\theta(thought_t\mid x,thought_{<t})
+S(path)=\sum_{t=1}^{T}v_\theta(thought_t\mid x,thought_{\lt t})
 $$
 
 **Plain-English explanation.** Scores a reasoning path by evaluator values.
 
-**Symbols.** $v_	heta$ thought evaluator.
+**Symbols.** $v_\theta$ thought evaluator.
 
 **Practical use case.** Tree search over reasoning steps.
 
@@ -5705,7 +5705,7 @@ $$
 
 **Plain-English explanation.** Adds reflection to memory after feedback.
 
-**Symbols.** $ho_t$ reflection text.
+**Symbols.** $\rho_t$ reflection text.
 
 **Practical use case.** Self-improving agents across trials.
 
@@ -5716,7 +5716,7 @@ $$
 **Equation**
 
 $$
-Retry=\mathbf{1}[P(success\mid retry)\cdot V-C_{retry}>0]
+Retry=\mathbf{1}[P(success\mid retry)\cdot V-C_{retry}\gt 0]
 $$
 
 **Plain-English explanation.** Retries only when expected value exceeds cost.
@@ -5816,7 +5816,7 @@ $$
 **Equation**
 
 $$
-c_t=\sum_i\alpha_{ti}m_i,\quad \alpha_{ti}=\operatorname{softmax}(q_t^\top k_i)
+c_t=\sum_i\alpha_{ti}m_i,\quad \alpha_{ti}=\mathrm{softmax}(q_t^\top k_i)
 $$
 
 **Plain-English explanation.** Retrieves memory items by attention weights.
@@ -5864,12 +5864,12 @@ $$
 **Equation**
 
 $$
-write=\mathbf{1}[novelty(m)>\tau_n\land importance(m)>\tau_i]
+write=\mathbf{1}[novelty(m)\gt \tau_n\land importance(m)\gt \tau_i]
 $$
 
 **Plain-English explanation.** Stores memory only if novel and important enough.
 
-**Symbols.** $	au_n,	au_i$ thresholds.
+**Symbols.** $\tau_n,\tau_i$ thresholds.
 
 **Practical use case.** Preventing memory pollution.
 
@@ -5935,7 +5935,7 @@ $$
 
 **Plain-English explanation.** Expected outcome in the worst alpha-tail.
 
-**Symbols.** $VaR_lpha$ value-at-risk quantile.
+**Symbols.** $VaR_\alpha$ value-at-risk quantile.
 
 **Practical use case.** Risk-sensitive agent planning.
 
@@ -5946,12 +5946,12 @@ $$
 **Equation**
 
 $$
-handoff=\mathbf{1}[P(error\mid x)>\tau_e\lor Risk(x)>\tau_r]
+handoff=\mathbf{1}[P(error\mid x)\gt \tau_e\lor Risk(x)\gt \tau_r]
 $$
 
 **Plain-English explanation.** Escalates when predicted error or risk is too high.
 
-**Symbols.** $	au_e,	au_r$ thresholds.
+**Symbols.** $\tau_e,\tau_r$ thresholds.
 
 **Practical use case.** Production agent safety.
 
